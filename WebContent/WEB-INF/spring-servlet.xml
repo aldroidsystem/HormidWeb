@@ -22,49 +22,18 @@
 	<!-- enable component scanning (beware that this does not enable mapper scanning!) -->
 	<context:component-scan base-package="com.aldroid.hormid"/>
 	
-    
+     <!-- Enable @Controller annotation support -->
+     <mvc:annotation-driven />
+     
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />		
 	</bean>
 	
-	<!-- 
-	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location">
-        	<value>classpath:config.properties</value>
-        </property>
-    </bean>
- 
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="${database.driverClassName}" />
-        <property name="url" value="${database.url}" />  
-        <property name="username" value="${database.username}" />
-        <property name="password" value="${database.password}" />
-    </bean>
-    
-		 
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="typeAliasesPackage" value="com.aldroid.hormid.bean"/>
-    </bean>
-    	
 	
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.aldroid.hormid.dao"/>
-    </bean>
-	
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.aldroid.hormid.dao.lapak" />
-    </bean>
-    
-	<context:component-scan base-package="com.aldroid.hormid" />
-     -->
 	<import resource="classpath:spring-service.xml" />
 	
-	
-	
-	<tx:annotation-driven transaction-manager="transactionManager" />
-
+	<!--Location of bootstrap template  -->
 	<mvc:resources mapping="/resources/**" location="classpath:theme1/" />
 	</beans>
