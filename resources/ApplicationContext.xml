@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:tx="http://www.springframework.org/schema/tx" 
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.2.xsd
+        http://www.springframework.org/schema/jee  
+        http://www.springframework.org/schema/jee/spring-jee-4.2.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+    <context:annotation-config />
+    <context:component-scan base-package="com.aldroid.hormid" />
+    
+    <tx:annotation-driven transaction-manager="transactionManager" />
+    
+    
+    
+    
+    <!--    <context:component-scan base-package="com.aldroid.hormid.lapak.controller" />
+    <context:component-scan base-package="com.aldroid.hormid.lapak.dto" />-->
+    <!-- 
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+        	<value>classpath:config.properties</value>
+        </property>
+    </bean>
+ 
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${database.driverClassName}" />
+        <property name="url" value="${database.url}" />  
+        <property name="username" value="${database.username}" />
+        <property name="password" value="${database.password}" />
+    </bean>
+    
+    
+
+
+
+   <bean id="listProperties" class="com.aldroid.hormid.common.bean.core.ListProperties" >
+        <property name="properties">
+            <bean factory-bean="propertiesController" factory-method="selectAll"/>
+        </property>        
+    </bean>-->
+</beans>
