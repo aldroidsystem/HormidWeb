@@ -10,4 +10,9 @@ public final class QueryDao {
 
     public final static String HARGA_SELECT_ALL = "SELECT * FROM TB_HARGA";
     
+    public final static String SELECT_USER_BY_USERNAME = "SELECT username, fullname, area, address, phone, email, password, flagActive, login_fail_count, flagDeleted, flagChgPassword "
+    		+ "from tb_user where username = #{username}";
+    
+
+    public final static String SELECT_USER_ROLE = "SELECT role_code from tb_user_role where username = #{username}";
 }

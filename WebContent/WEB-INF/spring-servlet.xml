@@ -36,4 +36,13 @@
 	
 	<!--Location of bootstrap template  -->
 	<mvc:resources mapping="/resources/**" location="classpath:theme1/" />
+	
+	
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>classpath:validation</value>
+            </list>
+        </property>
+    </bean>
 	</beans>

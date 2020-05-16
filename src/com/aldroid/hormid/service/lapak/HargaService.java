@@ -5,6 +5,8 @@
  */
 package com.aldroid.hormid.service.lapak;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -64,11 +66,10 @@ public class HargaService{
     		logger.error("Test manual Error");
     		String a="abc";
     		Integer b = Integer.valueOf(a);
-    		return a;
-//    		List<Harga> harga = hargaMapper.selectError();
-//            return harga;
     	} catch(Exception e){
-    		logger.error(e);
+    		StringWriter stack = new StringWriter();
+    		e.printStackTrace(new PrintWriter(stack));
+    		logger.error(stack.toString());
     	}
     	return null;
     }

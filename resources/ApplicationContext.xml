@@ -20,7 +20,9 @@ and open the template in the editor.
         http://www.springframework.org/schema/jee  
         http://www.springframework.org/schema/jee/spring-jee-4.2.xsd
         http://www.springframework.org/schema/security
-        http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+        http://www.springframework.org/schema/security/spring-security-4.2.xsd
+        http://java.sun.com/xml/ns/j2ee 
+		http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
     <!-- <context:annotation-config />
     <context:component-scan base-package="com.aldroid.hormid" />
     
@@ -59,8 +61,9 @@ and open the template in the editor.
     
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
-    
-    
+<!-- 
+    <import resource="classpath:appconfig-security.xml"/>
+     -->
 
 
 <!-- 
