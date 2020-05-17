@@ -7,9 +7,10 @@
 		http://www.springframework.org/schema/security
 		http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <http auto-config="true">
-        <intercept-url pattern="/" access="hasRole('ROLE_USER')"/>
-        <intercept-url pattern="/welcome" access="hasRole('ROLE_USER')"/>
+    <http auto-config="true">        
+        <intercept-url pattern="/" access="hasAnyRole('ROLE_PETANI','ROLE_ADMIN','ROLE_AGEN')"/>
+        <intercept-url pattern="/test/**" access="hasAnyRole('ROLE_AGEN')"/>
+        <intercept-url pattern="/test2/**" access="hasRole('ROLE_PETANI')"/>
         <form-login login-page="/login" default-target-url="/welcome" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password"/>
         <logout logout-success-url="/login?logout" />
     </http>
@@ -19,7 +20,8 @@
             <password-encoder ref="encoder"></password-encoder>
         </authentication-provider>
     </authentication-manager>
-
+    
+    <beans:bean id="userDetailsServiceImpl" class="com.aldroid.hormid.service.generic.UserDetailsServiceImpl"></beans:bean>
 
     <beans:bean id="encoder"
           class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">

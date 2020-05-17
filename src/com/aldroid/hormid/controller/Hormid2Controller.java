@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/test2")
 public class Hormid2Controller {
 	private static final Logger logger = Logger.getLogger(Hormid2Controller.class);
 	

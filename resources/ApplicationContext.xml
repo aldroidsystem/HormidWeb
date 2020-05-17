@@ -61,9 +61,9 @@ and open the template in the editor.
     
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
-<!-- 
+
     <import resource="classpath:appconfig-security.xml"/>
-     -->
+
 
 
 <!-- 

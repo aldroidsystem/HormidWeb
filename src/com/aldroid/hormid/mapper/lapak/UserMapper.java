@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Arg;
 import org.apache.ibatis.annotations.ConstructorArgs;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Result;
@@ -11,6 +12,7 @@ import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Select;
 
 import com.aldroid.hormid.generic.QueryDao;
+import com.aldroid.hormid.model.lapak.Harga;
 import com.aldroid.hormid.model.lapak.User;
 
 public interface UserMapper {
@@ -44,4 +46,14 @@ public interface UserMapper {
 
     @Select(QueryDao.SELECT_USER_ROLE) 
     abstract List<String> loadUserRole(@Param("username") String username);
+    
+    
+    
+    
+
+    @Insert(QueryDao.USER_REGISTRATION)
+    abstract void registerNewUser(User bean);
+
+    @Insert(QueryDao.USER_REGISTRATION_ROLE)
+    abstract void registerNewUserRole(@Param("username") String username,@Param("role") String role);
 }

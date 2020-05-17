@@ -14,7 +14,7 @@ import com.aldroid.hormid.service.lapak.HargaService;
 
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/test")
 public class HormidController {
 	private static final Logger logger = Logger.getLogger("activityLogger");
 	

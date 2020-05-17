@@ -15,4 +15,8 @@ public final class QueryDao {
     
 
     public final static String SELECT_USER_ROLE = "SELECT role_code from tb_user_role where username = #{username}";
+    
+    
+    public final static String USER_REGISTRATION = "insert into tb_user(username,password) values(#{username},#{password})";
+    public final static String USER_REGISTRATION_ROLE = "insert into tb_user_role(username,role_code) values(#{username},#{role})";
 }

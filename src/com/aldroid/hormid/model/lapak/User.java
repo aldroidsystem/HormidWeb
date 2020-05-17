@@ -14,6 +14,7 @@ public class User {
     private String phone;
     private String email;
     private String password;
+    private String passwordConfirm;
     private String catatan;
     private Integer loginFailCount; 
     private Date passwordChangeDate; 
@@ -48,6 +49,16 @@ public class User {
 
 	public String getUsername() {
 		return username;
+	}
+
+
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+
+
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
 	}
 
 
