@@ -8,13 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.aldroid.hormid.model.lapak.Harga;
-import com.aldroid.hormid.model.lapak.User;
 import com.aldroid.hormid.service.generic.UserService;
 import com.aldroid.hormid.service.lapak.HargaService;
 
 
 @Controller
-@RequestMapping("/test")
+@RequestMapping("/")
 public class HormidController {
 	private static final Logger logger = Logger.getLogger("activityLogger");
 	
@@ -23,6 +22,15 @@ public class HormidController {
 
 	@Autowired
 	private UserService userService;
+	
+	
+	@RequestMapping(value="/user",method=RequestMethod.GET)
+    public String selectUser(Model m) throws Exception {
+		logger.info("[RequestMapping:/user]-"+"method:selectUser"); 
+        return "user";
+    }
+	
+	
 	
 	@RequestMapping(value="/eeq",method=RequestMethod.GET)
     public String addViewControllers(Model m) {
@@ -40,15 +48,6 @@ public class HormidController {
     }
 
 
-	@RequestMapping(value="/user",method=RequestMethod.GET)
-    public String selectUser(Model m) throws Exception {
-		logger.info("[RequestMapping:/user]-"+"method:selectUser"); 
-		User user = userService.findByUsername("agenPetani");
-		m.addAttribute("user",user);
-        return "login";
-    }
-	
-	
 	@RequestMapping(value="/error",method=RequestMethod.GET)
     public String testError(Model m){
 		logger.info("[RequestMapping:/error]-"+"method:testError"); 

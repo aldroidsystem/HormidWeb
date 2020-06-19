@@ -13,42 +13,89 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Log in with your helo</title>
+    <title>Log in with your user</title>
 
-    <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/resources/css/common.css" rel="stylesheet">
+<style>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+
+html, body { height: 100%; }
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.login-form {
+  width: 350px;
+  padding: 2em;
+  position: relative;
+}
+
+  .flex-row {
+    display: flex;
+    margin-bottom: 1em;
+  }
+  
+  .lf--label {
+    width: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f6f8;
+    height:calc(2.25rem + 2px);
+  }
+
+.lf--forgot {
+  margin-top: 1em;
+  color: $green-light;
+  font-size: .65em;
+  text-align: center;
+  position: relative;
+}
+
+::placeholder { color: $gray; }
+</style>
+  <link rel="stylesheet" href="resources/dist/css/adminlte.min.css">
 </head>
 
+<div class="login-form">
 <body>
-
-<div class="container">
-
-    <form method="POST" action="login" class="form-signin">
-        <h2 class="form-heading">Log in Coi2</h2>
-
+    <form method="POST" action="login" class="form-signin" class="form-signin">
+        <h2 class="form-heading">Log in</h2>
         <div class="form-group ${error != null ? 'has-error' : ''}">
             <span>${message}</span>
-            <input name="username" type="text" class="form-control" placeholder="Username"
-                   autofocus="true"/>
-            <input name="password" type="password" class="form-control" placeholder="Password"/>
+		<div class="flex-row">
+		  <label class="lf--label" for="username">
+		    <svg x="0px" y="0px" width="12px" height="13px">
+		      <path fill="#B1B7C4" d="M8.9,7.2C9,6.9,9,6.7,9,6.5v-4C9,1.1,7.9,0,6.5,0h-1C4.1,0,3,1.1,3,2.5v4c0,0.2,0,0.4,0.1,0.7 C1.3,7.8,0,9.5,0,11.5V13h12v-1.5C12,9.5,10.7,7.8,8.9,7.2z M4,2.5C4,1.7,4.7,1,5.5,1h1C7.3,1,8,1.7,8,2.5v4c0,0.2,0,0.4-0.1,0.6 l0.1,0L7.9,7.3C7.6,7.8,7.1,8.2,6.5,8.2h-1c-0.6,0-1.1-0.4-1.4-0.9L4.1,7.1l0.1,0C4,6.9,4,6.7,4,6.5V2.5z M11,12H1v-0.5 c0-1.6,1-2.9,2.4-3.4c0.5,0.7,1.2,1.1,2.1,1.1h1c0.8,0,1.6-0.4,2.1-1.1C10,8.5,11,9.9,11,11.5V12z"/>
+		    </svg>
+		  </label>
+		  <input name="username" type="text" class="form-control" placeholder="Username" autofocus="true"/>
+		</div>
+		
+		<div class="flex-row">
+		  <label class="lf--label" for="password">
+		    <svg x="0px" y="0px" width="15px" height="5px">
+		      <g>
+		        <path fill="#B1B7C4" d="M6,2L6,2c0-1.1-1-2-2.1-2H2.1C1,0,0,0.9,0,2.1v0.8C0,4.1,1,5,2.1,5h1.7C5,5,6,4.1,6,2.9V3h5v1h1V3h1v2h1V3h1 V2H6z M5.1,2.9c0,0.7-0.6,1.2-1.3,1.2H2.1c-0.7,0-1.3-0.6-1.3-1.2V2.1c0-0.7,0.6-1.2,1.3-1.2h1.7c0.7,0,1.3,0.6,1.3,1.2V2.9z"/>
+		      </g>
+		    </svg>
+		  </label>
+		  <input name="password" type="password"  class="form-control" placeholder="Password"/>
+		</div>
+  
             <span>${error}</span>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-
             <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
-            <h4 class="text-center"><a href="registration">Create an account</a></h4>
         </div>
-
     </form>
+<a class='lf--forgot' href='#'>Forgot password?</a>
 
 </div>
 <!-- /container -->
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="/resources/js/bootstrap.min.js"></script>
 </body>
 </html>
