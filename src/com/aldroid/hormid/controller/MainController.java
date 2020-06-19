@@ -68,6 +68,6 @@ public class MainController {
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model) {
-        return "welcome";
+        return "welcome.tiles";
     }
 }
