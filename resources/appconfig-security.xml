@@ -8,9 +8,11 @@
 		http://www.springframework.org/schema/security/spring-security.xsd">
 
     <http auto-config="true">        
-        <intercept-url pattern="/" access="hasAnyRole('ROLE_PETANI','ROLE_ADMIN','ROLE_AGEN')"/>
-        <intercept-url pattern="/test/**" access="hasAnyRole('ROLE_AGEN')"/>
-        <intercept-url pattern="/test2/**" access="hasRole('ROLE_PETANI')"/>
+        <intercept-url pattern="/lapak/**" access="hasAnyRole('ROLE_PETANI','ROLE_ADMIN','ROLE_AGEN','ROLE_PEKERJA')"/>
+        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/agen/**" access="hasRole('ROLE_AGEN')"/>
+        <intercept-url pattern="/petani/**" access="hasRole('ROLE_PETANI')"/>
+        <intercept-url pattern="/pekerja/**" access="hasRole('ROLE_PEKERJA')"/>
         <form-login login-page="/login" default-target-url="/welcome" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password"/>
         <logout logout-success-url="/login?logout" />
     </http>

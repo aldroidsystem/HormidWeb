@@ -1,16 +1,20 @@
 <!-- Left navbar links -->
+<form id="logoutForm" method="POST" action="logout">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+</form>
+
 <ul class="navbar-nav">
   <li class="nav-item">
     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
   </li>
   <li class="nav-item d-none d-sm-inline-block">
-    <a href="/" class="nav-link">Home</a>
+    <a href="" class="nav-link">Home</a>
   </li>
   <li class="nav-item d-none d-sm-inline-block">
     <a href="#" class="nav-link">Contact</a>
   </li>
   <li class="nav-item d-none d-sm-inline-block">
-    <a href="#" class="nav-link">Logout</a>
+    <a onclick="document.forms['logoutForm'].submit()" class="nav-link">Logout</a>
   </li>
 </ul>
 

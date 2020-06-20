@@ -1,6 +1,5 @@
 package com.aldroid.hormid.model.lapak;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -28,23 +27,6 @@ public class User {
     private Date createdDate;
     private Date updatedDate;
     private List<String> roles;
-
-    
-//    public User(
-//    		String username, String fullname, String area, String address, String phone, String email, String password, 
-//    		BigDecimal flagActive, BigDecimal login_fail_count, BigDecimal flagDeleted, BigDecimal flagChgPassword) {
-//    	this.username=username; 
-//    	this.fullname=fullname; 
-//    	this.area=area; 
-//    	this.address=address; 
-//    	this.phone=phone; 
-//    	this.email=email; 
-//    	this.password=password; 
-//    	this.flagActive=flagActive.intValue(); 
-//    	this.loginFailCount=login_fail_count.intValue(); 
-//    	this.flagDeleted=flagDeleted.intValue(); 
-//    	this.flagChgPassword=flagChgPassword.intValue();
-//    }
 
 
 	public String getUsername() {
@@ -255,6 +237,4 @@ public class User {
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
-    
-    
 }

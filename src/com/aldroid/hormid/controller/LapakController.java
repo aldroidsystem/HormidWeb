@@ -13,22 +13,13 @@ import com.aldroid.hormid.service.lapak.HargaService;
 
 
 @Controller
-@RequestMapping("/")
-public class HormidController {
+@RequestMapping("/lapak")
+public class LapakController {
 	private static final Logger logger = Logger.getLogger("activityLogger");
 	
 	@Autowired
 	private HargaService hargaService;
 
-	@Autowired
-	private UserService userService;
-	
-	
-	@RequestMapping(value="/user",method=RequestMethod.GET)
-    public String selectUser(Model m) throws Exception {
-		logger.info("[RequestMapping:/user]-"+"method:selectUser"); 
-        return "user";
-    }
 	
 	
 	

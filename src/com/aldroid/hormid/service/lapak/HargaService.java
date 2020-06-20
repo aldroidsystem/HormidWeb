@@ -8,12 +8,10 @@ package com.aldroid.hormid.service.lapak;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.aldroid.hormid.mapper.lapak.HargaMapper;
 import com.aldroid.hormid.model.lapak.Harga;
 
@@ -54,8 +52,7 @@ public class HargaService{
     	logger.trace("Test TRACE");
 		String a="abc";
 		Integer b = Integer.valueOf(a);
-		return a;
-//        return hargaMapper.selectError();
+		return b.toString();
     }
     
 
@@ -66,6 +63,7 @@ public class HargaService{
     		logger.error("Test manual Error");
     		String a="abc";
     		Integer b = Integer.valueOf(a);
+    		return b.toString();
     	} catch(Exception e){
     		StringWriter stack = new StringWriter();
     		e.printStackTrace(new PrintWriter(stack));

@@ -2,17 +2,13 @@ package com.aldroid.hormid.mapper.lapak;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Arg;
-import org.apache.ibatis.annotations.ConstructorArgs;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Select;
-
 import com.aldroid.hormid.generic.QueryDao;
-import com.aldroid.hormid.model.lapak.Harga;
 import com.aldroid.hormid.model.lapak.User;
 
 public interface UserMapper {
@@ -33,14 +29,6 @@ public interface UserMapper {
         @Result(property = "flagChgPassword", javaType = Integer.class, column ="flagChgPassword"),
         @Result(property = "roles", javaType = List.class, column="username",
                 many = @Many(select = "loadUserRole"))})
-//    @ConstructorArgs({
-//    	@Arg(column ="username", javaType = String.class),
-//    	@Arg(column ="fullname", javaType = String.class),
-//    	@Arg(column ="area", javaType = String.class),
-//    	@Arg(column ="address", javaType = String.class),
-//    	@Arg(column ="phone", javaType = String.class),
-//    	@Arg(column ="email", javaType = String.class),
-//    	@Arg(column ="password", javaType = String.class)})
     abstract User findByUsername(@Param("username") String username);
     
 

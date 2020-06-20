@@ -14,7 +14,7 @@
         <!-- /.card-header -->
         <div class="card-body">
           <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-6">
               ini text<br/>
               ini text <br/>
               ini text<br/>
@@ -23,7 +23,7 @@
               ini text<br/>
             </div>
             <!-- /.col -->
-            <div class="col-md-5">
+            <div class="col-md-6">
               ini text<br/>
               ini text <br/>
               ini text<br/>
