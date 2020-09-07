@@ -13,9 +13,18 @@
         <intercept-url pattern="/agen/**" access="hasRole('ROLE_AGEN')"/>
         <intercept-url pattern="/petani/**" access="hasRole('ROLE_PETANI')"/>
         <intercept-url pattern="/pekerja/**" access="hasRole('ROLE_PEKERJA')"/>
-        <form-login login-page="/login" default-target-url="/welcome" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password"/>
+        <form-login 
+	        login-page="/login" 
+	        default-target-url="/welcome" 
+	        authentication-failure-url="/login?error=" 
+	        authentication-failure-handler-ref="authenticationFailureHandler"
+	        username-parameter="username" 
+	        password-parameter="password"/>
         <logout logout-success-url="/login?logout" />
     </http>
+<!--         authentication-success-handler-ref="customAuthenticationSuccessHandler"  -->
+
+
 
     <authentication-manager alias="authenticationManager">
         <authentication-provider user-service-ref="userDetailsServiceImpl">
@@ -23,7 +32,21 @@
         </authentication-provider>
     </authentication-manager>
     
-    <beans:bean id="userDetailsServiceImpl" class="com.aldroid.hormid.service.generic.UserDetailsServiceImpl"></beans:bean>
+    <beans:bean id="userDetailsServiceImpl" class="com.aldroid.hormid.service.authentication.UserDetailsServiceImpl"></beans:bean>
+    
+<!--      <beans:bean id="customAuthenticationSuccessHandler" class="com.aldroid.hormid.service.authentication.CustomAuthenticationSuccessHandler" ></beans:bean>
+ --> 
+    
+      <beans:bean id="authenticationFailureHandler" class="com.aldroid.hormid.service.authentication.CustomAuthenticationFailureHandler" ></beans:bean>
+
+      <beans:bean id="loggerListener" class="com.aldroid.hormid.service.authentication.CustomLoggerListener"/>
+<!--       <beans:bean id="localeResolver"
+	    	class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		    <property name="defaultLocale" value="en" />
+		    <property name="cookieName" value="clientLang" />
+		    <property name="cookieMaxAge" value="31556926" />
+		</beans:bean> -->
+
 
     <beans:bean id="encoder"
           class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">

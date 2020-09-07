@@ -6,7 +6,9 @@
     <definition name="base.definition"  
         template="/WEB-INF/jsp/layout.jsp">  
         <put-attribute name="title" value="" />  
-        <put-attribute name="header" value="/WEB-INF/jsp/header.jsp" />  
+        <put-attribute name="extraCSS" value="" />  
+        <put-attribute name="extraJS" value="" /> 
+        <put-attribute name="header" value="/WEB-INF/jsp/header.jsp" /> 
         <put-attribute name="sidebar" value="/WEB-INF/jsp/sidebar.jsp" />  
         <put-attribute name="breadcrumb" value="/WEB-INF/jsp/breadcrumb.jsp" />  
         <put-attribute name="body" value="" />  
@@ -14,8 +16,15 @@
     </definition>  
     
     <definition name="user" extends="base.definition">  
-        <put-attribute name="title" value="User" />  
+        <put-attribute name="title" value="Pengguna" />  
+        <put-attribute name="extraCSS" value="/WEB-INF/jsp/extraCSS_user.jsp" />  
+        <put-attribute name="extraJS" value="/WEB-INF/jsp/extraJS_user.jsp" /> 
         <put-attribute name="body" value="/WEB-INF/jsp/user.jsp" />  
+    </definition>  
+    <definition name="userForm" extends="user">  
+        <put-attribute name="body" value="/WEB-INF/jsp/userForm.jsp" />  
+        <put-attribute name="extraCSS" value="/WEB-INF/jsp/extraCSS_userForm.jsp" />  
+        <put-attribute name="extraJS" value="/WEB-INF/jsp/extraJS_userForm.jsp" /> 
     </definition>  
     
     <definition name="welcome.tiles" extends="base.definition">  
@@ -25,4 +34,14 @@
   
     <definition name="login" 
         template="/WEB-INF/jsp/login.jsp"/>  
+    
+    <definition name="properties" extends="base.definition">  
+        <put-attribute name="title" value="Pengaturan Sistem" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/properties.jsp" />  
+    </definition>  
+    <definition name="propertiesForm" extends="properties">  
+        <put-attribute name="body" value="/WEB-INF/jsp/propertiesForm.jsp" />  
+        <put-attribute name="extraCSS" value="/WEB-INF/jsp/extraCSS_propertiesForm.jsp" />  
+        <put-attribute name="extraJS" value="/WEB-INF/jsp/extraJS_propertiesForm.jsp" /> 
+    </definition>  
 </tiles-definitions>  

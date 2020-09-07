@@ -22,14 +22,46 @@ and open the template in the editor.
         http://www.springframework.org/schema/security
         http://www.springframework.org/schema/security/spring-security-4.2.xsd
         http://java.sun.com/xml/ns/j2ee 
-		http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
-    <!-- <context:annotation-config />
-    <context:component-scan base-package="com.aldroid.hormid" />
-    
-    <tx:annotation-driven transaction-manager="transactionManager" />
-     -->
+		http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"> 
     
     
+<!--     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>classpath:validation</value>
+            </list>
+        </property>
+    </bean> -->
+    
+   <!--  <bean id="propertiesMessageSource" class="org.springframework.context.support.ResourceBundleMessageSource"> -->
+    <bean id="propertiesMessageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="/WEB-INF/messages"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="cacheSeconds" value="0"/>
+        <property name="fallbackToSystemLocale" value="false"/>
+    </bean>
+
+    <bean id="messageSource" class="com.aldroid.hormid.generic.process.DatabaseDrivenMessageSource">
+        <constructor-arg ref="messageResourceService"/>
+        <property name="parentMessageSource" ref="propertiesMessageSource"/>
+    </bean>
+    
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+    	<property name="defaultLocale" value="in_ID" />
+ 	</bean>
+ 	
+	<!-- enable autowire-->
+	<context:annotation-config />
+	
+	<!-- enable component scanning (beware that this does not enable mapper scanning!) -->
+	<context:component-scan base-package="com.aldroid.hormid"/>
+	
+     <!-- Enable @Controller annotation support -->
+     <mvc:annotation-driven />
+    
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location">
         	<value>classpath:config.properties</value>
@@ -57,19 +89,6 @@ and open the template in the editor.
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
-    
-    
-	<tx:annotation-driven transaction-manager="transactionManager" />
-	
 
     <import resource="classpath:appconfig-security.xml"/>
-
-
-
-<!-- 
-   <bean id="listProperties" class="com.aldroid.hormid.common.bean.core.ListProperties" >
-        <property name="properties">
-            <bean factory-bean="propertiesController" factory-method="selectAll"/>
-        </property>        
-    </bean>-->
 </beans>

@@ -16,27 +16,10 @@
 	http://www.springframework.org/schema/context/spring-context.xsd">
 	
 	
-	<!-- enable autowire-->
-	<context:annotation-config />
-	
-	<!-- enable component scanning (beware that this does not enable mapper scanning!) -->
-	<context:component-scan base-package="com.aldroid.hormid"/>
-	
-     <!-- Enable @Controller annotation support -->
-     <mvc:annotation-driven />
      
 	<!--Location of bootstrap template  -->
 	<mvc:resources mapping="/resources/**" location="classpath:theme1/" />
 	
-	
-    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="basenames">
-            <list>
-                <value>classpath:validation</value>
-            </list>
-        </property>
-    </bean>
-    
 	
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"/>  
 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">  

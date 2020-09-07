@@ -1,15 +1,13 @@
 package com.aldroid.hormid.controller;
 
-import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.aldroid.hormid.model.lapak.Harga;
-import com.aldroid.hormid.service.generic.UserService;
-import com.aldroid.hormid.service.lapak.HargaService;
+
+import com.aldroid.hormid.service.generic.HargaService;
 
 
 @Controller
@@ -21,8 +19,6 @@ public class LapakController {
 	private HargaService hargaService;
 
 	
-	
-	
 	@RequestMapping(value="/eeq",method=RequestMethod.GET)
     public String addViewControllers(Model m) {
 		logger.info("[RequestMapping:/test]-"+"method:addViewControllers"); 
@@ -33,8 +29,8 @@ public class LapakController {
 	@RequestMapping(value="/harga",method=RequestMethod.GET)
     public String selectHarga(Model m) throws Exception {
 		logger.info("[RequestMapping:/harga]-"+"method:selectHarga"); 
-		List<Harga> harga = hargaService.select();
-		m.addAttribute("harga",harga);
+//		List<Harga> harga = hargaService.select();
+//		m.addAttribute("harga",harga);
         return "harga";
     }
 

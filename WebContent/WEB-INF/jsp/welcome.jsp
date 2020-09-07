@@ -7,6 +7,8 @@
         </form>
 
         <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+        <br/>
+        <%= session.getAttribute("hellow")%>
 
     </c:if>
 

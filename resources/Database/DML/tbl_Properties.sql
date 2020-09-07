@@ -8,12 +8,11 @@
  * Created: Sep 26, 2016
  */
 
-insert into tbl_properties (code,"name",description,datatype,"value")
-values 
-('satuanSawit','Satuan Barang Sawit','Satuan Barang Untuk Produk Sawit','List<String>','["Janjang","Kg","Karung"]'),
-('idType','Tipe Identitas','Tipe identitas perseorangan','List<String>','["KTP","SIM","PASPOR"]'),
-('village','Nama Desa','Daftar nama desa','List<String>','["Makartitama","Bogatama","Gunung Tiga"]'),
-('vehicleType','Jenis Angkutan','Daftar jenis angkutan yang diganakan untuk membawa barang','List<String>','["Gerobak","Cold Diesel","Pickup","Fuso"]'),
-('fieldOfWork','Bidang Pekerjaan','Bidang pekerjaan karyawan','List<String>','["KASIR","KULI MUAT","SUPIR","PEMANEN"]')--,
---('timbangMuatGajiKaryawan','Penggajian Karyawan Muat Sawit','Gaji Karyawan Muat Sawit Rp/Kg','Map<String,String>','{"KULI MUAT":"10","SUPIR":"5"}')
-;
+
+insert into tb_properties (property_code,property_desc,datatype,property_value) values ('maxLoginAttempt','Jumlah percobaan masuk yang diperbolehkan agar Pengguna tidak terkunci. Nilai <1 utk tidak terbatas.','Angka','3');
+insert into tb_properties (property_code,property_desc,datatype,property_value) values ('satuanSawit','Satuan Barang Untuk Produk Sawit','Daftar Kata','Janjang,Kg,Karung');
+insert into tb_properties (property_code,property_desc,datatype,property_value) values ('idType','Tipe identitas perseorangan','Daftar Kata','KTP,SIM,PASPOR');
+insert into tb_properties (property_code,property_desc,datatype,property_value) values ('village','Daftar nama desa','Daftar Kata','Makartitama,Bogatama,Gunung Tiga');
+insert into tb_properties (property_code,property_desc,datatype,property_value) values ('vehicleType','Jenis angkutan yang diganakan untuk membawa barang','Daftar Kata','Gerobak,Cold Diesel,Pickup,Fuso');
+insert into tb_properties (property_code,property_desc,datatype,property_value) values ('numberOfRecordPerPage','Jumlah baris perhalaman tabel','Angka','10');
+insert into tb_properties (property_code,property_desc,datatype,property_value) values ('fieldOfWork','Bidang pekerjaan karyawan','Daftar Kata','KASIR,PEKERJA,SUPIR,PEMANEN,AGEN,PETANI');
