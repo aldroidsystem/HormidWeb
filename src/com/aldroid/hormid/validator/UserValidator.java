@@ -2,10 +2,11 @@ package com.aldroid.hormid.validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import com.aldroid.hormid.generic.process.CommonProcess;
 import com.aldroid.hormid.model.generic.User;
 import com.aldroid.hormid.service.generic.UserService;
 
@@ -22,28 +23,39 @@ public class UserValidator implements Validator {
     @Override
     public void validate(Object o, Errors errors) {
         User user = (User) o;
+    	BindingResult bindingResult = (BindingResult) errors;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
-        if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
-            errors.rejectValue("username", "Size.userForm.username");
-        }
-        Integer checkUsername = userService.checkDuplicateUsername(user.getUsername());
-        if (checkUsername != null && checkUsername >0) {
-            errors.rejectValue("username", "Duplicate.userForm.username");
+        if(user.getAction()!=null && user.getAction().equalsIgnoreCase("c")){
+        	CommonProcess.validationRejectIfEmptyOrWhitespace(bindingResult, "username", "NotEmpty",null,null);
+        	if (user.getUsername().length() <3 || user.getUsername().length() > 32) {
+	        	CommonProcess.validationRejectValue(bindingResult, "username", "validation.Size.userForm.username", null, null);
+	        }
+	        Integer checkUsername = userService.checkDuplicateUsername(user.getUsername());
+	        if (checkUsername != null && checkUsername >0) {	        	
+	        	CommonProcess.validationRejectValue(bindingResult, "username", "validation.Duplicate.userForm.username", null, null);
+	        }
         }
     }
     
 
-    public void validatePassword(Object o, Errors errors) {
+    public void validatePasswordAdmin(Object o, Errors errors) {
         User user = (User) o;
+    	BindingResult bindingResult = (BindingResult) errors;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
-        if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
-            errors.rejectValue("password", "Size.userForm.password");
-        }
-
+//    	CommonProcess.validationRejectIfEmptyOrWhitespace(bindingResult, "password", "NotEmpty",null,null);
+//    	CommonProcess.validationRejectIfEmptyOrWhitespace(bindingResult, "passwordConfirm", "NotEmpty",null,null);
+//
+//        if (user.getPassword().length() < 8 || user.getPassword().length() > 16) {
+//        	CommonProcess.validationRejectValue(bindingResult, "password", "validation.Size.userForm.password", null, null);
+//        }
+//
+//        if (user.getPassword().length() < 8 || user.getPassword().length() > 16) {
+//        	CommonProcess.validationRejectValue(bindingResult, "passwordConfirm", "validation.Size.userForm.password", null, null);
+//        }
+        
         if (!user.getPasswordConfirm().equals(user.getPassword())) {
-            errors.rejectValue("passwordConfirm", "Diff.userForm.passwordConfirm");
+        	CommonProcess.validationRejectValue(bindingResult, "passwordConfirm", "validation.Diff.userForm.passwordConfirm", null, null);
+//            errors.rejectValue("passwordConfirm", "validation.Diff.userForm.passwordConfirm");
         }
     }
 }

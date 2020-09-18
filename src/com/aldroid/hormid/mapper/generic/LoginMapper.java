@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.aldroid.hormid.generic.staticVar.LoginQueryList;
+import com.aldroid.hormid.generic.staticvar.LoginQueryList;
 import com.aldroid.hormid.model.generic.User;
 
 public interface LoginMapper {

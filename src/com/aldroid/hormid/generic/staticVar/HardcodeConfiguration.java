@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.aldroid.hormid.generic.staticVar;
+package com.aldroid.hormid.generic.staticvar;
 
 import java.util.Locale;
 

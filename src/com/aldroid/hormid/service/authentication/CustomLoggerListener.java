@@ -62,7 +62,6 @@ public class CustomLoggerListener implements ApplicationListener<ApplicationEven
             logger.info( "AUTH-SUCCESS [" + a + "]");
             if (a.getPrincipal()!= null && a.getPrincipal() instanceof User) {
             	loginService.userLoginSucceeded(((User)a.getPrincipal()).getUsername());
-            	String aa = loginService.generateToken();
             	try {
 					String bb = loginService.getCurrentUrl();
 				} catch (MalformedURLException | URISyntaxException e1) {

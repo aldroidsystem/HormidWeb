@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+<!--   <meta http-equiv="x-ua-compatible" content="ie=edge"> -->
 
   <title><tiles:insertAttribute name="title" ignore="true" /> - Horas Miduk</title>
 
@@ -24,7 +24,7 @@
 <!--   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> -->
   
 </head>
-<body class="hold-transition sidebar-collapse">
+<body class="hold-transition sidebar-mini layout-boxed">
 	<div class="wrapper">
 	  
 	<!-- Main Sidebar Container -->
@@ -44,7 +44,7 @@
 	          <div class="col-sm-6">
 	            <h1 class="m-0 text-dark"><tiles:insertAttribute name="title" ignore="true" /></h1>
 	          </div><!-- /.col -->
-				<tiles:insertAttribute name="breadcrumb" />
+				<%-- <tiles:insertAttribute name="breadcrumb" /> --%>
 	        </div><!-- /.row -->
 	      </div><!-- /.container-fluid -->
 	    </div>
@@ -76,8 +76,8 @@
  <spring:url value="/resources/plugins/jquery/jquery.min.js" var="jqueryJs" />
 <script src="${jqueryJs}"></script>
 <!-- Bootstrap -->
-<%--<spring:url value="/resources/plugins/bootstrap/js/bootstrap.bundle.min.js" var="bootstrapJs" />
-<script src="${bootstrapJs}"></script>--%>
+<spring:url value="/resources/plugins/bootstrap/js/bootstrap.bundle.min.js" var="bootstrapJs" />
+<script src="${bootstrapJs}"></script>
 <!-- overlayScrollbars -->
 <%-- <spring:url value="/resources/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js" var="overlayJs" />
 <script src="${overlayJs}"></script>  --%>

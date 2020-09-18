@@ -6,9 +6,11 @@
 package com.aldroid.hormid.mapper.generic;
 
 import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
-import com.aldroid.hormid.generic.staticVar.HargaQueryList;
+
+import com.aldroid.hormid.generic.staticvar.HargaQueryList;
 import com.aldroid.hormid.model.generic.Harga;
 
 /**

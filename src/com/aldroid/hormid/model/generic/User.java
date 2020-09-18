@@ -277,28 +277,28 @@ public class User {
 		this.flagPasswordExpired = flagPasswordExpired;
 	}
 
-	public boolean getBooleanFlagDeleted() {
-		return getFlagDeleted().compareTo(1)==0;
+	public boolean getBooleanFlagDeleted() {   
+		return getFlagDeleted()!=null && getFlagDeleted()==1;
 	}
 
 	public boolean getBooleanFlagChgPassword() {
-		return getFlagChgPassword().compareTo(1)==0;
+		return getFlagChgPassword()!=null && getFlagChgPassword()==1;
 	}
 
 	public boolean getBooleanFlagNeverDisable() {
-		return getFlagNeverDisable().compareTo(1)==0;
+		return getFlagNeverDisable()!=null && getFlagNeverDisable()==1;
 	}
 	
 	public boolean getBooleanFlagActive() {
-		return getFlagActive().compareTo(1)==0;
+		return getFlagActive()!=null && getFlagActive()==1;
 	}
 	
 	public boolean getBooleanFlagLocked() {
-		return getFlagLocked().compareTo(1)==0;
+		return getFlagLocked()!=null && getFlagLocked()==1;
 	}
 
 	public boolean getBooleanFlagPasswordExpired() {
-		return getFlagPasswordExpired().compareTo(1)==0;
+		return getFlagPasswordExpired()!=null && getFlagPasswordExpired()==1;
 
 	}
 }

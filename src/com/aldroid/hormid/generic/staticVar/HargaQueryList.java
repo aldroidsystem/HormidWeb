@@ -1,4 +1,4 @@
-package com.aldroid.hormid.generic.staticVar;
+package com.aldroid.hormid.generic.staticvar;
 
 
 

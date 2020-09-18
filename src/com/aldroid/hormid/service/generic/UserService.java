@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.aldroid.hormid.generic.process.CommonProcess;
 import com.aldroid.hormid.mapper.generic.UserMapper;
 import com.aldroid.hormid.model.generic.Role;
 import com.aldroid.hormid.model.generic.User;
@@ -23,7 +24,7 @@ public class UserService {
     	String createdBy = ((org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
     	user.setCreatedBy(createdBy);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.set
+        user.setToken(CommonProcess.generateToken());
         userMapper.registerNewUser(user);
         for(String role : user.getRoles()){
             userMapper.insertUserRole(user.getUsername(), role);
@@ -31,6 +32,12 @@ public class UserService {
         }
     }
 
+
+    public void resetPassword(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        userMapper.resetPassword(user);
+    }
+    
     public void updateUser(User user) {
     	String createdBy = ((org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
     	user.setCreatedBy(createdBy);
@@ -38,6 +45,10 @@ public class UserService {
         updateUserRole(user);
     }
 
+    public void updateProfile(User user) {
+        userMapper.updateProfile(user);
+    }
+    
     public User findByUsername(String username) {
         return userMapper.findByUsername(username);
     }

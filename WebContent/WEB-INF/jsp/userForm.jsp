@@ -27,137 +27,98 @@
 	        </div>
 	        <!-- /.card-header -->
 	        <div class="card-body">
-	          <div class="row">
-	              <div class="col-md-6">
+				<c:choose>
+					<c:when test="${userForm.getUsername()==null || userForm.getUsername()=='' ||  userForm.getAction()=='c'}">
 				        <spring:bind path="username">
-				            <div class="form-group ${status.error ? 'has-error' : ''}">
+				            <div class="form-group">
 						  		<label for="idInputUsername">Kode Pengguna</label>
-								<c:choose>
-									<c:when test="${userForm.getUsername()==null || userForm.getUsername()==''}">
-				                		<form:input type="text" path="username" id="idInputUsername" name="username" class="form-control" placeholder="Masukkan kode pengguna"></form:input>
-									</c:when>    
-									<c:otherwise>
-				                		<form:input type="text" path="username" id="idInputUsername" name="username" class="form-control" placeholder="Masukkan kode pengguna" disabled="true"></form:input>
-									</c:otherwise>
-								</c:choose>	
-				                <form:errors path="username"></form:errors>
-				            </div>
-				        </spring:bind>
-	              </div>
-	              <div class="col-md-6">
-				        <spring:bind path="fullname">
-				            <div class="form-group ${status.error ? 'has-error' : ''}">
-						  		<label for="idInputFullname">Nama Lengkap</label>
-				                <form:input type="text" path="fullname" id="idInputFullname" name="fullname" class="form-control" placeholder="Masukkan nama pengguna"></form:input>
-				                <form:errors path="fullname"></form:errors>
+				                <form:input type="text" path="username" id="idInputUsername" class="form-control  ${status.error ? 'is-invalid' : ''}" placeholder="Masukkan kode pengguna"></form:input>
+				                <span class="invalid-feedback">
+				                <form:errors path="username"></form:errors></span>
 				         	</div>
 				        </spring:bind>
-	              </div>
-	          </div>
-	          <div class="row">
-	              <div class="col-md-6">
-				        <spring:bind path="phone">
-				            <div class="form-group ${status.error ? 'has-error' : ''}">
-						  		<label for="idInputUsername">Telepon</label>
-								<form:input type="text" path="phone" id="idInputPhone" name="phone" class="form-control" placeholder="Masukkan nomor telepon"></form:input>
-				                <form:errors path="phone"></form:errors>
-				            </div>
-				        </spring:bind>
-	              </div>
-	              <div class="col-md-6">
-				        <spring:bind path="email">
-				            <div class="form-group ${status.error ? 'has-error' : ''}">
-						  		<label for="idInputFullname">Email</label>
-				                <form:input type="text" path="email" id="idInputEmail" name="email" class="form-control" placeholder="Masukkan email"></form:input>
-				                <form:errors path="email"></form:errors>
-				         	</div>
-				        </spring:bind>
-	              </div>
-	          </div>
-	          <div class="row">
-	              <div class="col-md-6">
-				        <spring:bind path="area">
-				            <div class="form-group ${status.error ? 'has-error' : ''}">
-						  		<label for="idInputDataType">Area</label>				  		
- 								<form:select path="area" id="idInputArea" class="custom-select" name="area">
-									<c:forEach items="${properties_village}" var="village">
-								  		<option>${village}</option>
-									</c:forEach>
-								</form:select>
-				                <form:errors path="area"></form:errors>
-				            </div>
-				        </spring:bind>
-	              </div>
-	              <div class="col-md-6">
-				        <spring:bind path="roles">
-				            <div class="form-group ${status.error ? 'has-error' : ''}">
-						  		<label for="idInputPeranan">Peranan</label>	
-				                  <%-- <form:select class="select2" id="idInputPeranan" multiple="multiple" data-placeholder="Pilih Peranan" style="width: 100%;" name="roles" path="roles">
-									<c:forEach items="${properties_roles}" var="role">
-								  		<option value="${role.getCode()}">${role.getName()}</option>
-									</c:forEach>
-				                  </form:select> --%>
-				                  <form:select items="${properties_rolemap}"  class="select2" id="idInputPeranan" multiple="multiple" data-placeholder="Pilih Peranan" style="width: 100%;" name="roles" path="roles">
-				                  </form:select>
-				                <form:errors path="roles"></form:errors>
-				            </div>
-				        </spring:bind>
-	              </div>
-	          </div>
-	          <div class="row">
-	              <div class="col-md-6">
-				        <spring:bind path="passwordExpiryPeriod">
-				            <div class="form-group ${status.error ? 'has-error' : ''}">
-						  		<label for="idInputPwdExpiry">Periode Ubah Kata Kunci</label>
-				                <form:input type="text" path="passwordExpiryPeriod" id="idInputPwdExpiry" name="passwordExpiryPeriod" class="form-control" placeholder="Masukkan periode"></form:input>
-					            <form:errors path="passwordExpiryPeriod"></form:errors>
-				            </div>
-				        </spring:bind>
-	              </div>
-	              <div class="col-md-3">
-				        <spring:bind path="flagActive">
-				            <div class="form-group ${status.error ? 'has-error' : ''}">
-	                      		<label for="fieldFlagActive">Aktifkan Pengguna</label>
-				            	<div class="custom-switch" id="fieldFlagActive">
-									<c:choose>
-										<c:when test="${propertiesForm.getFlagActive()=='1'}">
-					                		<input type="checkbox" id="idInputflagActive" name="flagActive" class="custom-control-input" value="1" checked="true"></input>
-										</c:when>    
-										<c:otherwise>
-					                		<input type="checkbox" id="idInputflagActive" name="flagActive" class="custom-control-input" value="1"></input>
-										</c:otherwise>
-									</c:choose>	
-	                      			<label class="custom-control-label" for="idInputflagActive"></label>
-					                <form:errors path="flagActive"></form:errors>
-				            	</div>
-				         	</div>
-				        </spring:bind>
-	              </div>
-	              <div class="col-md-3">
-				        <spring:bind path="flagNeverDisable">
-				            <div class="form-group ${status.error ? 'has-error' : ''}">
-	                      		<label for="fieldFlagNeverDisable">Jangan di Non-Aktifkan</label>
-				            	<div class="custom-switch" id="fieldFlagNeverDisable">
-					                <input type="checkbox" id="idInputflagNeverDisable" name="flagNeverDisable" class="custom-control-input" value="1"></input>
-	                      			<label class="custom-control-label" for="idInputflagNeverDisable"></label>
-					                <form:errors path="flagNeverDisable"></form:errors>
-				            	</div>
-				         	</div>
-				        </spring:bind>
-	              </div>
-	          </div>
-	          <div class="row">
-	              <div class="col-md-6">
-				        <spring:bind path="address">
-				            <div class="form-group ${status.error ? 'has-error' : ''}">
-						  		<label for="idInputDescription">Alamat</label>
-				                <form:textarea type="text" path="address" id="idInputAddress" class="form-control" rows="3" name="address" placeholder="Masukkan alamat pengguna"></form:textarea>
-				                <form:errors path="address"></form:errors>
-				         	</div>
-				        </spring:bind>
-	              </div>
-	          </div>
-	          <!-- /.row -->
+					</c:when>    
+					<c:otherwise>						
+						<div class="form-group">
+					  		<label for="idInputUsername">Kode Pengguna</label>
+			                <form:input type="text" path="username" id="idInputUsername" name="username" class="form-control" disabled="true"></form:input>
+			         	</div>
+					</c:otherwise>
+				</c:choose>	
+		        
+				<c:choose>
+					<c:when test="${userForm.getUsername()==null || userForm.getUsername()==''}">
+		        		<spring:bind path="password">
+							<div class="form-group ${status.error ? 'has-error' : ''}">
+			                    <label for="idInputPassword1">Kata Kunci</label>
+			                    <input type="password" name="password" class="form-control" id="idInputPassword1" placeholder="Kata Kunci">
+		                  	</div>
+	                  	</spring:bind>
+					</c:when>    
+				</c:choose>	
+				
+	            <div class="form-group">
+			  		<label for="idInputFullname">Nama</label>
+	                <form:input type="text" path="fullname" id="idInputFullname" name="fullname" class="form-control" placeholder="Masukkan nama pengguna"></form:input>
+	         	</div>
+	            <div class="form-group">
+			  		<label for="idInputUsername">Telepon</label>
+					<form:input type="text" path="phone" id="idInputPhone" name="phone" class="form-control" placeholder="Masukkan nomor telepon"></form:input>
+	            </div>
+	            <div class="form-group">
+			  		<label for="idInputFullname">Email</label>
+	                <form:input type="text" path="email" id="idInputEmail" name="email" class="form-control" placeholder="Masukkan email"></form:input>
+	         	</div>
+	            <div class="form-group">
+			  		<label for="idInputDataType">Area</label>	
+	                <form:select items="${properties_village}"  class="custom-select" id="idInputArea" data-placeholder="Pilih area" name="area" path="area">
+	                </form:select>
+	                <form:errors path="area"></form:errors>
+	            </div>
+		        <spring:bind path="roles">
+		            <div class="form-group ${status.error ? 'has-error' : ''}">
+				  		<label for="idInputPeranan">Peranan</label>	
+		                  <form:select items="${properties_rolemap}"  class="select2" id="idInputPeranan" multiple="multiple" data-placeholder="Pilih Peranan" style="width: 100%;" name="roles" path="roles">
+		                  </form:select>
+		                <form:errors path="roles"></form:errors>
+		            </div>
+		        </spring:bind>
+	            <div class="form-group">
+			  		<label for="idInputPwdExpiry">Periode Ubah Kata Kunci</label>
+	                <form:input type="text" path="passwordExpiryPeriod" id="idInputPwdExpiry" name="passwordExpiryPeriod" class="form-control" placeholder="Masukkan periode"></form:input>
+	            </div>
+	            <div class="form-group">
+                    		<label for="fieldFlagActive">Aktifkan Pengguna</label>
+	            	<div class="custom-switch" id="fieldFlagActive">
+						<c:choose>
+							<c:when test="${userForm.getFlagActive()==1}">
+		                		<input type="checkbox" id="idInputflagActive" name="flagActive" class="custom-control-input" value="1" checked></input>
+							</c:when>    
+							<c:otherwise>
+		                		<input type="checkbox" id="idInputflagActive" name="flagActive" class="custom-control-input" value="1"></input>
+							</c:otherwise>
+						</c:choose>	
+                    			<label class="custom-control-label" for="idInputflagActive"></label>
+	            	</div>
+	         	</div>
+	            <div class="form-group">
+                   <label for="fieldFlagNeverDisable">Jangan di Kunci</label>
+                   <div class="custom-switch" id="fieldFlagNeverDisable">
+					<c:choose>
+						<c:when test="${userForm.getFlagNeverDisable()==1}">
+	                		<input type="checkbox" id="idInputflagNeverDisable" name="flagNeverDisable" class="custom-control-input" value="1" checked></input>
+						</c:when>    
+						<c:otherwise>
+	                		<input type="checkbox" id="idInputflagNeverDisable" name="flagNeverDisable" class="custom-control-input" value="1"></input>
+						</c:otherwise>
+					</c:choose>	
+                   	<label class="custom-control-label" for="idInputflagNeverDisable"></label>
+            	</div>
+	         	</div>
+	            <div class="form-group">
+			  		<label for="idInputDescription">Alamat</label>
+	                <form:textarea type="text" path="address" id="idInputAddress" class="form-control" rows="3" name="address" placeholder="Masukkan alamat pengguna"></form:textarea>
+	         	</div>
 	        </div>
 	        <!-- ./card-body -->
 	        
@@ -189,7 +150,7 @@
 <script src="${addmethJs}"></script>
 <script type="text/javascript">
 $(document).ready(function () {	
-  $('#quickForm').validate({
+  $('#userForm').validate({
     rules: {
     	code: {
         required: true
@@ -218,5 +179,7 @@ $(document).ready(function () {
       $(element).removeClass('is-invalid');
     }
   });
+  
 });
 </script>
+

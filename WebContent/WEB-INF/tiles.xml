@@ -44,4 +44,16 @@
         <put-attribute name="extraCSS" value="/WEB-INF/jsp/extraCSS_propertiesForm.jsp" />  
         <put-attribute name="extraJS" value="/WEB-INF/jsp/extraJS_propertiesForm.jsp" /> 
     </definition>  
+    
+    
+    <definition name="profile" extends="base.definition">  
+        <put-attribute name="title" value="Profil" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/profile.jsp" />  
+        <put-attribute name="extraJS" value="/WEB-INF/jsp/extraJS_profile.jsp" />
+        <put-attribute name="extraCSS" value="/WEB-INF/jsp/extraCSS_profile.jsp" />  
+    </definition>  
+    
+    <definition name="access.denied" extends="base.definition">   
+        <put-attribute name="body" value="/WEB-INF/jsp/accessDenied.jsp" />  
+    </definition>  
 </tiles-definitions>  

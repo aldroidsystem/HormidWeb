@@ -68,12 +68,12 @@
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<div class="row">
 			  <div class="col-8">
-				<div class="icheck-primary">
+<!-- 				<div class="icheck-primary">
 				  <input type="checkbox" id="remember">
 				  <label for="remember">
 					Ingat Pengguna
 				  </label>
-				</div>
+				</div> -->
 			  </div>
 			  <!-- /.col -->
 			  <div class="col-4">
@@ -84,9 +84,9 @@
 		</div>
       </form>
 
-      <p class="mb-1">
+<!--       <p class="mb-1">
         <a href="forgot-password.html">Saya lupa kata kunci</a>
-      </p>
+      </p> -->
     </div>
     <!-- /.login-card-body -->
   </div>
@@ -116,8 +116,7 @@ $(document).ready(function () {
         required: true
       },
       password: {
-        required: true,
-        minlength: 6
+        required: true
       }
     },
     messages: {
@@ -125,8 +124,7 @@ $(document).ready(function () {
         required: "Please enter your username",
       },
       password: {
-        required: "Please provide a password",
-        minlength: "Your password must be at least 5 characters long"
+        required: "Please provide a password"
       }
     },
     errorElement: 'span',

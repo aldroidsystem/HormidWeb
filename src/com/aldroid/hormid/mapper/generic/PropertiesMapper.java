@@ -1,12 +1,13 @@
 package com.aldroid.hormid.mapper.generic;
 
 import java.util.List;
+
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.aldroid.hormid.generic.staticVar.PropertiesQueryList;
+import com.aldroid.hormid.generic.staticvar.PropertiesQueryList;
 import com.aldroid.hormid.model.generic.Properties;
 
 public interface PropertiesMapper {

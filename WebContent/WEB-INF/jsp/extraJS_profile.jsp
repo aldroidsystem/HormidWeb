@@ -6,19 +6,28 @@
 <script src="${addmethJs}"></script> 
 <spring:url value="/resources/plugins/toastr/toastr.min.js" var="toastr" />
 <script src="${toastr}"></script>   
+
 <script type="text/javascript">
-$(document).ready(function () {	
-   $('#propertiesForm').validate({
+$(document).ready(function () {
+  $('#passwordForm').validate({
     rules: {
-      "value": {
+      password: {
         required: true,
-        maxlength:200
-      }
+        minlength: 6,
+        maxlength: 12
+      },
+      passwordConfirm: {
+          required: true
+        }
     },
     messages: {
-      "value": {
-        required: "<spring:message code='validation.notEmpty' />",
-        maxlength:"Maksimal panjang karakter 200"
+      password: {
+        required: "Please provide a password",
+        minlength: "Your password must be 6-12 characters long",
+        maxlength: "Your password must be 6-12 characters long"
+      },
+      passwordConfirm: {
+        required: "Please provide a password confirm"
       }
     },
     errorElement: 'span',
@@ -32,7 +41,7 @@ $(document).ready(function () {
     unhighlight: function (element, errorClass, validClass) {
       $(element).removeClass('is-invalid');
     }
-  }); 
+  });
   
 
 	if("${notification}" == "success"){
@@ -41,4 +50,5 @@ $(document).ready(function () {
 	 toastr.success("<spring:message code='notification.update.success' />");
 	}
 });
-</script> 
+</script>
+

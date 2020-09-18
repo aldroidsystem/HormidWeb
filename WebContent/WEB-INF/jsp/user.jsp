@@ -89,12 +89,13 @@
                 <table id="example2" class="table table-bordered table-hover table-striped">
                   <thead>
                   <tr>
+                    <th colspan="2">Aksi</th>
                     <th>Kode Pengguna</th>
                     <th>Nama</th>
                     <th>Area</th>
                     <th>Peranan</th>
-                    <th>Jumlah salah masuk</th>
-                    <th>Jumlah pengguna terhubung</th>
+<!--                     <th>Jumlah salah masuk</th>
+                    <th>Jumlah pengguna terhubung</th> -->
                     <th>Status</th>
                   </tr>
                   </thead>
@@ -109,8 +110,8 @@
 								<span class="badge bg-info">${role}</span>
 							</c:forEach>
 						</td>
-						<td>${user.getLoginFailCount()}</td>
-						<td>${user.getSessionInstanceCount()}</td>
+<%-- 						<td>${user.getLoginFailCount()}</td>
+						<td>${user.getSessionInstanceCount()}</td> --%>
 						<td>
 							<c:choose>
 								<c:when test="${user.getFlagActive()=='1'}">

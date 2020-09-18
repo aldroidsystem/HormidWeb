@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.aldroid.hormid.generic.staticVar.UserQueryList;
+import com.aldroid.hormid.generic.staticvar.UserQueryList;
 import com.aldroid.hormid.model.generic.Role;
 import com.aldroid.hormid.model.generic.User;
 
@@ -27,6 +27,7 @@ public interface UserMapper {
         @Result(property = "phone", column ="phone"),
         @Result(property = "email", column ="email"),
         @Result(property = "password", column ="password"),
+        @Result(property = "passwordExpiryPeriod", javaType = Integer.class, column ="pwd_expiry_period"),
         @Result(property = "flagActive", javaType = Integer.class, column ="flag_Active"),
         @Result(property = "loginFailCount", javaType = Integer.class, column ="login_fail_count"),
         @Result(property = "flagDeleted", javaType = Integer.class, column ="flag_deleted"),
@@ -34,10 +35,11 @@ public interface UserMapper {
         @Result(property = "sessionInstanceCount", javaType = Integer.class, column ="session_instance_count"),
         @Result(property = "flagPasswordExpired", javaType = Integer.class, column ="flagPasswordExpired"),
         @Result(property = "flagLocked", javaType = Integer.class, column ="flag_locked"),
+        @Result(property = "flagNeverDisable", javaType = Integer.class, column ="flag_never_locked"),
         @Result(property = "roles", javaType = List.class, column="username",
                 many = @Many(select = "loadUserRole"))})
     abstract User findByUsername(@Param("username") String username);
-    
+
     
     @Select(UserQueryList.SELECT_USER_ROLE)
     abstract List<String> loadUserRole(@Param("username") String username);
@@ -54,7 +56,8 @@ public interface UserMapper {
     @Update(UserQueryList.USER_UPDATE)
     abstract void updateUser(User bean);
 
-
+    @Update(UserQueryList.USER_UPDATE_PROFILE)
+    abstract void updateProfile(User bean);
     
     @Insert(UserQueryList.INSERT_USER_ROLE)
     abstract void insertUserRole(@Param("username") String username,@Param("role") String role);
@@ -90,4 +93,8 @@ public interface UserMapper {
 
     @Select(UserQueryList.CHECK_DUPLICATE_USER_BY_USERNAME) 
     abstract Integer checkDuplicateUsername(@Param("username") String username);
+    
+
+    @Update(UserQueryList.USER_RESET_PASSWORD)
+    abstract void resetPassword(User bean);
 }

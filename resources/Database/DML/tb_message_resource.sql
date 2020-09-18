@@ -13,3 +13,11 @@ insert into tb_message_resource (locale,resource_key,message) values ('in','noti
 insert into tb_message_resource (locale,resource_key,message) values ('in','notification.update.fail','Data gagal diubah, hubungi administrator untuk informasi!');
 insert into tb_message_resource (locale,resource_key,message) values ('in','notification.save.success','Data berhasil disimpan!');
 insert into tb_message_resource (locale,resource_key,message) values ('in','notification.save.fail','Data gagal disimpan, hubungi administrator untuk informasi!');
+
+
+insert into tb_message_resource (locale,resource_key,message) values ('in','ROLE_ADMIN','ADMINISTRATOR');
+insert into tb_message_resource (locale,resource_key,message) values ('in','ROLE_PETANI','PETANI');
+insert into tb_message_resource (locale,resource_key,message) values ('in','ROLE_AGEN','AGEN');
+insert into tb_message_resource (locale,resource_key,message) values ('in','ROLE_KULI','KULI');
+insert into tb_message_resource (locale,resource_key,message) values ('in','ROLE_SUPIR','SUPIR');
+insert into tb_message_resource (locale,resource_key,message) values ('in','ROLE_KASIR','KASIR');
