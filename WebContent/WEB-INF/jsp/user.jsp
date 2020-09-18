@@ -3,6 +3,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
   <!-- Main row -->
   
+<spring:url value="/resources/icon/user16.png" var="userPng" />
+<spring:url value="/resources/icon/edit16.png" var="editPng" />
   
   <h5 class="mb-2">Statistik Pengguna</h5>
   <div class="row">
@@ -86,10 +88,11 @@
 			</div>
               <!-- /.card-header -->
               <div class="card-body">
+              
                 <table id="example2" class="table table-bordered table-hover table-striped">
                   <thead>
                   <tr>
-                    <th colspan="2">Aksi</th>
+                    <th>Aksi</th>
                     <th>Kode Pengguna</th>
                     <th>Nama</th>
                     <th>Area</th>
@@ -102,7 +105,14 @@
                   <tbody>
 					<c:forEach items="${listUser}" var="user">
 					<tr>
-						<td><a href="userForm?username=${user.getUsername()}"  data-toggle="tooltip" title="Ubah Pengguna">${user.getUsername()}</a></td>
+						<td><a href="userForm?username=${user.getUsername()}"  data-toggle="tooltip" title="Ubah Pengguna">
+							<img src="${editPng}" alt="User Image">
+						</a>
+						<a href="profile?username=${user.getUsername()}"  data-toggle="tooltip" title="Profil Pengguna">
+							<img src="${userPng}" alt="User Image">
+						</a>
+						</td>
+						<td>${user.getUsername()}</td>
 						<td>${user.getFullname()}</td>
 						<td>${user.getArea()}</td>
 						<td>
