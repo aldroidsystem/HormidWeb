@@ -28,7 +28,17 @@ public final class VehicleQueryList {
     		+ "#{vehicleId,jdbcType=INTEGER}"
     		+ ",#{username,jdbcType=VARCHAR})";  
     
+    public static final String VEHICLE_PETANI_INSERT = "insert into tb_vehicle_petani "
+    		+ "(vehicle_id,username) "
+    		+ "values ("
+    		+ "#{vehicleId,jdbcType=INTEGER}"
+    		+ ",#{username,jdbcType=VARCHAR})"; 
+    
     public static final String VEHICLE_SUPIR_DELETE = "delete from tb_vehicle_supir "
+    		+ "where vehicle_id=#{vehicleId,jdbcType=INTEGER} "
+    		+ "and username=#{username,jdbcType=VARCHAR}";  
+    
+    public static final String VEHICLE_PETANI_DELETE = "delete from tb_vehicle_petani "
     		+ "where vehicle_id=#{vehicleId,jdbcType=INTEGER} "
     		+ "and username=#{username,jdbcType=VARCHAR}";  
     

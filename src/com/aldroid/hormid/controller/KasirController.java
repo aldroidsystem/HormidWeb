@@ -2,9 +2,7 @@ package com.aldroid.hormid.controller;
 
 
 import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,15 +11,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.aldroid.hormid.generic.process.CommonProcess;
 import com.aldroid.hormid.generic.process.GlobalSessionObject;
-import com.aldroid.hormid.mapper.lapak.SupirMapper;
-import com.aldroid.hormid.model.generic.User;
 import com.aldroid.hormid.model.lapak.Harga;
+import com.aldroid.hormid.model.lapak.Petani;
 import com.aldroid.hormid.model.lapak.Supir;
 import com.aldroid.hormid.model.lapak.Vehicle;
 import com.aldroid.hormid.service.lapak.HargaService;
+import com.aldroid.hormid.service.lapak.PetaniService;
 import com.aldroid.hormid.service.lapak.SupirService;
 import com.aldroid.hormid.service.lapak.VehicleService;
 import com.aldroid.hormid.validator.lapak.HargaValidator;
@@ -43,6 +40,9 @@ public class KasirController {
 
     @Autowired
     private SupirService supirService;
+
+    @Autowired
+    private PetaniService petaniService;
 
     @Autowired
     private VehicleService vehicleService;
@@ -105,6 +105,7 @@ public class KasirController {
 		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
         model.addAttribute("supirForm", new Supir());
         model.addAttribute("newSupirMap", supirService.selectNewSupir());
+		model.addAttribute("listVehicle", vehicleService.loadAllVehicle());
         return "supirForm";
     }
 
@@ -222,5 +223,73 @@ public class KasirController {
 		model.addAttribute("listVehicleType", globalSessionObject.getPropertiesByCode("vehicleType").getDaftarKata());
         model.addAttribute("listSupirMap", supirService.selectSupirList());
         return "vehicleForm";
+    }
+	
+
+
+	@RequestMapping(value="/petani",method=RequestMethod.GET)
+    public String petani(Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+        model.addAttribute("petaniSearchForm", new Petani());
+		model.addAttribute("listPetani", new ArrayList<Petani>());
+        return "petani";
+    }
+	@RequestMapping(value="/petani",method=RequestMethod.POST)
+    public String petaniSearch(@ModelAttribute("petaniForm")Petani petani, BindingResult bindingResult, Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+        model.addAttribute("petaniSearchForm", petani);
+		model.addAttribute("listPetani", petaniService.searchPetaniByFullname(petani.getFullname()));
+        return "petani";
+    }
+	
+	@RequestMapping(value="/petaniForm", 
+			method=RequestMethod.GET)
+    public String petaniForm(Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+        model.addAttribute("petaniForm", new Petani());
+        model.addAttribute("newPetaniMap", petaniService.selectNewPetani());
+		model.addAttribute("listVehicle", vehicleService.loadAllVehicle());
+        return "petaniForm";
+    }
+
+	@RequestMapping(value="/petaniForm", 
+			params = {"username"},
+			method=RequestMethod.GET)
+    public String petaniFormUpdate(@RequestParam(value = "username")String username,Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+		Petani petani;
+		if(username == null || username.equals("")){
+            return "redirect:petaniForm";
+		} else {
+			petani = petaniService.selectPetaniDetail(username);
+			
+			if (petani == null || petani.getUsername() == null){
+	            return "redirect:petaniForm";
+			}
+		}
+
+		model.addAttribute("petaniForm",petani);
+		model.addAttribute("listVehicle", vehicleService.loadAllVehicle());
+        return "petaniForm";
+    }
+	
+	@RequestMapping(value="/petaniForm", 
+			method=RequestMethod.POST)
+    public String petaniFormUpsert(@ModelAttribute("petaniForm")Petani petani, BindingResult bindingResult,Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+
+        try{
+        	Petani upsertPetani = petaniService.upsert(petani);
+            model.addAttribute("notification", "success");
+    		model.addAttribute("petaniForm",upsertPetani);
+        } catch (Exception e){
+        	CommonProcess.logException(e, getClass());      
+    		model.addAttribute("petaniForm",petani);  
+            model.addAttribute("newPetaniMap", petaniService.selectNewPetani());
+            model.addAttribute("notification", "fail");
+        }
+
+		model.addAttribute("listVehicle", vehicleService.loadAllVehicle());
+        return "petaniForm";
     }
 }

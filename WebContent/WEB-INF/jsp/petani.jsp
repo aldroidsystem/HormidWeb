@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
   <!-- Main row -->
-<spring:url value="/kasir/supirForm" var="supirFormURL" />
+<spring:url value="/kasir/petaniForm" var="petaniFormURL" />
    
   <div class="row">
     <!-- Left col -->
@@ -13,10 +13,10 @@
       <div class="card">
 			<div class="card-header">
 				<h3 class="card-title">
-					<a href="${supirFormURL}"><button type="button" class="btn btn-block btn-primary">Tambah Supir</button></a>
+					<a href="${petaniFormURL}"><button type="button" class="btn btn-block btn-primary">Tambah Petani</button></a>
 				</h3>
 	            <div class="card-tools">
-					<form:form method="POST" modelAttribute="supirSearchForm">
+					<form:form method="POST" modelAttribute="petaniSearchForm">
 					   <div class="input-group input-group-sm" style="width: 150px;">
 					     <form:input type="text" path="fullname" name="fullname" class="form-control float-right" placeholder="Pencarian"/>
 					 	<div class="input-group-append">
@@ -35,23 +35,27 @@
                     <th>Kode Pengguna</th>
                     <th>Nama</th>
                     <th>Peranan</th>
+                    <th>Potongan</th>
+                    <th>Hutang</th>
                     <th>Kendaraan</th>
                   </tr>
                   </thead>
                   <tbody>
-					<c:forEach items="${listSupir}" var="supir">
+					<c:forEach items="${listPetani}" var="petani">
 					<tr>
-						<td><a href="${supirFormURL}?username=${supir.getUsername()}"  data-toggle="tooltip" title="Ubah Supir">
-							${supir.getUsername()}
+						<td><a href="${petaniFormURL}?username=${petani.getUsername()}"  data-toggle="tooltip" title="Ubah Petani">
+							${petani.getUsername()}
 						</a></td>
-						<td>${supir.getFullname()}</td>
+						<td>${petani.getFullname()}</td>
 						<td>
-							<c:forEach items="${supir.getRoles()}" var="role">
+							<c:forEach items="${petani.getRoles()}" var="role">
 								<span class="badge bg-info">${role}</span>
 							</c:forEach>
 						</td>
+						<td>${petani.getPotonganPersen()}</td>
+						<td>${petani.getTotalHutang()}</td>
 						<td>
-							<c:forEach items="${supir.getListVehiclePlate()}" var="vehicle">
+							<c:forEach items="${petani.getListVehiclePlate()}" var="vehicle">
 								<span class="badge bg-info">${vehicle}</span>
 							</c:forEach>
 						

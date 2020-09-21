@@ -90,4 +90,16 @@
         <put-attribute name="extraJS" value="/WEB-INF/jsp/extraJS_vehicleForm.jsp" /> 
         <put-attribute name="body" value="/WEB-INF/jsp/vehicleForm.jsp" />  
     </definition>  
+    <definition name="petani" extends="base.definition">  
+        <put-attribute name="title" value="Petani" />  
+        <put-attribute name="extraCSS" value="/WEB-INF/jsp/extraCSS_user.jsp" />  
+        <put-attribute name="extraJS" value="/WEB-INF/jsp/extraJS_user.jsp" /> 
+        <put-attribute name="body" value="/WEB-INF/jsp/petani.jsp" />  
+    </definition>  
+    
+    <definition name="petaniForm" extends="petani">  
+        <put-attribute name="extraCSS" value="/WEB-INF/jsp/extraCSS_userForm.jsp" />  
+        <put-attribute name="extraJS" value="/WEB-INF/jsp/extraJS_petaniForm.jsp" /> 
+        <put-attribute name="body" value="/WEB-INF/jsp/petaniForm.jsp" />  
+    </definition>  
 </tiles-definitions>  

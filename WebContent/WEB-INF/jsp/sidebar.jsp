@@ -64,6 +64,12 @@
               <p>Kendaraan</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="${kasirURL}/petani" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Petani</p>
+            </a>
+          </li>
         </ul>
       </li>
       

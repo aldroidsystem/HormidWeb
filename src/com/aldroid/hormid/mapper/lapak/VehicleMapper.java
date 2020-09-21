@@ -40,8 +40,15 @@ public interface VehicleMapper{
     @Insert(VehicleQueryList.VEHICLE_SUPIR_INSERT)
     abstract void insertVehicleSupir(@Param("vehicleId") Integer vehicleId,@Param("username") String username) throws Exception;
 
+
+    @Insert(VehicleQueryList.VEHICLE_PETANI_INSERT)
+    abstract void insertVehiclePetani(@Param("vehicleId") Integer vehicleId,@Param("username") String username) throws Exception;
+
     @Delete(VehicleQueryList.VEHICLE_SUPIR_DELETE)
     abstract void deleteVehicleSupir(@Param("vehicleId") Integer vehicleId,@Param("username") String username) throws Exception;
+
+    @Delete(VehicleQueryList.VEHICLE_PETANI_DELETE)
+    abstract void deleteVehiclePetani(@Param("vehicleId") Integer vehicleId,@Param("username") String username) throws Exception;
 
     @Select(VehicleQueryList.SELECT_LAST_VEHICLE_DETAILS)
     @Results({

@@ -7,15 +7,15 @@
         <div class="row">
           <!-- left column -->
 		<div class="col-md-12">
-		<form:form method="POST" modelAttribute="supirForm">
+		<form:form method="POST" modelAttribute="petaniForm">
 	      <div class="card  card-default">
 	        <div class="card-header">
 				<c:choose>
-					<c:when test="${supirForm.getUsername()==null || supirForm.getUsername()=='' ||  supirForm.getAction()=='c'}">
-                		<h5 class="card-title">Tambah Supir</h5>
+					<c:when test="${petaniForm.getUsername()==null || petaniForm.getUsername()=='' ||  petaniForm.getAction()=='c'}">
+                		<h5 class="card-title">Tambah Petani</h5>
 					</c:when>    
 					<c:otherwise>
-                		<h5 class="card-title">Ubah Supir</h5>
+                		<h5 class="card-title">Ubah Petani</h5>
 					</c:otherwise>
 				</c:choose>	
                 
@@ -28,12 +28,12 @@
 	        <!-- /.card-header -->
 	        <div class="card-body">
 				<c:choose>
-					<c:when test="${supirForm.getUsername()==null || supirForm.getUsername()=='' ||  supirForm.getAction()=='c'}">
+					<c:when test="${petaniForm.getUsername()==null || petaniForm.getUsername()=='' ||  petaniForm.getAction()=='c'}">
 
 				      <spring:bind path="username">  
 		                <div class="form-group">
 		                  <label for="idInputUsername">Pengguna</label>
-		                  <form:select items="${newSupirMap}"  class="select2" id="idInputUsername" data-placeholder="Pilih Pengguna" style="width: 100%;" name="username" path="username">
+		                  <form:select items="${newPetaniMap}"  class="select2" id="idInputUsername" data-placeholder="Pilih Pengguna" style="width: 100%;" name="username" path="username">
 		                  </form:select>
 		                  <span class="invalid-feedback">
 				                <form:errors path="username"></form:errors></span>
@@ -48,25 +48,31 @@
 					</c:otherwise>
 				</c:choose>	
 		        
-		        <spring:bind path="roles">
-		            <div class="form-group ${status.error ? 'has-error' : ''}">
+  				<spring:bind path="potonganPersen"> 	
+					<div class="form-group">
+				  		<label for="idInputPotongan">Potongan</label>
+		                <form:input type="text" path="potonganPersen" id="idInputPotongan" name="potonganPersen" class="form-control ${status.error ? 'has-error' : ''}" data-placeholder="Potongan persen otomatis"></form:input>
+		                <span class="invalid-feedback">
+			            <form:errors path="potonganPersen"></form:errors></span>
+		            </div>
+           		</spring:bind>
+		        
+		            <div class="form-group">
 				  		<label for="idInputPeranan">Kendaraan</label>	
 		                  <form:select  items="${listVehicle}"  class="select2" id="idInputPeranan" multiple="multiple" data-placeholder="Pilih Peranan" style="width: 100%;" name="listVehicleId" path="listVehicleId">
 		                  </form:select>
-		                <form:errors path="roles"></form:errors>
 		            </div>
-		        </spring:bind>
 		        
 	            <div class="form-group">
 			  		<label for="idInputCatatan">Catatan</label>
-	                <form:textarea type="text" path="catatan" id="idInputCatatan" class="form-control" rows="3" name="catatan" placeholder="Catatan supir"></form:textarea>
+	                <form:textarea type="text" path="catatan" id="idInputCatatan" class="form-control" rows="3" name="catatan" placeholder="Catatan petani"></form:textarea>
 	         	</div>
 		        	
 	        
 	        <!-- ./card-body -->
 	          <div class="card-footer">
 				<c:choose>
-					<c:when test="${supirForm.getUsername()==null || supirForm.getUsername()==''}">
+					<c:when test="${petaniForm.getUsername()==null || petaniForm.getUsername()==''}">
                 		<input type="hidden" name="action" value="c"/>
 					</c:when>    
 					<c:otherwise>
@@ -85,4 +91,3 @@
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
-
