@@ -4,6 +4,7 @@ package com.aldroid.hormid.controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,15 +13,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import com.aldroid.hormid.generic.process.CommonProcess;
 import com.aldroid.hormid.generic.process.GlobalSessionObject;
 import com.aldroid.hormid.model.generic.Properties;
 import com.aldroid.hormid.model.generic.User;
 import com.aldroid.hormid.service.generic.PropertiesService;
 import com.aldroid.hormid.service.generic.UserService;
-import com.aldroid.hormid.validator.PropertiesValidator;
-import com.aldroid.hormid.validator.UserValidator;
-
+import com.aldroid.hormid.validator.generic.PropertiesValidator;
+import com.aldroid.hormid.validator.generic.UserValidator;
 
 @Controller
 @RequestMapping("/admin")

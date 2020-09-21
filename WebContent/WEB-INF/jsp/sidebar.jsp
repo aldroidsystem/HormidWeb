@@ -1,9 +1,9 @@
 <!-- Brand Logo -->
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ page import="com.aldroid.hormid.model.generic.User" %>
 <spring:url value="/resources/icon/Hormid32.png" var="logoPng" />
 <spring:url value="/admin" var="adminURL" />
 <spring:url value="/lapak" var="lapakURL" />
+<spring:url value="/kasir" var="kasirURL" />
 
 <div class="brand-link navbar-light">
   <img src="${logoPng}" alt="AdminLTE Logo" class="brand-image" style="opacity: .8"/>
@@ -44,6 +44,24 @@
             <a href="${adminURL}/properties" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Pengaturan Sistem</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="${kasirURL}/harga" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Harga Sawit</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="${kasirURL}/supir" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Supir</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="${kasirURL}/vehicle" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Kendaraan</p>
             </a>
           </li>
         </ul>

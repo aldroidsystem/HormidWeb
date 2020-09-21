@@ -1,4 +1,4 @@
-package com.aldroid.hormid.validator;
+package com.aldroid.hormid.validator.generic;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

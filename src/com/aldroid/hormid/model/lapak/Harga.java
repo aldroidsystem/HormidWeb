@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.aldroid.hormid.model.generic;
+package com.aldroid.hormid.model.lapak;
 
 import java.util.Date;
 
@@ -18,7 +18,8 @@ public class Harga {
     private Date createdDate;
     private Date tanggalMulai;
     private Integer hargaJual;
-    private Integer hargaBeli;
+    private Integer hargaBeliJembatan;
+    private Integer hargaBeliGantung;
     
 
     public Harga() {
@@ -69,13 +70,19 @@ public class Harga {
 		this.hargaJual = hargaJual;
 	}
 
-
-	public Integer getHargaBeli() {
-		return hargaBeli;
+	public Integer getHargaBeliJembatan() {
+		return hargaBeliJembatan;
 	}
 
+	public void setHargaBeliJembatan(Integer hargaBeliJembatan) {
+		this.hargaBeliJembatan = hargaBeliJembatan;
+	}
 
-	public void setHargaBeli(Integer hargaBeli) {
-		this.hargaBeli = hargaBeli;
+	public Integer getHargaBeliGantung() {
+		return hargaBeliGantung;
+	}
+
+	public void setHargaBeliGantung(Integer hargaBeliGantung) {
+		this.hargaBeliGantung = hargaBeliGantung;
 	}
 }

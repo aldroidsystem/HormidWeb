@@ -15,7 +15,7 @@
             	<img class="profile-user-img img-fluid img-circle" src="${userJpg}" alt="User profile picture">
             </div>
 
-            <h3 class="profile-username text-center">${userForm.getUsername()}</h3>
+            <h3 class="profile-username text-center">${userForm.getFullname()}</h3>
 
             <p class="text-muted text-center">
 	            <c:forEach items="${userForm.getRoles()}" var="role">

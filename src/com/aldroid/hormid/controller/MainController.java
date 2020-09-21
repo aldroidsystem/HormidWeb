@@ -19,7 +19,7 @@ import com.aldroid.hormid.generic.process.CommonProcess;
 import com.aldroid.hormid.model.generic.User;
 import com.aldroid.hormid.service.authentication.SecurityService;
 import com.aldroid.hormid.service.generic.UserService;
-import com.aldroid.hormid.validator.UserValidator;
+import com.aldroid.hormid.validator.generic.UserValidator;
 
 
 @Controller

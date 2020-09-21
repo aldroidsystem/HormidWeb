@@ -8,7 +8,7 @@
 <script src="${toastr}"></script>   
 
 <script type="text/javascript">
-$(document).ready(function () {
+$(document).ready(function () {    
   $('#passwordForm').validate({
     rules: {
       password: {
@@ -51,4 +51,3 @@ $(document).ready(function () {
 	}
 });
 </script>
-

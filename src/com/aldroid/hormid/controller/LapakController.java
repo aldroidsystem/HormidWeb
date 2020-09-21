@@ -5,21 +5,18 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.aldroid.hormid.generic.process.CommonProcess;
 import com.aldroid.hormid.generic.process.GlobalSessionObject;
 import com.aldroid.hormid.model.generic.User;
-import com.aldroid.hormid.service.generic.HargaService;
 import com.aldroid.hormid.service.generic.UserService;
-import com.aldroid.hormid.validator.UserValidator;
+import com.aldroid.hormid.validator.generic.UserValidator;
 
 
 @Controller
@@ -33,9 +30,6 @@ public class LapakController {
     @Autowired
     private UserService userService;
     
-	@Autowired
-	private HargaService hargaService;
-
 	@Autowired
 	private UserValidator userValidator;
 	
@@ -55,21 +49,6 @@ public class LapakController {
     }
 
 
-	@RequestMapping(value="/error",method=RequestMethod.GET)
-    public String testError(Model m){
-		logger.info("[RequestMapping:/error]-"+"method:testError"); 
-		String harga = hargaService.selectError();
-		m.addAttribute("param", "error; harga="+harga);
-        return "test";
-    }
-
-	@RequestMapping(value="/error2",method=RequestMethod.GET)
-    public String testError2(Model m) {
-		logger.info("[RequestMapping:/error2]-"+"method:testError2"); 
-		String harga = hargaService.selectError2();
-		m.addAttribute("param", "error2; harga="+harga);
-        return "test";
-    }
 	
 
 	@RequestMapping(value="/profile",

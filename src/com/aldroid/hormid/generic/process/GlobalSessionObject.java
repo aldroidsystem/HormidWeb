@@ -7,6 +7,7 @@ package com.aldroid.hormid.generic.process;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -20,8 +21,10 @@ import org.springframework.stereotype.Component;
 
 import com.aldroid.hormid.model.generic.Properties;
 import com.aldroid.hormid.model.generic.Role;
+import com.aldroid.hormid.model.lapak.Harga;
 import com.aldroid.hormid.service.generic.PropertiesService;
 import com.aldroid.hormid.service.generic.UserService;
+import com.aldroid.hormid.service.lapak.HargaService;
 
 /**
  *
@@ -35,12 +38,17 @@ public class GlobalSessionObject {
     private List<Properties> properties;
     private List<Role> role;
     private Map<String,String> roleMap;
+    private Harga hargaSekarang;
+    private Date pengecekanTerakhir = new Date();
     
     @Autowired
     PropertiesService propertiesService;
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    HargaService hargaService;
     
     public GlobalSessionObject() {
     }
@@ -116,5 +124,21 @@ public class GlobalSessionObject {
 		}
 		return roleMap;
 	}
-	
+
+	public Harga getHargaSekarang() throws Exception {
+		if(hargaSekarang == null){
+			hargaSekarang = hargaService.getHargaSekarang();
+		} else {
+			if (pengecekanTerakhir.compareTo(new Date())!=0){
+				hargaSekarang = hargaService.getHargaSekarang();
+			}
+		}
+		return hargaSekarang;
+	}
+
+
+
+	public void resetHargaSekarang() {
+		hargaSekarang = null;
+	}
 }

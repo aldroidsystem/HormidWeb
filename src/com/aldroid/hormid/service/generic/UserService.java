@@ -76,23 +76,29 @@ public class UserService {
     public void updateUserRole(User user){
     	List<String> dbRoles = userMapper.loadUserRole(user.getUsername());
     	
-    	for(String dbRoleSingle : dbRoles){
-    		boolean exists=false;
-    		for(String updateRoleSingle : user.getRoles()){
-    			if(dbRoleSingle.equals(updateRoleSingle)){
-    				user.getRoles().remove(dbRoleSingle);
-    				exists=true;
-    				break;
-    			}
-    		}
-    		if(!exists){
-    			userMapper.deleteUserRole(user.getUsername(), dbRoleSingle);
-    		}
+    	if (dbRoles != null){
+        	for(String dbRoleSingle : dbRoles){
+        		boolean exists=false;
+        		if (user.getRoles() != null) {
+            		for(String updateRoleSingle : user.getRoles()){
+            			if(dbRoleSingle.equals(updateRoleSingle)){
+            				user.getRoles().remove(dbRoleSingle);
+            				exists=true;
+            				break;
+            			}
+            		}
+        		}
+        		if(!exists){
+        			userMapper.deleteUserRole(user.getUsername(), dbRoleSingle);
+        		}
+        	}
     	}
     	
-		for(String updateRoleSingle : user.getRoles()){
-			userMapper.insertUserRole(user.getUsername(), updateRoleSingle);
-		}
+    	if (user.getRoles() != null){
+    		for(String updateRoleSingle : user.getRoles()){
+    			userMapper.insertUserRole(user.getUsername(), updateRoleSingle);
+    		}
+    	}
     }
     
 

@@ -84,6 +84,9 @@
 <!-- AdminLTE App -->
 <spring:url value="/resources/dist/js/adminlte.js" var="adminLteJs" />
 <script src="${adminLteJs}"></script>
+<!-- AdminLTE App -->
+<spring:url value="/resources/dist/js/adminlte.min.js" var="adminLteMinJs" />
+<script src="${adminLteMinJs}"></script>
 <!-- OPTIONAL SCRIPTS -->
 <%-- <spring:url value="/resources/dist/js/demo.js" var="demoJs" />
 <script src="${demoJs}"></script> --%>

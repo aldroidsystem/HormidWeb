@@ -11,8 +11,8 @@
 	      <div class="card  card-default">
 	        <div class="card-header">
 				<c:choose>
-					<c:when test="${userForm.getUsername()==null || userForm.getUsername()==''}">
-                		<h5 class="card-title">Buat Pengguna</h5>
+					<c:when test="${userForm.getUsername()==null || userForm.getUsername()=='' ||  userForm.getAction()=='c'}">
+                		<h5 class="card-title">Pendaftaran Pengguna</h5>
 					</c:when>    
 					<c:otherwise>
                 		<h5 class="card-title">Ubah Pengguna</h5>
@@ -37,6 +37,7 @@
 				                <form:errors path="username"></form:errors></span>
 				         	</div>
 				        </spring:bind>
+				        
 					</c:when>    
 					<c:otherwise>						
 						<div class="form-group">
@@ -47,7 +48,7 @@
 				</c:choose>	
 		        
 				<c:choose>
-					<c:when test="${userForm.getUsername()==null || userForm.getUsername()==''}">
+					<c:when test="${userForm.getUsername()==null || userForm.getUsername()=='' ||  userForm.getAction()=='c'}">
 		        		<spring:bind path="password">
 							<div class="form-group ${status.error ? 'has-error' : ''}">
 			                    <label for="idInputPassword1">Kata Kunci</label>
@@ -125,7 +126,10 @@
 	        <!-- ./card-body -->
 	          <div class="card-footer">
 				<c:choose>
-					<c:when test="${userForm.getUsername()==null || userForm.getUsername()==''}">
+					<c:when test="${userForm.getUsername()==null || userForm.getUsername()=='' ||  userForm.getAction()=='c'}">
+                		<input type="hidden" name="action" value="c"/>
+					</c:when> 
+					<c:when test="${userForm.getUsername()==null || userForm.getUsername()=='' ||  userForm.getAction()=='c'}">
                 		<input type="hidden" name="action" value="c"/>
 					</c:when>    
 					<c:otherwise>

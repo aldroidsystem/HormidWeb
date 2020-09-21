@@ -1,4 +1,4 @@
-package com.aldroid.hormid.validator;
+package com.aldroid.hormid.validator.generic;
 
 import java.util.Arrays;
 import java.util.List;

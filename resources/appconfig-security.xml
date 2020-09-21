@@ -10,9 +10,10 @@
     <http auto-config="true">        
         <intercept-url pattern="/lapak/**" access="hasAnyRole('ROLE_PETANI','ROLE_ADMIN','ROLE_AGEN','ROLE_PEKERJA')"/>
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/agen/**" access="hasRole('ROLE_AGEN')"/>
-        <intercept-url pattern="/petani/**" access="hasRole('ROLE_PETANI')"/>
-        <intercept-url pattern="/pekerja/**" access="hasRole('ROLE_PEKERJA')"/>
+        <intercept-url pattern="/agen/**" access="hasAnyRole('ROLE_AGEN','ROLE_ADMIN')"/>
+        <intercept-url pattern="/petani/**" access="hasAnyRole('ROLE_PETANI','ROLE_ADMIN')"/>
+        <intercept-url pattern="/kasir/**" access="hasAnyRole('ROLE_KASIR','ROLE_ADMIN')"/>
+        <intercept-url pattern="/pekerja/**" access="hasAnyRole('ROLE_PEKERJA','ROLE_ADMIN')"/>
         <form-login 
 	        login-page="/login" 
 	        default-target-url="/welcome" 

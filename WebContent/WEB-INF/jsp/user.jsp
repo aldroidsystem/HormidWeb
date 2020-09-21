@@ -5,6 +5,7 @@
   
 <spring:url value="/resources/icon/user16.png" var="userPng" />
 <spring:url value="/resources/icon/edit16.png" var="editPng" />
+<spring:url value="/admin/userForm" var="userForm" />
   
   <h5 class="mb-2">Statistik Pengguna</h5>
   <div class="row">
@@ -71,7 +72,6 @@
       <!-- TABLE: LATEST ORDERS -->
       <div class="card">
 			<div class="card-header">
-				<spring:url value="/admin/userForm" var="userForm" />
 				<h3 class="card-title">
 					<a href="${userForm}"><button type="button" class="btn btn-block btn-primary">Pendaftaran Pengguna</button></a>
 				</h3>
