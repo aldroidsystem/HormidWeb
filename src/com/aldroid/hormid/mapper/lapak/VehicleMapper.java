@@ -7,7 +7,6 @@ package com.aldroid.hormid.mapper.lapak;
 
 
 import java.util.List;
-
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Many;
@@ -16,11 +15,7 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-
-import com.aldroid.hormid.generic.staticvar.SupirQueryList;
-import com.aldroid.hormid.generic.staticvar.UserQueryList;
 import com.aldroid.hormid.generic.staticvar.VehicleQueryList;
-import com.aldroid.hormid.model.generic.User;
 import com.aldroid.hormid.model.lapak.Supir;
 import com.aldroid.hormid.model.lapak.Vehicle;
 
@@ -50,6 +45,13 @@ public interface VehicleMapper{
     @Delete(VehicleQueryList.VEHICLE_PETANI_DELETE)
     abstract void deleteVehiclePetani(@Param("vehicleId") Integer vehicleId,@Param("username") String username) throws Exception;
 
+    @Insert(VehicleQueryList.VEHICLE_AGEN_INSERT)
+    abstract void insertVehicleAgen(@Param("vehicleId") Integer vehicleId,@Param("username") String username) throws Exception;
+
+    @Delete(VehicleQueryList.VEHICLE_AGEN_DELETE)
+    abstract void deleteVehicleAgen(@Param("vehicleId") Integer vehicleId,@Param("username") String username) throws Exception;
+
+    
     @Select(VehicleQueryList.SELECT_LAST_VEHICLE_DETAILS)
     @Results({
         @Result(property = "vehicleId", column ="vehicle_id", javaType = Integer.class),

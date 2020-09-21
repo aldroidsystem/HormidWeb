@@ -6,14 +6,11 @@
 package com.aldroid.hormid.service.lapak;
 
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.aldroid.hormid.generic.process.CommonProcess;
 import com.aldroid.hormid.generic.process.GlobalSessionObject;
 import com.aldroid.hormid.mapper.lapak.HargaMapper;
 import com.aldroid.hormid.model.lapak.Harga;
@@ -26,7 +23,6 @@ import com.aldroid.hormid.model.lapak.Harga;
 @Service
 @Transactional
 public class HargaService{
-
 	private static final Logger logger = Logger.getLogger(HargaService.class);
 	
     @Autowired(required=true)

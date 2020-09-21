@@ -2,7 +2,9 @@ package com.aldroid.hormid.controller;
 
 
 import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,12 +13,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import com.aldroid.hormid.generic.process.CommonProcess;
 import com.aldroid.hormid.generic.process.GlobalSessionObject;
+import com.aldroid.hormid.model.lapak.Agen;
 import com.aldroid.hormid.model.lapak.Harga;
 import com.aldroid.hormid.model.lapak.Petani;
 import com.aldroid.hormid.model.lapak.Supir;
 import com.aldroid.hormid.model.lapak.Vehicle;
+import com.aldroid.hormid.service.lapak.AgenService;
 import com.aldroid.hormid.service.lapak.HargaService;
 import com.aldroid.hormid.service.lapak.PetaniService;
 import com.aldroid.hormid.service.lapak.SupirService;
@@ -44,6 +49,9 @@ public class KasirController {
     @Autowired
     private PetaniService petaniService;
 
+    @Autowired
+    private AgenService agenService;
+    
     @Autowired
     private VehicleService vehicleService;
 
@@ -292,4 +300,77 @@ public class KasirController {
 		model.addAttribute("listVehicle", vehicleService.loadAllVehicle());
         return "petaniForm";
     }
+	//----------------------------------------------------------------
+
+
+	@RequestMapping(value="/agen",method=RequestMethod.GET)
+    public String agen(Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+        model.addAttribute("agenSearchForm", new Agen());
+		model.addAttribute("listAgen", new ArrayList<Agen>());
+        return "agen";
+    }
+	@RequestMapping(value="/agen",method=RequestMethod.POST)
+    public String agenSearch(@ModelAttribute("agenForm")Agen agen, BindingResult bindingResult, Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+        model.addAttribute("agenSearchForm", agen);
+		model.addAttribute("listAgen", agenService.searchAgenByFullname(agen.getFullname()));
+        return "agen";
+    }
+	
+	@RequestMapping(value="/agenForm", 
+			method=RequestMethod.GET)
+    public String agenForm(Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object(){}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+        model.addAttribute("agenForm", new Agen());
+        model.addAttribute("newAgenMap", agenService.selectNewAgen());
+		model.addAttribute("listVehicle", vehicleService.loadAllVehicle());
+		model.addAttribute("listPetani", petaniService.loadDaftarPetani());
+        return "agenForm";
+    }
+
+	@RequestMapping(value="/agenForm", 
+			params = {"username"},
+			method=RequestMethod.GET)
+    public String agenFormUpdate(@RequestParam(value = "username")String username,Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+		Agen agen;
+		model.addAttribute("listPetani", petaniService.loadDaftarPetani());
+		if(username == null || username.equals("")){
+            return "redirect:agenForm";
+		} else {
+			agen = agenService.selectAgenDetail(username);
+			
+			if (agen == null || agen.getUsername() == null){
+	            return "redirect:agenForm";
+			}
+		}
+
+		model.addAttribute("agenForm",agen);
+		model.addAttribute("listVehicle", vehicleService.loadAllVehicle());
+        return "agenForm";
+    }
+	
+	@RequestMapping(value="/agenForm", 
+			method=RequestMethod.POST)
+    public String agenFormUpsert(@ModelAttribute("agenForm")Agen agen, BindingResult bindingResult,Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+
+		model.addAttribute("listPetani", petaniService.loadDaftarPetani());
+        try{
+        	Agen upsertAgen = agenService.upsert(agen);
+            model.addAttribute("notification", "success");
+    		model.addAttribute("agenForm",upsertAgen);
+        } catch (Exception e){
+        	CommonProcess.logException(e, getClass());      
+    		model.addAttribute("agenForm",agen);  
+            model.addAttribute("newAgenMap", agenService.selectNewAgen());
+            model.addAttribute("notification", "fail");
+        }
+
+		model.addAttribute("listVehicle", vehicleService.loadAllVehicle());
+        return "agenForm";
+    }
+
+	//----------------------------------------------------------------------
 }

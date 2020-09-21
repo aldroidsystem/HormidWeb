@@ -47,7 +47,7 @@
   				<spring:bind path="defaultBiayaBongkar"> 	
 					<div class="form-group">
 				  		<label for="idInputBiayaBongkar">Biaya Bongkar</label>
-		                <form:input type="text" path="defaultBiayaBongkar" id="idInputBiayaBongkar" name="defaultBiayaBongkar" class="form-control ${status.error ? 'has-error' : ''}" data-placeholder="Biaya bongkar otomatis"></form:input>
+		                <form:input type="text" path="defaultBiayaBongkar" id="idInputBiayaBongkar" name="defaultBiayaBongkar" class="form-control ${status.error ? 'is-invalid' : ''}" data-placeholder="Biaya bongkar otomatis"></form:input>
 		                <span class="invalid-feedback">
 			            <form:errors path="defaultBiayaBongkar"></form:errors></span>
 		            </div>

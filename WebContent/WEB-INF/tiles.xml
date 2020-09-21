@@ -102,4 +102,16 @@
         <put-attribute name="extraJS" value="/WEB-INF/jsp/extraJS_petaniForm.jsp" /> 
         <put-attribute name="body" value="/WEB-INF/jsp/petaniForm.jsp" />  
     </definition>  
+    <definition name="agen" extends="base.definition">  
+        <put-attribute name="title" value="Agen" />  
+        <put-attribute name="extraCSS" value="/WEB-INF/jsp/extraCSS_user.jsp" />  
+        <put-attribute name="extraJS" value="/WEB-INF/jsp/extraJS_user.jsp" /> 
+        <put-attribute name="body" value="/WEB-INF/jsp/agen.jsp" />  
+    </definition>  
+    
+    <definition name="agenForm" extends="agen">  
+        <put-attribute name="extraCSS" value="/WEB-INF/jsp/extraCSS_agenForm.jsp" />  
+        <put-attribute name="extraJS" value="/WEB-INF/jsp/extraJS_agenForm.jsp" /> 
+        <put-attribute name="body" value="/WEB-INF/jsp/agenForm.jsp" />  
+    </definition> 
 </tiles-definitions>  

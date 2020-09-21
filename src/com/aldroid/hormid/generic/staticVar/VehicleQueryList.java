@@ -41,7 +41,16 @@ public final class VehicleQueryList {
     public static final String VEHICLE_PETANI_DELETE = "delete from tb_vehicle_petani "
     		+ "where vehicle_id=#{vehicleId,jdbcType=INTEGER} "
     		+ "and username=#{username,jdbcType=VARCHAR}";  
+
+    public static final String VEHICLE_AGEN_INSERT = "insert into tb_vehicle_agen "
+    		+ "(vehicle_id,username) "
+    		+ "values ("
+    		+ "#{vehicleId,jdbcType=INTEGER}"
+    		+ ",#{username,jdbcType=VARCHAR})"; 
     
+    public static final String VEHICLE_AGEN_DELETE = "delete from tb_vehicle_agen "
+    		+ "where vehicle_id=#{vehicleId,jdbcType=INTEGER} "
+    		+ "and username=#{username,jdbcType=VARCHAR}";  
     
     public static final String SELECT_LAST_VEHICLE_DETAILS = "select * from tb_vehicle where vehicle_id=(select max(vehicle_id) from tb_vehicle)";  
 

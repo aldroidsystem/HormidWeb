@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.aldroid.hormid.mapper.lapak.PetaniMapper;
 import com.aldroid.hormid.mapper.lapak.VehicleMapper;
 import com.aldroid.hormid.model.generic.User;
@@ -124,5 +125,13 @@ public class PetaniService{
 
     public List<Petani> searchPetaniByFullname(String fullname) throws Exception{
     	return petaniMapper.searchPetaniByFullname(fullname);
+    }
+    public Map<String,String> loadDaftarPetani() throws Exception{
+    	List<Petani> listPetani = petaniMapper.loadDaftarPetani();
+    	Map<String,String> mapPetani = new HashMap<String, String>();
+    	for(Petani petani : listPetani){
+    		mapPetani.put(petani.getUsername(), petani.getFullname());
+    	}
+    	return mapPetani;
     }
 }

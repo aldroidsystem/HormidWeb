@@ -2,9 +2,6 @@ package com.aldroid.hormid.service.authentication;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEvent;
@@ -17,7 +14,6 @@ import org.springframework.security.authentication.event.AuthenticationSuccessEv
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.context.support.ServletRequestHandledEvent;
-
 import com.aldroid.hormid.service.generic.LoginService;
 
 
@@ -62,12 +58,12 @@ public class CustomLoggerListener implements ApplicationListener<ApplicationEven
             logger.info( "AUTH-SUCCESS [" + a + "]");
             if (a.getPrincipal()!= null && a.getPrincipal() instanceof User) {
             	loginService.userLoginSucceeded(((User)a.getPrincipal()).getUsername());
-            	try {
-					String bb = loginService.getCurrentUrl();
-				} catch (MalformedURLException | URISyntaxException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+//            	try {
+//					String bb = loginService.getCurrentUrl();
+//				} catch (MalformedURLException | URISyntaxException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
             }
             
         }

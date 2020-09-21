@@ -5,13 +5,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-
 import com.aldroid.hormid.generic.process.CommonProcess;
-import com.aldroid.hormid.generic.process.GlobalSessionObject;
 import com.aldroid.hormid.model.generic.Properties;
-import com.aldroid.hormid.model.lapak.Harga;
 import com.aldroid.hormid.model.lapak.Vehicle;
-import com.aldroid.hormid.service.generic.PropertiesService;
 import com.aldroid.hormid.service.lapak.VehicleService;
 
 @Component

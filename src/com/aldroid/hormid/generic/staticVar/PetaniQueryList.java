@@ -7,6 +7,7 @@ public final class PetaniQueryList {
     
     public static final String SELECT_NEW_PETANI = "select username, fullname from tb_user where username not in (select username from tb_petani)";    
 
+    public static final String SELECT_DAFTAR_PETANI = "select username, fullname from tb_user where username in (select username from tb_petani)";    
 
     public static final String PETANI_UPDATE = "update tb_petani "
     		+ "set CATATAN=#{catatan,jdbcType=VARCHAR}, "

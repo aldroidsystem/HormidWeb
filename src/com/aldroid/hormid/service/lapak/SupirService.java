@@ -8,20 +8,14 @@ package com.aldroid.hormid.service.lapak;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.ibatis.annotations.Insert;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.aldroid.hormid.generic.staticvar.HargaQueryList;
-import com.aldroid.hormid.generic.staticvar.SupirQueryList;
 import com.aldroid.hormid.mapper.lapak.SupirMapper;
 import com.aldroid.hormid.mapper.lapak.VehicleMapper;
 import com.aldroid.hormid.model.generic.User;
-import com.aldroid.hormid.model.lapak.Harga;
 import com.aldroid.hormid.model.lapak.Supir;
 import com.aldroid.hormid.model.lapak.Vehicle;
 

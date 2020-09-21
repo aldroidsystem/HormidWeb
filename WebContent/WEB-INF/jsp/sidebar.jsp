@@ -70,6 +70,12 @@
               <p>Petani</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="${kasirURL}/agen" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Agen</p>
+            </a>
+          </li>
         </ul>
       </li>
       
