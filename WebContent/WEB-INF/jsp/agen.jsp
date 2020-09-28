@@ -36,7 +36,6 @@
                     <th>Nama</th>
                     <th>Peranan</th>
                     <th>Potongan</th>
-                    <th>Hutang</th>
                     <th>Kendaraan</th>
                   </tr>
                   </thead>
@@ -53,7 +52,6 @@
 							</c:forEach>
 						</td>
 						<td>${agen.getPotonganPersen()}</td>
-						<td>${agen.getTotalHutang()}</td>
 						<td>
 							<c:forEach items="${agen.getListVehiclePlate()}" var="vehicle">
 								<span class="badge bg-info">${vehicle}</span>

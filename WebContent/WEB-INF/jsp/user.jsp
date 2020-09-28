@@ -1,9 +1,11 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<fmt:setLocale value = "in_ID"/>
   <!-- Main row -->
   
-<spring:url value="/resources/icon/user16.png" var="userPng" />
+<spring:url value="/resources/icon/rupiah16.png" var="rupiahPng" />
 <spring:url value="/resources/icon/edit16.png" var="editPng" />
 <spring:url value="/admin/userForm" var="userForm" />
   
@@ -92,27 +94,18 @@
                 <table id="example2" class="table table-bordered table-hover table-striped">
                   <thead>
                   <tr>
-                    <th>Aksi</th>
                     <th>Kode Pengguna</th>
                     <th>Nama</th>
                     <th>Area</th>
                     <th>Peranan</th>
-<!--                     <th>Jumlah salah masuk</th>
-                    <th>Jumlah pengguna terhubung</th> -->
-                    <th>Status</th>
                   </tr>
                   </thead>
                   <tbody>
+         
 					<c:forEach items="${listUser}" var="user">
 					<tr>
 						<td><a href="userForm?username=${user.getUsername()}"  data-toggle="tooltip" title="Ubah Pengguna">
-							<img src="${editPng}" alt="User Image">
-						</a>
-						<a href="profile?username=${user.getUsername()}"  data-toggle="tooltip" title="Profil Pengguna">
-							<img src="${userPng}" alt="User Image">
-						</a>
-						</td>
-						<td>${user.getUsername()}</td>
+						${user.getUsername()}</a></td>
 						<td>${user.getFullname()}</td>
 						<td>${user.getArea()}</td>
 						<td>
@@ -122,16 +115,6 @@
 						</td>
 <%-- 						<td>${user.getLoginFailCount()}</td>
 						<td>${user.getSessionInstanceCount()}</td> --%>
-						<td>
-							<c:choose>
-								<c:when test="${user.getFlagActive()=='1'}">
-			                		Aktif
-								</c:when>    
-								<c:otherwise>
-			                		Non-Aktif
-								</c:otherwise>
-							</c:choose>	
-						</td>
 					</tr>
 					</c:forEach>
                   </tbody>

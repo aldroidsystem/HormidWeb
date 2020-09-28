@@ -2,6 +2,7 @@ package com.aldroid.hormid.controller;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,18 +17,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.aldroid.hormid.generic.process.CommonProcess;
 import com.aldroid.hormid.generic.process.GlobalSessionObject;
+import com.aldroid.hormid.model.generic.User;
 import com.aldroid.hormid.model.lapak.Agen;
-import com.aldroid.hormid.model.lapak.Harga;
 import com.aldroid.hormid.model.lapak.Petani;
 import com.aldroid.hormid.model.lapak.Supir;
 import com.aldroid.hormid.model.lapak.Vehicle;
+import com.aldroid.hormid.model.transaksi.Harga;
+import com.aldroid.hormid.model.transaksi.Piutang;
 import com.aldroid.hormid.service.lapak.AgenService;
-import com.aldroid.hormid.service.lapak.HargaService;
 import com.aldroid.hormid.service.lapak.PetaniService;
 import com.aldroid.hormid.service.lapak.SupirService;
 import com.aldroid.hormid.service.lapak.VehicleService;
+import com.aldroid.hormid.service.transaksi.HargaService;
+import com.aldroid.hormid.service.transaksi.PiutangService;
 import com.aldroid.hormid.validator.lapak.HargaValidator;
 import com.aldroid.hormid.validator.lapak.VehicleValidator;
+import com.aldroid.hormid.validator.transaksi.PiutangValidator;
 
 
 @Controller
@@ -50,6 +55,9 @@ public class KasirController {
     private PetaniService petaniService;
 
     @Autowired
+    private PiutangService piutangService;
+
+    @Autowired
     private AgenService agenService;
     
     @Autowired
@@ -57,6 +65,9 @@ public class KasirController {
 
     @Autowired
     private VehicleValidator vehicleValidator;
+
+    @Autowired
+    private PiutangValidator piutangValidator;
     
     
 	@RequestMapping(value="/harga",method=RequestMethod.GET)
@@ -373,4 +384,137 @@ public class KasirController {
     }
 
 	//----------------------------------------------------------------------
+
+    
+	@RequestMapping(value="/piutang",method=RequestMethod.GET)
+    public String loadPiutang(Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+		model.addAttribute("listUser", new ArrayList<User>());
+        model.addAttribute("piutangSearchForm", new User());
+        return "piutang";
+    }
+
+	@RequestMapping(value="/piutang",method=RequestMethod.POST)
+    public String piutangSearch(@ModelAttribute("userForm") User user, Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+        model.addAttribute("piutangSearchForm", user);
+		model.addAttribute("listUser", piutangService.searchUserPiutangByFullname(user.getFullname()));
+        return "piutang";
+    }
+	
+
+	@RequestMapping(value="/piutangTransaction", 
+			params = {"username"},
+			method=RequestMethod.GET)
+    public String piutangUpdate(@RequestParam(value = "username")String username,Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+		Piutang piutang;
+		if(username == null || username.equals("")){
+            return "redirect:notfound";
+		} else {
+			piutang = piutangService.selectUserPiutangDetail(username);
+			
+			if (piutang == null || piutang.getUsername() == null){
+	            return "redirect:notfound";
+			}
+		}
+
+		model.addAttribute("piutangForm",piutang);
+        return "piutang.transaction";
+    }
+	
+	@RequestMapping(value="/piutangTransaction", 
+			method=RequestMethod.POST)
+    public String piutangUpdateProcess(@ModelAttribute("piutangForm")Piutang piutang, BindingResult bindingResult, Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+		piutangValidator.validate(piutang, bindingResult);
+
+
+        if (bindingResult.hasErrors()) {
+            return "piutang.transaction";
+        }
+
+        try{
+        	piutangService.insert(piutang);
+            model.addAttribute("notification", "success");
+    		model.addAttribute("piutangForm",piutangService.selectPiutangDetail(piutang.getPiutangId()));
+        } catch (Exception e){
+        	CommonProcess.logException(e, getClass());
+            model.addAttribute("piutangForm", piutang);
+            model.addAttribute("notification", "fail");
+        }
+
+        return "piutang.invoice";
+    }
+	
+
+	@RequestMapping(value="/piutangHistory", 
+			params = {"username"},
+			method=RequestMethod.GET)
+    public String piutangHistory(@RequestParam(value = "username")String username,Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+		Piutang piutang;
+		if(username == null || username.equals("")){
+            return "redirect:notfound";
+		} else {
+			piutang = piutangService.selectUserPiutangDetail(username);
+			
+			if (piutang == null || piutang.getUsername() == null){
+	            return "redirect:notfound";
+			}
+		}
+
+		model.addAttribute("piutangForm",piutang);
+		model.addAttribute("listPiutangHistory",new ArrayList<Piutang>());
+        return "piutang.history";
+    }
+	@RequestMapping(value="/piutangHistory", 
+			params = {"username"},
+			method=RequestMethod.POST)
+    public String piutangHistoryResult(@ModelAttribute("piutangForm")Piutang piutang, BindingResult bindingResult,Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+		Piutang piutangOri;
+		List<Piutang> listPiutang;
+		if(piutang.getUsername() == null || piutang.getUsername().equals("")){
+            return "redirect:notfound";
+		} else {
+			piutangOri = piutangService.selectUserPiutangDetail(piutang.getUsername());
+			listPiutang = piutangService.searchUserPiutangHistory(piutang);
+			
+			if (piutangOri == null || piutang.getUsername() == null){
+	            return "redirect:notfound";
+			}
+		}
+
+		piutangOri.setJenisTransaksi(piutang.getJenisTransaksi());
+		piutangOri.setDariTanggal(piutang.getDariTanggal());
+		piutangOri.setSampaiTanggal(piutang.getSampaiTanggal());
+		model.addAttribute("piutangForm",piutangOri);
+		model.addAttribute("listPiutangHistory",listPiutang);
+        return "piutang.history";
+    }
+	
+	
+
+	
+	@RequestMapping(value="/piutangInvoice", 
+			method=RequestMethod.GET)
+    public String piutangInvoice(@RequestParam(value = "piutangId")String piutangId, Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+
+		model.addAttribute("piutangForm",piutangService.selectPiutangDetail(piutangId));
+
+        return "piutang.invoice";
+    }
+	
+	
+	@RequestMapping(value="/piutangInvoicePrint", 
+			method=RequestMethod.GET)
+    public String piutangInvoicePrint(@RequestParam(value = "piutangId")String piutangId, Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+
+		model.addAttribute("piutangForm",piutangService.selectPiutangDetail(piutangId));
+
+        return "piutang.invoice.print";
+    }
 }

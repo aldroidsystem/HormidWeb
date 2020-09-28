@@ -17,6 +17,7 @@ public class User {
     private Integer loginFailCount; 
     private Date passwordChangeDate; 
     private Integer passwordExpiryPeriod;
+    private Integer hutang;
     private Integer sessionInstanceCount;
     private Integer flagActive;
     private Integer flagNeverDisable;
@@ -31,6 +32,8 @@ public class User {
     private String action;
     private String token;
     private String tokenCreationDate;
+    private Date terakhirBayar;
+    private Date terakhirPinjam;
     
 
 	public String getToken() {
@@ -301,4 +304,33 @@ public class User {
 		return getFlagPasswordExpired()!=null && getFlagPasswordExpired()==1;
 
 	}
+
+	public Integer getHutang() {
+		return hutang;
+	}
+
+	public void setHutang(Integer hutang) {
+		this.hutang = hutang;
+	}
+
+
+	public Date getTerakhirBayar() {
+		return terakhirBayar;
+	}
+
+
+	public void setTerakhirBayar(Date terakhirBayar) {
+		this.terakhirBayar = terakhirBayar;
+	}
+
+
+	public Date getTerakhirPinjam() {
+		return terakhirPinjam;
+	}
+
+
+	public void setTerakhirPinjam(Date terakhirPinjam) {
+		this.terakhirPinjam = terakhirPinjam;
+	}
+	
 }

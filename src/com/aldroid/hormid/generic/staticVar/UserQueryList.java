@@ -9,8 +9,7 @@ public final class UserQueryList {
 
     
     
-    public static final String SEARCH_USER_BY_NAME = "SELECT username, fullname, area,"
-    		+ "flag_Active, login_fail_count, session_instance_count "
+    public static final String SEARCH_USER_BY_NAME = "SELECT username, fullname, area "
     		+ "from tb_user where lower(fullname) like '%'||lower(#{nameSearch}) ||'%'";
     
     public static final String SELECT_USER_ROLE = "SELECT role_code from tb_user_role where username = #{username}";

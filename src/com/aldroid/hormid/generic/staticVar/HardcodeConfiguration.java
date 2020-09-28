@@ -19,5 +19,9 @@ public final class HardcodeConfiguration {
 //    public final static String PATH_JASPER_TIMBANG_MUAT="C:\\hormid\\Project\\jasper\\timbangMuatSingle.jasper";
 	
 
-    public static final Locale INDONESIA = new Locale("in", "ID");
+    public static final Locale APPS_INDONESIA = new Locale("in", "ID");
+    public static final String APPS_AREA = "H1";
+    public static final String APPS_MODULE_PIUTANG = "PG";
+    public static final long APPS_BASE_DATE_MILIS = 672401837000L;
+
 }

@@ -22,7 +22,6 @@ public class Agen {
     private List<String> listPetaniUsername;
     private List<String> roles;
     private Integer potonganPersen;
-    private Integer totalHutang;
     private String action;
     
     
@@ -116,12 +115,6 @@ public class Agen {
 	}
 	public void setPotonganPersen(Integer potonganPersen) {
 		this.potonganPersen = potonganPersen;
-	}
-	public Integer getTotalHutang() {
-		return totalHutang;
-	}
-	public void setTotalHutang(Integer totalHutang) {
-		this.totalHutang = totalHutang;
 	}
 	public List<Petani> getPetani() {
 		return petani;

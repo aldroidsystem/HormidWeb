@@ -114,4 +114,33 @@
         <put-attribute name="extraJS" value="/WEB-INF/jsp/extraJS_agenForm.jsp" /> 
         <put-attribute name="body" value="/WEB-INF/jsp/agenForm.jsp" />  
     </definition> 
+    
+    
+    <definition name="piutang" extends="base.definition">  
+        <put-attribute name="title" value="Piutang" />  
+        <put-attribute name="extraCSS" value="/WEB-INF/jsp/extraCSS_user.jsp" />  
+        <put-attribute name="extraJS" value="/WEB-INF/jsp/extraJS_user.jsp" /> 
+        <put-attribute name="body" value="/WEB-INF/jsp/piutang.jsp" />  
+    </definition>  
+    <definition name="piutang.transaction" extends="base.definition">  
+        <put-attribute name="title" value="Transaksi Piutang" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/piutangTransaction.jsp" />  
+        <put-attribute name="extraJS" value="/WEB-INF/jsp/extraJS_piutangTransaction.jsp" />
+        <put-attribute name="extraCSS" value="/WEB-INF/jsp/extraCSS_profile.jsp" />  
+    </definition>  
+    
+    <definition name="piutang.history" extends="piutang.transaction">  
+        <put-attribute name="title" value="Sejarah Pinjaman" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/piutangHistory.jsp" />  
+        <put-attribute name="extraJS" value="/WEB-INF/jsp/extraJS_piutangHistory.jsp" />
+        <put-attribute name="extraCSS" value="/WEB-INF/jsp/extraCSS_piutangHistory.jsp" />  
+    </definition>  
+    
+    <definition name="piutang.invoice" extends="base.definition">  
+        <put-attribute name="title" value="Faktur Piutang" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/piutangInvoice.jsp"/>  
+    </definition>  
+    <definition name="piutang.invoice.print"  
+        template="/WEB-INF/jsp/piutangInvoicePrint.jsp">  
+    </definition>  
 </tiles-definitions>  

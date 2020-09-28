@@ -82,10 +82,8 @@ public interface UserMapper {
     @Results({
         @Result(property = "username", column ="username"),
         @Result(property = "fullname", column ="fullname"),
+        @Result(property = "hutang", column ="hutang"),
         @Result(property = "area", column ="area"),
-        @Result(property = "flagActive", javaType = Integer.class, column ="flagActive"),
-        @Result(property = "loginFailCount", javaType = Integer.class, column ="login_fail_count"),
-        @Result(property = "sessionInstanceCount", javaType = Integer.class, column ="session_instance_count"),
         @Result(property = "roles", javaType = List.class, column="username",
                 many = @Many(select = "loadUserRoleName"))})
     abstract List<User> searchUser(@Param("nameSearch") String nameSearch);

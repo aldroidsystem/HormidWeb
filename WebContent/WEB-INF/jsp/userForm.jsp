@@ -141,49 +141,64 @@
 	          </div>
 	        </div>
     	</form:form>
-	        <!-- /.card-footer -->
+    	
+		<c:choose>
+			<c:when test="${userForm.getUsername()!=null && userForm.getUsername()!='' &&  userForm.getAction()!='c'}">
+		    	<form:form class="form-horizontal" action="resetPassword" method="POST" modelAttribute="passwordForm">
+					<div class="card">
+						<div class="card-header">
+							<h3 class="card-title">Ubah Kata Kunci</h3>
+							<div class="card-tools">
+								<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+									<i class="fas fa-minus"></i>
+								</button>
+							</div>
+						</div>
+						<div class="card-body">
+				           	<input type="hidden" name="username" value="${userForm.getUsername()}"/>
+							<spring:bind path="password">
+								<div class="form-group row">
+									<label for="idInputPassword1" class="col-sm-2 col-form-label">Kata
+										Kunci</label>
+									<div class="col-sm-10">
+										<input type="password" name="password" class="form-control ${status.error ? is-invalid: ''}"
+											id="idInputPassword1" placeholder="Kata Kunci">
+										<span class="invalid-feedback">
+					                	<form:errors path="password"></form:errors></span>
+									</div>
+								</div>
+							</spring:bind>
+							
+				
+							<spring:bind path="passwordConfirm">
+								<div class="form-group row">
+									<label for="idInputPassword2" class="col-sm-2 col-form-label">Konfirmasi
+										Kata Kunci</label>
+									<div class="col-sm-10">
+										<input type="password" name="passwordConfirm"
+											class="form-control ${status.error ? 'is-invalid' : ''}" id="idInputPassword2"
+											placeholder="Konfirmasi Kata Kunci">
+										<span class="invalid-feedback">
+					                	<form:errors path="passwordConfirm"></form:errors></span>
+									</div>
+								</div>
+							</spring:bind>
+							<div class="form-group row">
+								<div class="offset-sm-2 col-sm-10">
+									<button type="submit" class="btn btn-danger">Submit</button>
+								</div>
+							</div>
+						</div>
+						<!-- /.card-body -->
+						<div class="card-footer">
+						</div>
+						<!-- /.card-footer-->
+					</div>
+				</form:form>
+			</c:when> 
+		</c:choose>	
 	   </div>
         </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
-    
-<spring:url value="/resources/plugins/jquery-validation/jquery.validate.min.js" var="valJs" />
-<script src="${valJs}"></script>
-<spring:url value="/resources/plugins/jquery-validation/additional-methods.min.js" var="addmethJs" />
-<script src="${addmethJs}"></script>
-<script type="text/javascript">
-$(document).ready(function () {	
-  $('#userForm').validate({
-    rules: {
-    	code: {
-        required: true
-      },
-      value: {
-        required: true
-      }
-    },
-    messages: {
-      username: {
-        required: "Kolom 'kode' tidak boleh kosong",
-      },
-      value: {
-        required: "Kolom 'nilai' tidak boleh kosong"
-      }
-    },
-    errorElement: 'span',
-    errorPlacement: function (error, element) {
-      error.addClass('invalid-feedback');
-      element.closest('.form-group').append(error);
-    },
-    highlight: function (element, errorClass, validClass) {
-      $(element).addClass('is-invalid');
-    },
-    unhighlight: function (element, errorClass, validClass) {
-      $(element).removeClass('is-invalid');
-    }
-  });
-  
-});
-</script>
-

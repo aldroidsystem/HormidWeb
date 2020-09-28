@@ -1,23 +1,18 @@
 create or replace 
-Procedure pr_harga_insert( 
-in_tanggalMulai in TIMESTAMP,
-in_hargaJual in NUMBER,
-in_hargaBeli in NUMBER,
-in_createdBy IN VARCHAR2
+Procedure pr_auditlog_insert( 
+in_username in varchar2,
+in_procedureName in varchar2,
+in_errorcode in varchar2,
+in_description in varchar2
 )
 IS
 BEGIN
     
-  insert into tb_harga(tanggalMulai,hargaJual,hargaBeli,createdBy)
-	values (in_tanggalMulai,in_hargaJual,in_hargaBeli,in_createdBy);
+ insert into tb_auditlog(username,procedure_name,errorcode,description)
+	values (in_username,in_procedureName,in_errorcode,in_description);
+   commit;
 
-  commit;
-   
 EXCEPTION
 WHEN OTHERS THEN
-  ROLLBACK;
-  pr_auditLog_insert(in_createdBy,'pr_harga_insert',SQLERRM,''''||in_tanggalMulai||''','||in_hargaJual||','||in_hargaBeli||','''||in_createdBy||'''');
-  raise_application_error(-20001,'An error was encountered - '||SQLCODE||' -ERROR- '||SQLERRM);
-   
+   raise_application_error(-20001,'An error was encountered - '||SQLCODE||' -ERROR- '||SQLERRM);
 END;
-/

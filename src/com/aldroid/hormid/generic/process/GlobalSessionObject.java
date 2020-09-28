@@ -21,10 +21,10 @@ import org.springframework.stereotype.Component;
 
 import com.aldroid.hormid.model.generic.Properties;
 import com.aldroid.hormid.model.generic.Role;
-import com.aldroid.hormid.model.lapak.Harga;
+import com.aldroid.hormid.model.transaksi.Harga;
 import com.aldroid.hormid.service.generic.PropertiesService;
 import com.aldroid.hormid.service.generic.UserService;
-import com.aldroid.hormid.service.lapak.HargaService;
+import com.aldroid.hormid.service.transaksi.HargaService;
 
 /**
  *

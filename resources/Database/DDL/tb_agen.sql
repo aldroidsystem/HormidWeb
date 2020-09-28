@@ -3,7 +3,6 @@ drop table tb_agen;
 create table tb_agen (
 username varchar2(30),
 default_potongan_persen number(2),
-total_hutang number(10),
 catatan varchar2(500 char),
 flag_Active  NUMBER(1),
 flag_Deleted NUMBER(1),

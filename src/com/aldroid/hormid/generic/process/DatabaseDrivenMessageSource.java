@@ -56,7 +56,7 @@ public class DatabaseDrivenMessageSource extends AbstractMessageSource implement
         if (localized != null) {
             textForCurrentLanguage = localized.get(locale.getLanguage());
             if (textForCurrentLanguage == null) {
-                textForCurrentLanguage = localized.get(HardcodeConfiguration.INDONESIA.getLanguage());
+                textForCurrentLanguage = localized.get(HardcodeConfiguration.APPS_INDONESIA.getLanguage());
             }
         }
         if (textForCurrentLanguage==null) {

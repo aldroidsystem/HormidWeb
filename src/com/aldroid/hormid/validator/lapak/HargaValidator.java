@@ -4,16 +4,16 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+
 import com.aldroid.hormid.generic.process.CommonProcess;
-import com.aldroid.hormid.model.generic.Properties;
-import com.aldroid.hormid.model.lapak.Harga;
+import com.aldroid.hormid.model.transaksi.Harga;
 
 @Component
 public class HargaValidator implements Validator {
     
     @Override
     public boolean supports(Class<?> aClass) {
-        return Properties.class.equals(aClass);
+        return Harga.class.equals(aClass);
     }
 
     @Override

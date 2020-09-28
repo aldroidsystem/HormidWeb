@@ -1,6 +1,5 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>    
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"    
-"http://www.w3.org/TR/html4/loose.dtd">    
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">    
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html lang="en">
 <head>
@@ -15,7 +14,7 @@
    <spring:url value="/resources/plugins/fontawesome-free/css/all.min.css" var="allMinCss" />
   <link rel="stylesheet" href="${allMinCss}"> 
   <!-- overlayScrollbars -->
- <%--  <spring:url value="/resources/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" var="overlayCss" />
+<%--  <spring:url value="/resources/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" var="overlayCss" />
   <link rel="stylesheet" href="${overlayCss}"> --%>
   <!-- Theme style -->
   <spring:url value="/resources/dist/css/adminlte.min.css" var="adminCss" />
@@ -25,6 +24,7 @@
   
 </head>
 <body class="hold-transition sidebar-mini layout-boxed">
+<!-- hold-transition sidebar-mini layout-fixed -->
 	<div class="wrapper">
 	  
 	<!-- Main Sidebar Container -->
@@ -59,8 +59,9 @@
 	  <!-- /.content-wrapper -->
 	
 	  <!-- Control Sidebar -->
-	  <!-- <aside class="control-sidebar control-sidebar-dark">
-	  </aside> -->
+	  <aside class="control-sidebar control-sidebar-dark">
+	    <!-- Control sidebar content goes here -->
+	  </aside>
 	  <!-- /.control-sidebar -->
 	
 	  <!-- Main Footer -->
@@ -83,9 +84,6 @@
 <!-- AdminLTE App -->
 <spring:url value="/resources/dist/js/adminlte.js" var="adminLteJs" />
 <script src="${adminLteJs}"></script>
-<!-- AdminLTE App -->
-<spring:url value="/resources/dist/js/adminlte.min.js" var="adminLteMinJs" />
-<script src="${adminLteMinJs}"></script>
 <!-- OPTIONAL SCRIPTS -->
 <%-- <spring:url value="/resources/dist/js/demo.js" var="demoJs" />
 <script src="${demoJs}"></script> --%>

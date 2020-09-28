@@ -63,10 +63,12 @@ public class AdminController {
 			method=RequestMethod.GET)
     public String userForm(Model model, HttpServletRequest request) throws Exception {
 		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
-        model.addAttribute("userForm", new User());
+        User user = new User();
+		model.addAttribute("userForm", user);
         model.addAttribute("properties_village", globalSessionObject.getPropertiesByCode("village").getDaftarKata());
         model.addAttribute("properties_roles", globalSessionObject.getRole());
         model.addAttribute("properties_rolemap", globalSessionObject.getRoleMap());
+        model.addAttribute("passwordForm", user);
         return "userForm";
     }
 	
@@ -90,6 +92,9 @@ public class AdminController {
         model.addAttribute("properties_village", globalSessionObject.getPropertiesByCode("village").getDaftarKata());
         model.addAttribute("properties_roles", globalSessionObject.getRole());
         model.addAttribute("properties_rolemap", globalSessionObject.getRoleMap());
+        user.setPassword(null);
+		user.setPasswordConfirm(null);
+        model.addAttribute("passwordForm", user);
         return "userForm";
     }
 	
@@ -111,6 +116,9 @@ public class AdminController {
 		
 		user = userService.findByUsername(user.getUsername());
         model.addAttribute("userForm", user);
+        user.setPassword(null);
+		user.setPasswordConfirm(null);
+        model.addAttribute("passwordForm", user);
         return "userForm";
     }
 	
@@ -175,41 +183,19 @@ public class AdminController {
     }
 	
 
-	@RequestMapping(value="/profile", 
-			params = {"username"},
-			method=RequestMethod.GET)
-    public String profile(@RequestParam(value = "username")String username,Model model, HttpServletRequest request) throws Exception {
-		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
-		User user;
-		if(username == null || username.equals("")){
-            return "redirect:notfound";
-		} else {
-			user = userService.findByUsername(username);
-			
-			if (user == null || user.getUsername() == null){
-	            return "redirect:notfound";
-			}
-		}
-		
-        model.addAttribute("userForm", user);
-        model.addAttribute("passwordForm", new User());
-        model.addAttribute("properties_village", globalSessionObject.getPropertiesByCode("village").getDaftarKata());
-
-        return "profile";
-    }
-	
-
 	@RequestMapping(value="/resetPassword",method=RequestMethod.POST)
     public String resetPassword(@ModelAttribute("passwordForm") User user, BindingResult bindingResult, Model model, HttpServletRequest request) throws Exception {
 		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
-		userValidator.validatePasswordAdmin(user, bindingResult);
-
-
-        model.addAttribute("userForm", userService.findByUsername(user.getUsername()));
-        model.addAttribute("properties_village", globalSessionObject.getPropertiesByCode("village").getDaftarKata());
+		userValidator.validatePasswordAdmin(user, bindingResult);  
         
+        model.addAttribute("properties_village", globalSessionObject.getPropertiesByCode("village").getDaftarKata());
+        model.addAttribute("properties_roles", globalSessionObject.getRole());
+        model.addAttribute("properties_rolemap", globalSessionObject.getRoleMap());
+		User userAsli = userService.findByUsername(user.getUsername());
+        model.addAttribute("userForm", userAsli);
         if (bindingResult.hasErrors()) {
-            return "profile";
+        	user.setAction("c");
+            return "userForm";
         }
 
         try{
@@ -219,37 +205,10 @@ public class AdminController {
         	CommonProcess.logException(e, getClass());        
             model.addAttribute("notification", "fail");
         }
-        
+		
         user.setPassword(null);
 		user.setPasswordConfirm(null);
         model.addAttribute("passwordForm", user);
-        return "profile";
-    }
-	
-	
-
-	@RequestMapping(value="/profileUpdate",method=RequestMethod.POST)
-    public String profileUpdate(@ModelAttribute("userForm") User user, BindingResult bindingResult, Model model, HttpServletRequest request) throws Exception {
-		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
-		userValidator.validate(user, bindingResult);
-
-
-        model.addAttribute("properties_village", globalSessionObject.getPropertiesByCode("village").getDaftarKata());
-        model.addAttribute("passwordForm", new User());
-        
-        if (bindingResult.hasErrors()) {
-            return "profile";
-        }
-
-        try{
-        	userService.updateProfile(user);
-            model.addAttribute("notification", "success");
-        } catch (Exception e){
-        	CommonProcess.logException(e, getClass());        
-            model.addAttribute("notification", "fail");
-        }
-
-        model.addAttribute("userForm", userService.findByUsername(user.getUsername()));
-        return "profile";
+        return "userForm";
     }
 }

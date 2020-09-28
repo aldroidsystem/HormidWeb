@@ -36,7 +36,6 @@
                     <th>Nama</th>
                     <th>Peranan</th>
                     <th>Potongan</th>
-                    <th>Hutang</th>
                     <th>Kendaraan</th>
                   </tr>
                   </thead>
@@ -53,7 +52,6 @@
 							</c:forEach>
 						</td>
 						<td>${petani.getPotonganPersen()}</td>
-						<td>${petani.getTotalHutang()}</td>
 						<td>
 							<c:forEach items="${petani.getListVehiclePlate()}" var="vehicle">
 								<span class="badge bg-info">${vehicle}</span>

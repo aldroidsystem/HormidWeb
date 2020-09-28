@@ -1,4 +1,4 @@
-<%@ page import="com.aldroid.hormid.model.lapak.Harga" %>
+<%@ page import="com.aldroid.hormid.model.transaksi.Harga" %>
 <%@ page import="com.aldroid.hormid.generic.process.CommonParsing" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>

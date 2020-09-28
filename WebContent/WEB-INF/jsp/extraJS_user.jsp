@@ -9,3 +9,4 @@
 <script src="${respJs}"></script>
 <spring:url value="/resources/plugins/datatables-responsive/js/responsive.bootstrap4.min.js" var="respBootJs" />
 <script src="${respBootJs}"></script>
+

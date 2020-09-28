@@ -19,7 +19,6 @@ public class Petani {
     private List<String> listVehiclePlate;
     private List<String> roles;
     private Integer potonganPersen;
-    private Integer totalHutang;
     private String action;
     
     
@@ -114,10 +113,4 @@ public class Petani {
 	public void setPotonganPersen(Integer potonganPersen) {
 		this.potonganPersen = potonganPersen;
 	}
-	public Integer getTotalHutang() {
-		return totalHutang;
-	}
-	public void setTotalHutang(Integer totalHutang) {
-		this.totalHutang = totalHutang;
-	} 
 }

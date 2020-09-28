@@ -76,6 +76,12 @@
               <p>Agen</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="${kasirURL}/piutang" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Piutang</p>
+            </a>
+          </li>
         </ul>
       </li>
       

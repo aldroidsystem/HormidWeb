@@ -76,4 +76,41 @@ $(document).ready(function () {
 	 toastr.success("<spring:message code='notification.update.success' />");
 	}
 });
+
+
+
+$('#passwordForm').validate({
+  rules: {
+    password: {
+      required: true,
+      minlength: 6,
+      maxlength: 12
+    },
+    passwordConfirm: {
+        required: true
+      }
+  },
+  messages: {
+    password: {
+      required: "Please provide a password",
+      minlength: "Your password must be 6-12 characters long",
+      maxlength: "Your password must be 6-12 characters long"
+    },
+    passwordConfirm: {
+      required: "Please provide a password confirm"
+    }
+  },
+  errorElement: 'span',
+  errorPlacement: function (error, element) {
+    error.addClass('invalid-feedback');
+    element.closest('.form-group').append(error);
+  },
+  highlight: function (element, errorClass, validClass) {
+    $(element).addClass('is-invalid');
+  },
+  unhighlight: function (element, errorClass, validClass) {
+    $(element).removeClass('is-invalid');
+  }
+});
 </script>
+
