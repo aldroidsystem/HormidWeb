@@ -39,10 +39,18 @@ public class SupirService{
     public Supir upsert(Supir supir)throws Exception {
     	if(supir.getAction() != null && supir.getAction().equalsIgnoreCase("c")){
     		insert(supir);
+        	
+        	if(logger.isDebugEnabled()){
+        		logger.debug("insert successfull!");
+        	}
     		
     		return selectSupirDetail(supir.getUsername());
     	} else if(supir.getAction() != null && supir.getAction().equalsIgnoreCase("u") && supir.getUsername() != null){
     		update(supir);
+        	
+        	if(logger.isDebugEnabled()){
+        		logger.debug("update successfull!");
+        	}
     		return selectSupirDetail(supir.getUsername());
     	} 
     	

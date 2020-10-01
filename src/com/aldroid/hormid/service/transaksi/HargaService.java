@@ -44,6 +44,10 @@ public class HargaService{
     	}
     	
     	hargaMapper.insert(bean);
+    	
+    	if(logger.isDebugEnabled()){
+    		logger.debug("insert successfull!");
+    	}
     }
 
     public List<Harga> select() throws Exception {

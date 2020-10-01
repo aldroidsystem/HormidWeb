@@ -3,14 +3,12 @@ package com.aldroid.hormid.generic.process;
 import com.aldroid.hormid.generic.staticvar.HardcodeConfiguration;
 import com.aldroid.hormid.model.generic.MessageResource;
 import com.aldroid.hormid.service.generic.MessageResourceService;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.context.support.AbstractMessageSource;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.ResourceLoader;
-
 import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.List;

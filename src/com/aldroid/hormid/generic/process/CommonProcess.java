@@ -3,7 +3,6 @@ package com.aldroid.hormid.generic.process;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.UUID;
-
 import org.apache.log4j.Logger;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;

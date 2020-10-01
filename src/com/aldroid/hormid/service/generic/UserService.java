@@ -106,4 +106,8 @@ public class UserService {
     public Integer checkDuplicateUsername(String username){
     	return userMapper.checkDuplicateUsername(username);    	
     }
+    
+    public List<User> selectListPetani() throws Exception{
+    	return userMapper.selectListPetani();    	
+    }
 }

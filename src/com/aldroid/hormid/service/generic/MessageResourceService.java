@@ -7,9 +7,7 @@ package com.aldroid.hormid.service.generic;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.DelegatingMessageSource;
 import org.springframework.stereotype.Service;
-import com.aldroid.hormid.generic.process.DatabaseDrivenMessageSource;
 import com.aldroid.hormid.generic.process.GlobalSessionObject;
 import com.aldroid.hormid.mapper.generic.MessageResourceMapper;
 import com.aldroid.hormid.model.generic.MessageResource;
@@ -37,7 +35,7 @@ public class MessageResourceService{
     }
     
     
-    private void reloadDatabaseMessages(Object messageSource) {
+/*    private void reloadDatabaseMessages(Object messageSource) {
         //Reload Messages
         if (messageSource instanceof DatabaseDrivenMessageSource) {
             ((DatabaseDrivenMessageSource)messageSource).reload();
@@ -47,6 +45,6 @@ public class MessageResourceService{
                 ((DatabaseDrivenMessageSource) myMessage.getParentMessageSource()).reload();
             }
         }
-    }
+    }*/
     
 }

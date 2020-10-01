@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 
 import com.aldroid.hormid.model.generic.Properties;
 import com.aldroid.hormid.model.generic.Role;
+import com.aldroid.hormid.model.generic.User;
 import com.aldroid.hormid.model.transaksi.Harga;
 import com.aldroid.hormid.service.generic.PropertiesService;
 import com.aldroid.hormid.service.generic.UserService;
@@ -40,6 +41,7 @@ public class GlobalSessionObject {
     private Map<String,String> roleMap;
     private Harga hargaSekarang;
     private Date pengecekanTerakhir = new Date();
+    private Map<String,String> listPetani;
     
     @Autowired
     PropertiesService propertiesService;
@@ -140,5 +142,22 @@ public class GlobalSessionObject {
 
 	public void resetHargaSekarang() {
 		hargaSekarang = null;
+	}
+
+	public Map<String, String> getListPetani() throws Exception {
+		if (listPetani == null || listPetani.isEmpty()){
+			List<User> listUser = userService.selectListPetani();
+			listPetani = new HashMap<>();
+			if (listUser != null){
+				for (User u : listUser){
+					listPetani.put(u.getUsername(), u.getFullname());
+				}
+			}
+		}
+		return listPetani;
+	}
+
+	public void resetListPetani() {
+		this.listPetani = null;
 	}
 }

@@ -24,6 +24,7 @@ import com.aldroid.hormid.model.lapak.Supir;
 import com.aldroid.hormid.model.lapak.Vehicle;
 import com.aldroid.hormid.model.transaksi.Harga;
 import com.aldroid.hormid.model.transaksi.Piutang;
+import com.aldroid.hormid.model.transaksi.TimbangGantung;
 import com.aldroid.hormid.service.lapak.AgenService;
 import com.aldroid.hormid.service.lapak.PetaniService;
 import com.aldroid.hormid.service.lapak.SupirService;
@@ -33,11 +34,17 @@ import com.aldroid.hormid.service.transaksi.PiutangService;
 import com.aldroid.hormid.validator.lapak.HargaValidator;
 import com.aldroid.hormid.validator.lapak.VehicleValidator;
 import com.aldroid.hormid.validator.transaksi.PiutangValidator;
+import com.aldroid.hormid.model.transaksi.TimbangGantung;
+import com.aldroid.hormid.service.transaksi.TimbangGantungService;
+import com.aldroid.hormid.validator.transaksi.TimbangGantungValidator;
 
 
 @Controller
 @RequestMapping("/kasir")
 public class KasirController {
+
+    @Autowired
+	private GlobalSessionObject globalSessionObject;
 
 	@Autowired
 	private HargaValidator hargaValidator;
@@ -46,16 +53,10 @@ public class KasirController {
     private HargaService hargaService;
 
     @Autowired
-	private GlobalSessionObject globalSessionObject;
-
-    @Autowired
     private SupirService supirService;
 
     @Autowired
     private PetaniService petaniService;
-
-    @Autowired
-    private PiutangService piutangService;
 
     @Autowired
     private AgenService agenService;
@@ -67,7 +68,16 @@ public class KasirController {
     private VehicleValidator vehicleValidator;
 
     @Autowired
+    private PiutangService piutangService;
+
+    @Autowired
     private PiutangValidator piutangValidator;
+
+    @Autowired
+    private TimbangGantungValidator timbangGantungValidator;
+    
+    @Autowired
+    private TimbangGantungService timbangGantungService;
     
     
 	@RequestMapping(value="/harga",method=RequestMethod.GET)
@@ -436,12 +446,10 @@ public class KasirController {
 
         try{
         	piutangService.insert(piutang);
-            model.addAttribute("notification", "success");
     		model.addAttribute("piutangForm",piutangService.selectPiutangDetail(piutang.getPiutangId()));
         } catch (Exception e){
         	CommonProcess.logException(e, getClass());
             model.addAttribute("piutangForm", piutang);
-            model.addAttribute("notification", "fail");
         }
 
         return "piutang.invoice";
@@ -516,5 +524,57 @@ public class KasirController {
 		model.addAttribute("piutangForm",piutangService.selectPiutangDetail(piutangId));
 
         return "piutang.invoice.print";
+    }
+	
+
+	//----------------------------------------------------------------------
+	
+
+	@RequestMapping(value="/timbangGantung",method=RequestMethod.GET)
+    public String timbangGantungTransactionForm(Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+		TimbangGantung gantung = new TimbangGantung();
+		gantung.setHarga(globalSessionObject.getHargaSekarang().getHargaBeliGantung());
+		gantung.setPotongan(globalSessionObject.getPropertiesByCode("defaultPotongan").getAngka());
+		model.addAttribute("gantungForm",gantung);
+        model.addAttribute("newPetaniMap", supirService.selectNewSupir());
+        return "timbang.gantung.transaction";
+    }
+
+	@RequestMapping(value="/timbangGantung",method=RequestMethod.POST)
+    public String timbangGantungTransaction(@ModelAttribute("gantungForm")TimbangGantung gantung, BindingResult bindingResult,Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+		timbangGantungValidator.validate(gantung, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return "timbang.gantung.transaction";
+        }
+
+        try{
+        	timbangGantungService.insert(gantung);
+        	TimbangGantung gantungInserted = timbangGantungService.selectTimbangGantungDetail(gantung.getNoNota());
+    		model.addAttribute("gantungForm",gantungInserted);
+        } catch (Exception e){
+        	CommonProcess.logException(e, getClass());
+    		model.addAttribute("gantungForm", gantung);
+            return "timbang.gantung.transaction";
+        }
+		
+        return "timbang.gantung.invoice";
+    }
+
+	@RequestMapping(value="/timbangGantungInvoice",method=RequestMethod.GET)
+    public String timbangGantungTransaction(@RequestParam(value = "gantungId")String gantungId,Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+
+        try{
+        	TimbangGantung gantungInserted = timbangGantungService.selectTimbangGantungDetail(gantungId);
+    		model.addAttribute("gantungForm",gantungInserted);
+        } catch (Exception e){
+        	CommonProcess.logException(e, getClass());
+            return "timbang.gantung.transaction";
+        }
+		
+        return "timbang.gantung.invoice";
     }
 }

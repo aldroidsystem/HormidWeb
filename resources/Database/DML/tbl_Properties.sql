@@ -16,3 +16,4 @@ insert into tb_properties (property_code,property_desc,datatype,property_value) 
 insert into tb_properties (property_code,property_desc,datatype,property_value) values ('vehicleType','Jenis angkutan yang diganakan untuk membawa barang','Daftar Kata','Gerobak,Cold Diesel,Pickup,Fuso');
 insert into tb_properties (property_code,property_desc,datatype,property_value) values ('numberOfRecordPerPage','Jumlah baris perhalaman tabel','Angka','10');
 insert into tb_properties (property_code,property_desc,datatype,property_value) values ('fieldOfWork','Bidang pekerjaan karyawan','Daftar Kata','KASIR,PEKERJA,SUPIR,PEMANEN,AGEN,PETANI');
+insert into tb_properties (property_code,property_desc,datatype,property_value) values ('defaultPotongan','Potongan persen sawit secara otomatis','Angka','8');

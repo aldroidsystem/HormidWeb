@@ -143,4 +143,18 @@
     <definition name="piutang.invoice.print"  
         template="/WEB-INF/jsp/piutangInvoicePrint.jsp">  
     </definition>  
+    
+     
+    <definition name="timbang.gantung.transaction" extends="base.definition">  
+        <put-attribute name="title" value="Transaksi Timbang Gantung" />  
+        <put-attribute name="extraCSS" value="/WEB-INF/jsp/extraCSS_userForm.jsp" />  
+        <put-attribute name="extraJS" value="/WEB-INF/jsp/extraJS_userForm.jsp" /> 
+        <put-attribute name="body" value="/WEB-INF/jsp/timbangGantungTransaction.jsp" />  
+    </definition>  
+    
+    <definition name="timbang.gantung.invoice" extends="base.definition">  
+        <put-attribute name="title" value="Nota Timbang Gantung" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/timbangGantungInvoice.jsp"/>  
+    </definition> 
+    
 </tiles-definitions>  

@@ -48,7 +48,11 @@ public class VehicleService{
     public Vehicle update(Vehicle vehicle) throws Exception {
     	vehicleMapper.update(vehicle);
         updateVehicleSupir(vehicle);
-        
+
+    	
+    	if(logger.isDebugEnabled()){
+    		logger.debug("update successfull!");
+    	}
         return selectVehicleByVehicleID(vehicle.getVehicleId());
     }
     
@@ -99,6 +103,10 @@ public class VehicleService{
     	}
     	
     	lastVeh.setSupir(loadVehicleSupir(lastVeh.getVehicleId()));
+    	
+    	if(logger.isDebugEnabled()){
+    		logger.debug("insert successfull!");
+    	}
     	return lastVeh;
     }
     

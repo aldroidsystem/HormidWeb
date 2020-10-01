@@ -10,7 +10,6 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-
 import com.aldroid.hormid.generic.staticvar.UserQueryList;
 import com.aldroid.hormid.model.generic.Role;
 import com.aldroid.hormid.model.generic.User;
@@ -95,4 +94,11 @@ public interface UserMapper {
 
     @Update(UserQueryList.USER_RESET_PASSWORD)
     abstract void resetPassword(User bean);
+
+    @Select(UserQueryList.SELECT_LIST_PETANI)
+    @Results({
+        @Result(property = "username", column ="username", javaType = String.class),
+        @Result(property = "fullname", column ="fullname", javaType = String.class)
+    })
+    abstract List<User> selectListPetani() throws Exception;
 }

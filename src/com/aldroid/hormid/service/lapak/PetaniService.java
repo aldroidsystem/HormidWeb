@@ -41,10 +41,18 @@ public class PetaniService{
     public Petani upsert(Petani petani)throws Exception {
     	if(petani.getAction() != null && petani.getAction().equalsIgnoreCase("c")){
     		insert(petani);
+        	
+        	if(logger.isDebugEnabled()){
+        		logger.debug("insert successfull!");
+        	}
     		
     		return selectPetaniDetail(petani.getUsername());
     	} else if(petani.getAction() != null && petani.getAction().equalsIgnoreCase("u") && petani.getUsername() != null){
     		update(petani);
+        	
+        	if(logger.isDebugEnabled()){
+        		logger.debug("update successfull!");
+        	}
     		return selectPetaniDetail(petani.getUsername());
     	} 
     	

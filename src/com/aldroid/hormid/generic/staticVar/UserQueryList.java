@@ -62,4 +62,8 @@ public final class UserQueryList {
     public static final String USER_RESET_PASSWORD = "update tb_user "
     		+ "set password=#{password,jdbcType=VARCHAR} "
     		+ "where username = #{username,jdbcType=VARCHAR}";
+    
+    
+    public static final String SELECT_LIST_PETANI = "select username, fullname from tb_user where username in (select username from tb_user_role where role_code='ROLE_PETANI')";    
+
 }

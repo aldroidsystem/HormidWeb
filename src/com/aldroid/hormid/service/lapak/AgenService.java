@@ -42,10 +42,18 @@ public class AgenService{
     public Agen upsert(Agen bean)throws Exception {
     	if(bean.getAction() != null && bean.getAction().equalsIgnoreCase("c")){
     		insert(bean);
+        	
+        	if(logger.isDebugEnabled()){
+        		logger.debug("insert successfull!");
+        	}
     		
     		return selectAgenDetail(bean.getUsername());
     	} else if(bean.getAction() != null && bean.getAction().equalsIgnoreCase("u") && bean.getUsername() != null){
     		update(bean);
+        	
+        	if(logger.isDebugEnabled()){
+        		logger.debug("update successfull!");
+        	}
     		return selectAgenDetail(bean.getUsername());
     	} 
     	

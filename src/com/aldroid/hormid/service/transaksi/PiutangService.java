@@ -7,7 +7,6 @@ package com.aldroid.hormid.service.transaksi;
 
 
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -39,13 +38,17 @@ public class PiutangService{
 		
     	if (obj instanceof org.springframework.security.core.userdetails.User){
     		org.springframework.security.core.userdetails.User authUser = (org.springframework.security.core.userdetails.User) obj;
-    		if (authUser != null && authUser.getUsername() !=null || authUser.getUsername().equals("")) {
+    		if (authUser.getUsername() !=null || authUser.getUsername().equals("")) {
     			bean.setCreatedBy(authUser.getUsername());
             }  
     	}
     	
     	bean.setPiutangId(generatePiutangID());
     	piutangMapper.insert(bean);
+    	
+    	if(logger.isDebugEnabled()){
+    		logger.debug("insert successfull!");
+    	}
     }
 
     public Piutang selectUserPiutangDetail(String username) throws Exception {
