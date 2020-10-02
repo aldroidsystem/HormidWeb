@@ -14,8 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.aldroid.hormid.generic.staticvar.Role;
 import com.aldroid.hormid.mapper.lapak.VehicleMapper;
-import com.aldroid.hormid.model.lapak.Supir;
+import com.aldroid.hormid.model.generic.User;
 import com.aldroid.hormid.model.lapak.Vehicle;
 
 
@@ -48,20 +50,16 @@ public class VehicleService{
     public Vehicle update(Vehicle vehicle) throws Exception {
     	vehicleMapper.update(vehicle);
         updateVehicleSupir(vehicle);
-
-    	
-    	if(logger.isDebugEnabled()){
-    		logger.debug("update successfull!");
-    	}
+        
         return selectVehicleByVehicleID(vehicle.getVehicleId());
     }
     
 
     public void updateVehicleSupir(Vehicle vehicle) throws Exception{
-    	List<Supir> existingSupir = vehicleMapper.selectVehicleSupir(vehicle.getVehicleId());
+    	List<User> existingSupir = vehicleMapper.selectUserOfVehicleRole(vehicle.getVehicleId(), Role.SUPIR.toString());
     	
     	if (existingSupir != null){
-        	for(Supir dbSupir : existingSupir){
+        	for(User dbSupir : existingSupir){
         		boolean exists=false;
         		if(vehicle.getListSupirUsername() != null){//check kalau semua supir dihapus
             		for(String updateSupir : vehicle.getListSupirUsername()){
@@ -73,14 +71,14 @@ public class VehicleService{
             		}
         		}
         		if(!exists){
-        			vehicleMapper.deleteVehicleSupir(vehicle.getVehicleId(), dbSupir.getUsername());
+        			vehicleMapper.deleteUserRoleVehicle(vehicle.getVehicleId(), dbSupir.getUsername(), Role.SUPIR.toString());
         		}
         	}
     	}
     	
     	if (vehicle.getListSupirUsername() != null){
     		for(String insertSupir : vehicle.getListSupirUsername()){
-    			vehicleMapper.insertVehicleSupir(vehicle.getVehicleId(), insertSupir);
+    			vehicleMapper.insertUserRoleVehicle(vehicle.getVehicleId(), insertSupir, Role.SUPIR.toString());
     		}
     	}
     }
@@ -102,20 +100,16 @@ public class VehicleService{
     		insertVehicleSupir(lastVeh.getVehicleId(), supir);
     	}
     	
-    	lastVeh.setSupir(loadVehicleSupir(lastVeh.getVehicleId()));
-    	
-    	if(logger.isDebugEnabled()){
-    		logger.debug("insert successfull!");
-    	}
+    	lastVeh.setSupir(selectSupirOfVehicle(lastVeh.getVehicleId()));
     	return lastVeh;
     }
     
     public void insertVehicleSupir(Integer vehicleId, String username) throws Exception{
-    	vehicleMapper.insertVehicleSupir(vehicleId, username);
+		vehicleMapper.insertUserRoleVehicle(vehicleId, username, Role.SUPIR.toString());
     }
     
-    public List<Supir> loadVehicleSupir(Integer vehicleId) throws Exception {
-    	return vehicleMapper.selectVehicleSupir(vehicleId);
+    public List<User> selectSupirOfVehicle(Integer vehicleId) throws Exception {
+    	return vehicleMapper.selectUserOfVehicleRole(vehicleId, Role.SUPIR.toString());
     }
     
     public List<Vehicle> findByPlateNumber(String plateNumber) throws Exception {

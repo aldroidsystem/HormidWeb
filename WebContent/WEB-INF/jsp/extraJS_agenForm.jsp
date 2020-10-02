@@ -6,21 +6,20 @@
 <script src="${addmethJs}"></script> 
 <spring:url value="/resources/plugins/toastr/toastr.min.js" var="toastr" />
 <script src="${toastr}"></script>   
-<spring:url value="/resources/plugins/select2/js/select2.full.min.js" var="select2Jss" />
-<script src="${select2Jss}"></script>
-<script type="text/javascript"></script>
 <!-- Bootstrap4 Duallistbox -->
 <spring:url value="/resources/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js" var="duallistJss" />
 <script src="${duallistJss}"></script>
+<spring:url value="/resources/plugins/select2/js/select2.full.min.js" var="select2Jss" />
+<script src="${select2Jss}"></script>
 
 <script type="text/javascript">
 $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
-  })
-  
     //Bootstrap Duallistbox
     $('.duallistbox').bootstrapDualListbox()
+  })
+  
   
 $(document).ready(function () {	
 	
@@ -32,21 +31,13 @@ $(document).ready(function () {
 		
   $('#agenForm').validate({
     rules: {
-    	username: {
-        required: true
-      },
-      potonganPersen: {
-        required: true,
+      defaultPotongan: {
         number: true,
         digits:true
       }
     },
     messages: {
-      username: {
-        required: "Kolom ini tidak boleh kosong",
-      },
-      potonganPersen: {
-        required: "Kolom ini tidak boleh kosong",
+      defaultPotongan: {
 	        number: "Masukan harus berupa angka",
 	        digits:"Masukan harus berupa angka"
       }

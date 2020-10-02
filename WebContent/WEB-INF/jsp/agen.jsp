@@ -13,7 +13,7 @@
       <div class="card">
 			<div class="card-header">
 				<h3 class="card-title">
-					<a href="${agenFormURL}"><button type="button" class="btn btn-block btn-primary">Tambah Agen</button></a>
+					
 				</h3>
 	            <div class="card-tools">
 					<form:form method="POST" modelAttribute="agenSearchForm">
@@ -51,7 +51,13 @@
 								<span class="badge bg-info">${role}</span>
 							</c:forEach>
 						</td>
-						<td>${agen.getPotonganPersen()}</td>
+						<td>
+							<c:choose>
+								<c:when test="${agen.getDefaultPotongan()>0}">
+									${agen.getDefaultPotongan()}
+								</c:when>
+							</c:choose>	
+						</td>
 						<td>
 							<c:forEach items="${agen.getListVehiclePlate()}" var="vehicle">
 								<span class="badge bg-info">${vehicle}</span>

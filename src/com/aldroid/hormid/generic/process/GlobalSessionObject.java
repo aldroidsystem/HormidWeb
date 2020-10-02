@@ -12,13 +12,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
 import javax.annotation.PostConstruct;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import com.aldroid.hormid.model.generic.Properties;
 import com.aldroid.hormid.model.generic.Role;
 import com.aldroid.hormid.model.generic.User;
@@ -42,6 +39,7 @@ public class GlobalSessionObject {
     private Harga hargaSekarang;
     private Date pengecekanTerakhir = new Date();
     private Map<String,String> listPetani;
+    private Map<String,String> listSupir;
     
     @Autowired
     PropertiesService propertiesService;
@@ -159,5 +157,22 @@ public class GlobalSessionObject {
 
 	public void resetListPetani() {
 		this.listPetani = null;
+	}
+
+	public Map<String, String> getListSupir() throws Exception {
+		if (listSupir == null || listSupir.isEmpty()){
+			List<User> listUser = userService.selectListSupir();
+			listSupir = new HashMap<>();
+			if (listUser != null){
+				for (User u : listUser){
+					listSupir.put(u.getUsername(), u.getFullname());
+				}
+			}
+		}
+		return listSupir;
+	}
+
+	public void resetListSupir() {
+		this.listSupir = null;
 	}
 }

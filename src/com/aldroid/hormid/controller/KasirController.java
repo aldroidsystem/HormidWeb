@@ -18,23 +18,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.aldroid.hormid.generic.process.CommonProcess;
 import com.aldroid.hormid.generic.process.GlobalSessionObject;
 import com.aldroid.hormid.model.generic.User;
-import com.aldroid.hormid.model.lapak.Agen;
-import com.aldroid.hormid.model.lapak.Petani;
-import com.aldroid.hormid.model.lapak.Supir;
 import com.aldroid.hormid.model.lapak.Vehicle;
 import com.aldroid.hormid.model.transaksi.Harga;
 import com.aldroid.hormid.model.transaksi.Piutang;
 import com.aldroid.hormid.model.transaksi.TimbangGantung;
+import com.aldroid.hormid.service.generic.UserService;
 import com.aldroid.hormid.service.lapak.AgenService;
 import com.aldroid.hormid.service.lapak.PetaniService;
-import com.aldroid.hormid.service.lapak.SupirService;
 import com.aldroid.hormid.service.lapak.VehicleService;
 import com.aldroid.hormid.service.transaksi.HargaService;
 import com.aldroid.hormid.service.transaksi.PiutangService;
 import com.aldroid.hormid.validator.lapak.HargaValidator;
 import com.aldroid.hormid.validator.lapak.VehicleValidator;
 import com.aldroid.hormid.validator.transaksi.PiutangValidator;
-import com.aldroid.hormid.model.transaksi.TimbangGantung;
 import com.aldroid.hormid.service.transaksi.TimbangGantungService;
 import com.aldroid.hormid.validator.transaksi.TimbangGantungValidator;
 
@@ -53,8 +49,8 @@ public class KasirController {
     private HargaService hargaService;
 
     @Autowired
-    private SupirService supirService;
-
+    private UserService userService;
+    
     @Autowired
     private PetaniService petaniService;
 
@@ -112,72 +108,6 @@ public class KasirController {
     }
 	
 
-	@RequestMapping(value="/supir",method=RequestMethod.GET)
-    public String supir(Model model, HttpServletRequest request) throws Exception {
-		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
-        model.addAttribute("supirSearchForm", new Supir());
-		model.addAttribute("listSupir", new ArrayList<Supir>());
-        return "supir";
-    }
-	
-	@RequestMapping(value="/supir",method=RequestMethod.POST)
-    public String supirSearch(@ModelAttribute("supirForm")Supir supir, BindingResult bindingResult, Model model, HttpServletRequest request) throws Exception {
-		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
-        model.addAttribute("supirSearchForm", supir);
-		model.addAttribute("listSupir", supirService.searchSupirByFullname(supir.getFullname()));
-        return "supir";
-    }
-	
-	@RequestMapping(value="/supirForm", 
-			method=RequestMethod.GET)
-    public String supirForm(Model model, HttpServletRequest request) throws Exception {
-		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
-        model.addAttribute("supirForm", new Supir());
-        model.addAttribute("newSupirMap", supirService.selectNewSupir());
-		model.addAttribute("listVehicle", vehicleService.loadAllVehicle());
-        return "supirForm";
-    }
-
-	@RequestMapping(value="/supirForm", 
-			params = {"username"},
-			method=RequestMethod.GET)
-    public String supirFormUpdate(@RequestParam(value = "username")String username,Model model, HttpServletRequest request) throws Exception {
-		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
-		Supir supir;
-		if(username == null || username.equals("")){
-            return "redirect:supirForm";
-		} else {
-			supir = supirService.selectSupirDetail(username);
-			
-			if (supir == null || supir.getUsername() == null){
-	            return "redirect:supirForm";
-			}
-		}
-
-		model.addAttribute("supirForm",supir);
-		model.addAttribute("listVehicle", vehicleService.loadAllVehicle());
-        return "supirForm";
-    }
-	
-	@RequestMapping(value="/supirForm", 
-			method=RequestMethod.POST)
-    public String supirFormUpsert(@ModelAttribute("supirForm")Supir supir, BindingResult bindingResult,Model model, HttpServletRequest request) throws Exception {
-		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
-
-        try{
-        	Supir upsertSupir = supirService.upsert(supir);
-            model.addAttribute("notification", "success");
-    		model.addAttribute("supirForm",upsertSupir);
-        } catch (Exception e){
-        	CommonProcess.logException(e, getClass());      
-    		model.addAttribute("supirForm",supir);  
-            model.addAttribute("newSupirMap", supirService.selectNewSupir());
-            model.addAttribute("notification", "fail");
-        }
-
-		model.addAttribute("listVehicle", vehicleService.loadAllVehicle());
-        return "supirForm";
-    }
 
 	@RequestMapping(value="/vehicle",method=RequestMethod.GET)
     public String vehicle(Model model, HttpServletRequest request) throws Exception {
@@ -202,7 +132,7 @@ public class KasirController {
 
 		model.addAttribute("vehicleForm",new Vehicle());
 		model.addAttribute("listVehicleType", globalSessionObject.getPropertiesByCode("vehicleType").getDaftarKata());
-        model.addAttribute("listSupirMap", supirService.selectSupirList());
+        model.addAttribute("listSupirMap", globalSessionObject.getListSupir());
         return "vehicleForm";
     }
 
@@ -224,7 +154,7 @@ public class KasirController {
 
 		model.addAttribute("vehicleForm",vehicle);
 		model.addAttribute("listVehicleType", globalSessionObject.getPropertiesByCode("vehicleType").getDaftarKata());
-        model.addAttribute("listSupirMap", supirService.selectSupirList());
+        model.addAttribute("listSupirMap", globalSessionObject.getListSupir());
         return "vehicleForm";
     }
 	
@@ -250,7 +180,7 @@ public class KasirController {
         }
 		
 		model.addAttribute("listVehicleType", globalSessionObject.getPropertiesByCode("vehicleType").getDaftarKata());
-        model.addAttribute("listSupirMap", supirService.selectSupirList());
+        model.addAttribute("listSupirMap", globalSessionObject.getListSupir());
         return "vehicleForm";
     }
 	
@@ -259,34 +189,25 @@ public class KasirController {
 	@RequestMapping(value="/petani",method=RequestMethod.GET)
     public String petani(Model model, HttpServletRequest request) throws Exception {
 		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
-        model.addAttribute("petaniSearchForm", new Petani());
-		model.addAttribute("listPetani", new ArrayList<Petani>());
+        model.addAttribute("petaniSearchForm", new User());
+		model.addAttribute("listPetani", new ArrayList<User>());
         return "petani";
     }
 	@RequestMapping(value="/petani",method=RequestMethod.POST)
-    public String petaniSearch(@ModelAttribute("petaniForm")Petani petani, BindingResult bindingResult, Model model, HttpServletRequest request) throws Exception {
+    public String petaniSearch(@ModelAttribute("petaniForm")User petani, BindingResult bindingResult, Model model, HttpServletRequest request) throws Exception {
 		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
         model.addAttribute("petaniSearchForm", petani);
 		model.addAttribute("listPetani", petaniService.searchPetaniByFullname(petani.getFullname()));
         return "petani";
     }
 	
-	@RequestMapping(value="/petaniForm", 
-			method=RequestMethod.GET)
-    public String petaniForm(Model model, HttpServletRequest request) throws Exception {
-		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
-        model.addAttribute("petaniForm", new Petani());
-        model.addAttribute("newPetaniMap", petaniService.selectNewPetani());
-		model.addAttribute("listVehicle", vehicleService.loadAllVehicle());
-        return "petaniForm";
-    }
 
 	@RequestMapping(value="/petaniForm", 
 			params = {"username"},
 			method=RequestMethod.GET)
     public String petaniFormUpdate(@RequestParam(value = "username")String username,Model model, HttpServletRequest request) throws Exception {
 		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
-		Petani petani;
+		User petani;
 		if(username == null || username.equals("")){
             return "redirect:petaniForm";
 		} else {
@@ -304,17 +225,17 @@ public class KasirController {
 	
 	@RequestMapping(value="/petaniForm", 
 			method=RequestMethod.POST)
-    public String petaniFormUpsert(@ModelAttribute("petaniForm")Petani petani, BindingResult bindingResult,Model model, HttpServletRequest request) throws Exception {
+    public String petaniFormUpsert(@ModelAttribute("petaniForm")User petani, BindingResult bindingResult,Model model, HttpServletRequest request) throws Exception {
 		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
 
         try{
-        	Petani upsertPetani = petaniService.upsert(petani);
+        	petaniService.update(petani);
+        	User upsertPetani = petaniService.selectPetaniDetail(petani.getUsername());
             model.addAttribute("notification", "success");
     		model.addAttribute("petaniForm",upsertPetani);
         } catch (Exception e){
         	CommonProcess.logException(e, getClass());      
     		model.addAttribute("petaniForm",petani);  
-            model.addAttribute("newPetaniMap", petaniService.selectNewPetani());
             model.addAttribute("notification", "fail");
         }
 
@@ -327,36 +248,26 @@ public class KasirController {
 	@RequestMapping(value="/agen",method=RequestMethod.GET)
     public String agen(Model model, HttpServletRequest request) throws Exception {
 		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
-        model.addAttribute("agenSearchForm", new Agen());
-		model.addAttribute("listAgen", new ArrayList<Agen>());
+        model.addAttribute("agenSearchForm", new User());
+		model.addAttribute("listAgen", new ArrayList<User>());
         return "agen";
     }
 	@RequestMapping(value="/agen",method=RequestMethod.POST)
-    public String agenSearch(@ModelAttribute("agenForm")Agen agen, BindingResult bindingResult, Model model, HttpServletRequest request) throws Exception {
+    public String agenSearch(@ModelAttribute("agenForm")User agen, BindingResult bindingResult, Model model, HttpServletRequest request) throws Exception {
 		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
         model.addAttribute("agenSearchForm", agen);
 		model.addAttribute("listAgen", agenService.searchAgenByFullname(agen.getFullname()));
         return "agen";
     }
 	
-	@RequestMapping(value="/agenForm", 
-			method=RequestMethod.GET)
-    public String agenForm(Model model, HttpServletRequest request) throws Exception {
-		CommonProcess.logUserActivity(this.getClass().getName(),new Object(){}.getClass().getEnclosingMethod().getName(), request.getServletPath());
-        model.addAttribute("agenForm", new Agen());
-        model.addAttribute("newAgenMap", agenService.selectNewAgen());
-		model.addAttribute("listVehicle", vehicleService.loadAllVehicle());
-		model.addAttribute("listPetani", petaniService.loadDaftarPetani());
-        return "agenForm";
-    }
 
 	@RequestMapping(value="/agenForm", 
 			params = {"username"},
 			method=RequestMethod.GET)
     public String agenFormUpdate(@RequestParam(value = "username")String username,Model model, HttpServletRequest request) throws Exception {
 		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
-		Agen agen;
-		model.addAttribute("listPetani", petaniService.loadDaftarPetani());
+		User agen;
+		model.addAttribute("listPetani", globalSessionObject.getListPetani());
 		if(username == null || username.equals("")){
             return "redirect:agenForm";
 		} else {
@@ -374,18 +285,18 @@ public class KasirController {
 	
 	@RequestMapping(value="/agenForm", 
 			method=RequestMethod.POST)
-    public String agenFormUpsert(@ModelAttribute("agenForm")Agen agen, BindingResult bindingResult,Model model, HttpServletRequest request) throws Exception {
+    public String agenFormUpsert(@ModelAttribute("agenForm")User agen, BindingResult bindingResult,Model model, HttpServletRequest request) throws Exception {
 		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
 
-		model.addAttribute("listPetani", petaniService.loadDaftarPetani());
+		model.addAttribute("listPetani", globalSessionObject.getListPetani());
         try{
-        	Agen upsertAgen = agenService.upsert(agen);
+        	agenService.update(agen);
+        	User upsertAgen = agenService.selectAgenDetail(agen.getUsername());
             model.addAttribute("notification", "success");
     		model.addAttribute("agenForm",upsertAgen);
         } catch (Exception e){
         	CommonProcess.logException(e, getClass());      
     		model.addAttribute("agenForm",agen);  
-            model.addAttribute("newAgenMap", agenService.selectNewAgen());
             model.addAttribute("notification", "fail");
         }
 
@@ -537,7 +448,7 @@ public class KasirController {
 		gantung.setHarga(globalSessionObject.getHargaSekarang().getHargaBeliGantung());
 		gantung.setPotongan(globalSessionObject.getPropertiesByCode("defaultPotongan").getAngka());
 		model.addAttribute("gantungForm",gantung);
-        model.addAttribute("newPetaniMap", supirService.selectNewSupir());
+        model.addAttribute("newPetaniMap", globalSessionObject.getListPetani());
         return "timbang.gantung.transaction";
     }
 

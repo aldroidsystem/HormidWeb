@@ -101,4 +101,11 @@ public interface UserMapper {
         @Result(property = "fullname", column ="fullname", javaType = String.class)
     })
     abstract List<User> selectListPetani() throws Exception;
+
+    @Select(UserQueryList.SELECT_LIST_SUPIR)
+    @Results({
+        @Result(property = "username", column ="username", javaType = String.class),
+        @Result(property = "fullname", column ="fullname", javaType = String.class)
+    })
+    abstract List<User> selectListSupir() throws Exception;
 }

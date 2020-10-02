@@ -48,12 +48,12 @@
 					</c:otherwise>
 				</c:choose>	
 		        
-  				<spring:bind path="potonganPersen"> 	
+  				<spring:bind path="defaultPotongan"> 	
 					<div class="form-group">
 				  		<label for="idInputPotongan">Potongan</label>
-		                <form:input type="text" path="potonganPersen" id="idInputPotongan" name="potonganPersen" class="form-control ${status.error ? 'has-error' : ''}" data-placeholder="Potongan persen otomatis"></form:input>
+		                <form:input type="text" path="defaultPotongan" id="idInputPotongan" name="defaultPotongan" class="form-control ${status.error ? 'has-error' : ''}" data-placeholder="Potongan persen otomatis"></form:input>
 		                <span class="invalid-feedback">
-			            <form:errors path="potonganPersen"></form:errors></span>
+			            <form:errors path="defaultPotongan"></form:errors></span>
 		            </div>
            		</spring:bind>
 		        

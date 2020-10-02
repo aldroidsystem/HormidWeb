@@ -13,7 +13,7 @@
       <div class="card">
 			<div class="card-header">
 				<h3 class="card-title">
-					<a href="${petaniFormURL}"><button type="button" class="btn btn-block btn-primary">Tambah Petani</button></a>
+					
 				</h3>
 	            <div class="card-tools">
 					<form:form method="POST" modelAttribute="petaniSearchForm">
@@ -51,7 +51,7 @@
 								<span class="badge bg-info">${role}</span>
 							</c:forEach>
 						</td>
-						<td>${petani.getPotonganPersen()}</td>
+						<td>${petani.getDefaultPotongan()}</td>
 						<td>
 							<c:forEach items="${petani.getListVehiclePlate()}" var="vehicle">
 								<span class="badge bg-info">${vehicle}</span>

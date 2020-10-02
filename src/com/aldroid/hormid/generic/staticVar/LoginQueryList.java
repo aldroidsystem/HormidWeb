@@ -12,9 +12,9 @@ public final class LoginQueryList {
     
     
     
-    public static final String SELECT_USER_ROLE = "SELECT role_code from tb_user_role where username = #{username}";
+    public static final String SELECT_USER_ROLE = "SELECT role_code from tbr_user_role where username = #{username}";
     
-    public static final String SELECT_USER_ROLE_NAME = "SELECT r.role_name from tb_user_role ur inner join tb_role r on r.role_code = ur.role_code where username = #{username}";
+    public static final String SELECT_USER_ROLE_NAME = "SELECT r.role_name from tbr_user_role ur inner join tb_role r on r.role_code = ur.role_code where username = #{username}";
     
     public static final String SELECT_ALL_ROLE = "SELECT * from tb_role";
     

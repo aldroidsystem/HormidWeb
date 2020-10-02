@@ -1,7 +1,9 @@
 package com.aldroid.hormid.model.generic;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import com.aldroid.hormid.model.lapak.Vehicle;
 
 
 public class User {
@@ -34,6 +36,16 @@ public class User {
     private String tokenCreationDate;
     private Date terakhirBayar;
     private Date terakhirPinjam;
+    private Integer defaultPotongan;
+    private String catatan;
+    
+
+    private List<Vehicle> vehicles;
+    private List<Integer> listVehicleId;
+    private List<String> listVehiclePlate;
+    private List<User> petani;
+    private List<String> listPetaniName;
+    private List<String> listPetaniUsername;
     
 
 	public String getToken() {
@@ -332,5 +344,88 @@ public class User {
 	public void setTerakhirPinjam(Date terakhirPinjam) {
 		this.terakhirPinjam = terakhirPinjam;
 	}
-	
+
+	public List<Vehicle> getVehicles() {
+		return vehicles;
+	}
+	public void setVehicles(List<Vehicle> vehicles) {
+		this.vehicles = vehicles;
+	}
+
+	public List<Integer> getListVehicleId() {
+		if(listVehicleId == null && vehicles != null){
+			listVehicleId = new ArrayList<Integer>();
+			for (Vehicle v : vehicles){
+				listVehicleId.add(v.getVehicleId());
+			}
+		}
+		
+		return listVehicleId;
+	}
+	public void setListVehicleId(List<Integer> listVehicleId) {
+		this.listVehicleId = listVehicleId;
+	}
+	public List<String> getListVehiclePlate() {
+		if(listVehiclePlate == null && vehicles != null){
+			listVehiclePlate = new ArrayList<String>();
+			for (Vehicle v : vehicles){
+				listVehiclePlate.add(v.getPlateNumber());
+			}
+		}
+		return listVehiclePlate;
+	}
+	public void setListVehiclePlate(List<String> listVehiclePlate) {
+		this.listVehiclePlate = listVehiclePlate;
+	}
+
+	public List<User> getPetani() {
+		return petani;
+	}
+	public void setPetani(List<User> petani) {
+		this.petani = petani;
+	}
+	public List<String> getListPetaniName() {
+		if(listPetaniName == null && petani != null){
+			listPetaniName = new ArrayList<String>();
+			for (User p : petani){
+				listPetaniName.add(p.getUsername());
+			}
+		}
+		return listPetaniName;
+	}
+	public void setListPetaniName(List<String> listPetaniName) {
+		this.listPetaniName = listPetaniName;
+	}
+	public List<String> getListPetaniUsername() {
+		if(listPetaniUsername == null && petani != null){
+			listPetaniUsername = new ArrayList<String>();
+			for (User p : petani){
+				listPetaniUsername.add(p.getUsername());
+			}
+		}
+		return listPetaniUsername;
+	}
+	public void setListPetaniUsername(List<String> listPetaniUsername) {
+		this.listPetaniUsername = listPetaniUsername;
+	}
+
+
+	public Integer getDefaultPotongan() {
+		return defaultPotongan;
+	}
+
+
+	public void setDefaultPotongan(Integer defaultPotongan) {
+		this.defaultPotongan = defaultPotongan;
+	}
+
+
+	public String getCatatan() {
+		return catatan;
+	}
+
+
+	public void setCatatan(String catatan) {
+		this.catatan = catatan;
+	} 
 }

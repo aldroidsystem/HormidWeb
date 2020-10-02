@@ -1,6 +1,6 @@
-drop table tb_user_role;
+drop table tbr_user_role;
 
-create table tb_user_role (
+create table tbr_user_role (
 role_code varchar2(30 char) not null,
 username varchar2(30 char) not null,
 CONSTRAINT ct_user_role_pk PRIMARY KEY (role_code,username),

@@ -4,39 +4,29 @@ package com.aldroid.hormid.generic.staticvar;
 
 public final class PetaniQueryList {
 
-    
-    public static final String SELECT_NEW_PETANI = "select username, fullname from tb_user where username not in (select username from tb_petani)";    
 
-    public static final String SELECT_DAFTAR_PETANI = "select username, fullname from tb_user where username in (select username from tb_petani)";    
-
-    public static final String PETANI_UPDATE = "update tb_petani "
+    public static final String PETANI_UPDATE = "update tb_user "
     		+ "set CATATAN=#{catatan,jdbcType=VARCHAR}, "
-    		+ "DEFAULT_POTONGAN_PERSEN=#{potonganPersen,jdbcType=INTEGER} "
+    		+ "DEFAULT_POTONGAN=#{defaultPotongan,jdbcType=INTEGER} "
     		+ "where USERNAME=#{username,jdbcType=VARCHAR}";
 
-    public static final String PETANI_INSERT = "insert into tb_petani "
-    		+ "(USERNAME,DEFAULT_POTONGAN_PERSEN,CATATAN,CREATED_BY) "
-    		+ "values ("
-    		+ "#{username,jdbcType=VARCHAR}"
-    		+ ",#{potonganPersen,jdbcType=INTEGER}"
-    		+ ",#{catatan,jdbcType=VARCHAR}"
-    		+ ",#{createdBy,jdbcType=VARCHAR})";
     
     public static final String SELECT_PETANI_DETAIL = 
-    		"select tbs.username, tbu.fullname, tbs.DEFAULT_POTONGAN_PERSEN, tbs.TOTAL_HUTANG, tbs.catatan "
-    		+ "from tb_petani tbs "
-    		+ "inner join tb_user tbu on tbs.username=tbu.username "
-    		+ "where tbs.username=#{username}";     
+    		"select username, fullname, DEFAULT_POTONGAN, catatan "
+    		+ "from tb_user "
+    		+ "where username=#{username} "
+    		+ "and username in (select username from tbr_user_role where role_code='ROLE_PETANI')";     
     
 
     public static final String SEARCH_PETANI_BY_FULLNAME = 
-    		"select tbs.username, tbu.fullname, tbs.DEFAULT_POTONGAN_PERSEN, tbs.TOTAL_HUTANG, tbs.catatan "
-    		+ "from tb_petani tbs "
-    		+ "inner join tb_user tbu on tbs.username=tbu.username "
-    		+ "where lower(tbu.fullname) like '%'||lower(#{fullname}) ||'%'";    
+    		"select username, fullname, DEFAULT_POTONGAN "
+    		+ "from tb_user "
+    		+ "where lower(fullname) like '%'||lower(#{fullname}) ||'%' "
+    		+ "and username in (select username from tbr_user_role where role_code='ROLE_PETANI')"; 
     
-    public static final String LOAD_PETANI_VEHICLE = "select tbvs.vehicle_id, tbv.plate_number "
-    		+ "from tb_vehicle_petani tbvs "
+    public static final String SELECT_VEHICLE_OF_PETANI = "select tbvs.vehicle_id, tbv.plate_number "
+    		+ "from tbr_user_role_vehicle tbvs "
     		+ "inner join tb_vehicle tbv on tbvs.vehicle_id=tbv.vehicle_id "
-    		+ "WHERE tbvs.username = #{username,jdbcType=VARCHAR}"; 
+    		+ "WHERE tbvs.username = #{username,jdbcType=VARCHAR} "
+    		+ "AND tbvs.role_code='ROLE_PETANI'";  
 }

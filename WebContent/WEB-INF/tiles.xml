@@ -65,20 +65,6 @@
     </definition>  
     
     
-    <definition name="supir" extends="base.definition">  
-        <put-attribute name="title" value="Supir" />  
-        <put-attribute name="extraCSS" value="/WEB-INF/jsp/extraCSS_user.jsp" />  
-        <put-attribute name="extraJS" value="/WEB-INF/jsp/extraJS_user.jsp" /> 
-        <put-attribute name="body" value="/WEB-INF/jsp/supir.jsp" />  
-    </definition>  
-    
-    <definition name="supirForm" extends="supir">  
-        <put-attribute name="extraCSS" value="/WEB-INF/jsp/extraCSS_userForm.jsp" />  
-        <put-attribute name="extraJS" value="/WEB-INF/jsp/extraJS_userForm.jsp" /> 
-        <put-attribute name="body" value="/WEB-INF/jsp/supirForm.jsp" />  
-    </definition>  
-    
-    
     <definition name="vehicle" extends="base.definition">  
         <put-attribute name="title" value="Kendaraan" />  
         <put-attribute name="extraCSS" value="/WEB-INF/jsp/extraCSS_user.jsp" />  

@@ -15,7 +15,6 @@ $(function () {
     $('.select2').select2()
   })
   
-  
 $(document).ready(function () {	
 	
 	if("${notification}" == "success"){
@@ -26,20 +25,13 @@ $(document).ready(function () {
 		
   $('#petaniForm').validate({
     rules: {
-    	username: {
-        required: true
-      },
-      potonganPersen: {
-        required: true,
+      defaultPotongan: {
         number: true,
         digits:true
       }
     },
     messages: {
-      username: {
-        required: "Kolom ini tidak boleh kosong",
-      },
-      potonganPersen: {
+      defaultPotongan: {
         required: "Kolom ini tidak boleh kosong",
 	        number: "Masukan harus berupa angka",
 	        digits:"Masukan harus berupa angka"

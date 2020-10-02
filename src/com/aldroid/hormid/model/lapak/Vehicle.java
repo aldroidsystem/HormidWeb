@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.aldroid.hormid.model.generic.User;
+
 
 public class Vehicle {
 
@@ -16,7 +18,7 @@ public class Vehicle {
     private String createdBy;
     private Date createdDate;
     private String catatan;
-    private List<Supir> supir;
+    private List<User> supir;
     private List<String> listSupirUsername;
     private List<String> listSupirFullname;
     private String action;
@@ -81,16 +83,16 @@ public class Vehicle {
 	public void setAction(String action) {
 		this.action = action;
 	}
-	public List<Supir> getSupir() {
+	public List<User> getSupir() {
 		return supir;
 	}
-	public void setSupir(List<Supir> supir) {
+	public void setSupir(List<User> supir) {
 		this.supir = supir;
 	}
 	public List<String> getListSupirUsername() {
 		if(listSupirUsername == null && supir != null){
 			listSupirUsername = new ArrayList<String>();
-			for (Supir s : supir){
+			for (User s : supir){
 				listSupirUsername.add(s.getUsername());
 			}
 		}
@@ -102,7 +104,7 @@ public class Vehicle {
 	public List<String> getListSupirFullname() {
 		if(listSupirFullname == null && supir != null){
 			listSupirFullname = new ArrayList<String>();
-			for (Supir s : supir){
+			for (User s : supir){
 				listSupirFullname.add(s.getFullname());
 			}
 		}

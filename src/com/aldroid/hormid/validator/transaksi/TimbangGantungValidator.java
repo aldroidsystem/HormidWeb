@@ -19,7 +19,6 @@ public class TimbangGantungValidator implements Validator {
 
     @Override
     public void validate(Object o, Errors errors) {
-    	TimbangGantung bean = (TimbangGantung) o;
     	BindingResult bindingResult = (BindingResult) errors;
     	
     	CommonProcess.validationRejectIfEmptyOrWhitespace(bindingResult, "username", "validation.notEmpty", null, null);

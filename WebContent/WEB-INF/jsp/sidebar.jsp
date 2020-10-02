@@ -47,12 +47,6 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="${kasirURL}/supir" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Supir</p>
-            </a>
-          </li>
-          <li class="nav-item">
             <a href="${kasirURL}/vehicle" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Kendaraan</p>

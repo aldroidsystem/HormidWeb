@@ -110,4 +110,7 @@ public class UserService {
     public List<User> selectListPetani() throws Exception{
     	return userMapper.selectListPetani();    	
     }
+    public List<User> selectListSupir() throws Exception{
+    	return userMapper.selectListSupir();    	
+    }
 }
