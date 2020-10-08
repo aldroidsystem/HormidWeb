@@ -5,11 +5,12 @@ package com.aldroid.hormid.generic.staticvar;
 public final class VehicleQueryList {  
 
     public static final String INSERT_VEHICLE = "insert into tb_vehicle "
-    		+ "(PLATE_NUMBER,VEHICLE_TYPE,DEFAULT_BIAYA_BONGKAR,CATATAN,CREATED_BY) "
+    		+ "(PLATE_NUMBER,VEHICLE_TYPE,DEFAULT_BIAYA_BONGKAR,FLAG_HORMID,CATATAN,CREATED_BY) "
     		+ "values ("
     		+ "#{plateNumber,jdbcType=VARCHAR}"
     		+ ",#{vehicleType,jdbcType=VARCHAR}"
     		+ ",#{defaultBiayaBongkar,jdbcType=INTEGER}"
+    		+ ",#{flagHormid,jdbcType=INTEGER}"
     		+ ",#{catatan,jdbcType=VARCHAR}"
     		+ ",#{createdBy,jdbcType=VARCHAR})";  
 
@@ -17,6 +18,7 @@ public final class VehicleQueryList {
     		+ "set PLATE_NUMBER=#{plateNumber,jdbcType=VARCHAR}"
     		+ ",VEHICLE_TYPE=#{vehicleType,jdbcType=VARCHAR}"
     		+ ",DEFAULT_BIAYA_BONGKAR=#{defaultBiayaBongkar,jdbcType=INTEGER}"
+    		+ ",FLAG_HORMID=#{flagHormid,jdbcType=INTEGER}"
     		+ ",catatan=#{catatan,jdbcType=VARCHAR} "
     		+ "where vehicle_id = #{vehicleId,jdbcType=INTEGER}";  
     
@@ -62,4 +64,12 @@ public final class VehicleQueryList {
     		+ "WHERE tbvs.vehicle_id = #{vehicleId,jdbcType=INTEGER} "
     		+ "and tbvs.role_code = 'ROLE_SUPIR'";  
     
+    public static final String SELECT_PENGIRIM_OF_VEHICLE = "select tbvs.username, tbu.fullname "
+    		+ "from tbr_user_role_vehicle tbvs "
+    		+ "inner join tb_user tbu on tbvs.username=tbu.username "
+    		+ "WHERE tbvs.vehicle_id = #{vehicleId,jdbcType=INTEGER} "
+    		+ "and tbvs.role_code in ('ROLE_AGEN','ROLE_PETANI')";  
+
+    public static final String SELECT_DETIL_VEHICLE_TRANSACTION = "SELECT vehicle_id, plate_number, default_biaya_bongkar, FLAG_HORMID, catatan from tb_vehicle "
+    		+ "where vehicle_id= #{vehicleId,jdbcType=INTEGER}";  
 }

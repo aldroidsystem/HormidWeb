@@ -102,23 +102,29 @@
                     			<label class="custom-control-label" for="idInputflagActive"></label>
 	            	</div>
 	         	</div>
+	         	<br/>
 	            <div class="form-group">
                    <label for="fieldFlagNeverDisable">Jangan di Kunci</label>
                    <div class="custom-switch" id="fieldFlagNeverDisable">
-					<c:choose>
-						<c:when test="${userForm.getFlagNeverDisable()==1}">
-	                		<input type="checkbox" id="idInputflagNeverDisable" name="flagNeverDisable" class="custom-control-input" value="1" checked></input>
-						</c:when>    
-						<c:otherwise>
-	                		<input type="checkbox" id="idInputflagNeverDisable" name="flagNeverDisable" class="custom-control-input" value="1"></input>
-						</c:otherwise>
-					</c:choose>	
-                   	<label class="custom-control-label" for="idInputflagNeverDisable"></label>
-            	</div>
+						<c:choose>
+							<c:when test="${userForm.getFlagNeverDisable()==1}">
+		                		<input type="checkbox" id="idInputflagNeverDisable" name="flagNeverDisable" class="custom-control-input" value="1" checked></input>
+							</c:when>    
+							<c:otherwise>
+		                		<input type="checkbox" id="idInputflagNeverDisable" name="flagNeverDisable" class="custom-control-input" value="1"></input>
+							</c:otherwise>
+						</c:choose>	
+	                   	<label class="custom-control-label" for="idInputflagNeverDisable"></label>
+	            	</div>
 	         	</div>
+	         	<br/>
 	            <div class="form-group">
 			  		<label for="idInputDescription">Alamat</label>
-	                <form:textarea type="text" path="address" id="idInputAddress" class="form-control" rows="3" name="address" placeholder="Masukkan alamat pengguna"></form:textarea>
+	                <form:textarea type="text" path="address" id="idInputAddress" class="form-control" rows="3" name="address" placeholder="Alamat pengguna"></form:textarea>
+	         	</div>
+	            <div class="form-group">
+			  		<label for="idInputDescription">Catatan</label>
+	                <form:textarea type="text" path="catatan" id="idInputAddress" class="form-control" rows="3" name="catatan" placeholder="Masukkan pengguna"></form:textarea>
 	         	</div>
 	        </div>
 	        <!-- ./card-body -->

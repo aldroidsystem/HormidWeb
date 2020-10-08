@@ -22,12 +22,12 @@ $(document).ready(function () {
     },
     messages: {
       password: {
-        required: "Please provide a password",
-        minlength: "Your password must be 6-12 characters long",
-        maxlength: "Your password must be 6-12 characters long"
+        required: "<spring:message code='validation.notEmpty' />",
+        minlength: "<spring:message code='validation.minlength' /> 6",
+        maxlength: "<spring:message code='validation.maxlength' /> 12"
       },
       passwordConfirm: {
-        required: "Please provide a password confirm"
+        required: "<spring:message code='validation.notEmpty' />"
       }
     },
     errorElement: 'span',

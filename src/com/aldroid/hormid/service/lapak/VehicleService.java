@@ -123,14 +123,35 @@ public class VehicleService{
     	return vehicleMapper.checkDuplicatePlateNumber(plateNumber);    	
     }
     
-    public Map<Integer, String> loadAllVehicle() throws Exception{
-    	Map<Integer,String> vehList = new HashMap<Integer, String>();
-    	List<Vehicle> result = vehicleMapper.loadAllVehicle();
-    	if(result!= null){
-    		for (Vehicle veh : result){
-    			vehList.put(veh.getVehicleId(), veh.getPlateNumber());
+    public List<Vehicle> loadAllVehicle() throws Exception{
+    	return vehicleMapper.loadAllVehicle();
+    }
+    
+    public Vehicle selectVehicleDetailTransaction(Integer vehicleId) throws Exception{
+    	return vehicleMapper.selectVehicleDetailTransaction(vehicleId);
+    }
+
+    
+    public Map<String,String> selectSupirOfVehicleMap(Integer vehicleId) throws Exception{
+    	List<User> listUser = vehicleMapper.selectSupirOfVehicle(vehicleId);
+    	Map<String,String> mapUser = new HashMap<>();
+    	if(listUser != null){
+    		for (User user: listUser){
+    			mapUser.put(user.getUsername(), user.getFullname());
     		}
     	}
-    	return vehList;
+    	return mapUser;
     }
+    
+    public Map<String,String> selectPengirimOfVehicleMap(Integer vehicleId) throws Exception{
+    	List<User> listUser = vehicleMapper.selectPengirimOfVehicle(vehicleId);
+    	Map<String,String> mapUser = new HashMap<>();
+    	if(listUser != null){
+    		for (User user: listUser){
+    			mapUser.put(user.getUsername(), user.getFullname());
+    		}
+    	}
+    	return mapUser;
+    }
+    
 }

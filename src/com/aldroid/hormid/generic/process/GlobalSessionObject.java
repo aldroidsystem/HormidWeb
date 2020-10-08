@@ -12,16 +12,21 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
 import javax.annotation.PostConstruct;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import com.aldroid.hormid.model.generic.Properties;
 import com.aldroid.hormid.model.generic.Role;
 import com.aldroid.hormid.model.generic.User;
+import com.aldroid.hormid.model.lapak.Vehicle;
 import com.aldroid.hormid.model.transaksi.Harga;
 import com.aldroid.hormid.service.generic.PropertiesService;
 import com.aldroid.hormid.service.generic.UserService;
+import com.aldroid.hormid.service.lapak.VehicleService;
 import com.aldroid.hormid.service.transaksi.HargaService;
 
 /**
@@ -40,6 +45,7 @@ public class GlobalSessionObject {
     private Date pengecekanTerakhir = new Date();
     private Map<String,String> listPetani;
     private Map<String,String> listSupir;
+    private Map<Integer,String> listKendaraan;
     
     @Autowired
     PropertiesService propertiesService;
@@ -49,6 +55,9 @@ public class GlobalSessionObject {
 
     @Autowired
     HargaService hargaService;
+
+    @Autowired
+    VehicleService vehicleService;
     
     public GlobalSessionObject() {
     }
@@ -175,4 +184,24 @@ public class GlobalSessionObject {
 	public void resetListSupir() {
 		this.listSupir = null;
 	}
+
+	public Map<Integer, String> getListKendaraan() throws Exception {
+		if (listKendaraan == null || listKendaraan.isEmpty()){		
+
+			listKendaraan = new HashMap<Integer, String>();
+			listKendaraan.put(null, "Pilih Kendaraan");
+	    	List<Vehicle> result = vehicleService.loadAllVehicle();
+	    	if(result!= null){
+	    		for (Vehicle veh : result){
+	    			listKendaraan.put(veh.getVehicleId(), veh.getPlateNumber());
+	    		}
+	    	}
+		}
+		return listKendaraan;
+	}
+
+	public void resetListKendaraan() {
+		this.listKendaraan = null;
+	}
+	
 }

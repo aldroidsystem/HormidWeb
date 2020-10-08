@@ -26,15 +26,13 @@ $(document).ready(function () {
   $('#petaniForm').validate({
     rules: {
       defaultPotongan: {
-        number: true,
         digits:true
       }
     },
     messages: {
       defaultPotongan: {
-        required: "Kolom ini tidak boleh kosong",
-	        number: "Masukan harus berupa angka",
-	        digits:"Masukan harus berupa angka"
+        	required: "<spring:message code='validation.notEmpty' />",
+	        digits:"<spring:message code='validation.notNumber' />"
       }
     },
     errorElement: 'span',

@@ -32,14 +32,12 @@ $(document).ready(function () {
   $('#agenForm').validate({
     rules: {
       defaultPotongan: {
-        number: true,
         digits:true
       }
     },
     messages: {
       defaultPotongan: {
-	        number: "Masukan harus berupa angka",
-	        digits:"Masukan harus berupa angka"
+	        digits: "<spring:message code='validation.notNumber' />"
       }
     },
     errorElement: 'span',

@@ -26,13 +26,13 @@ public class UserValidator implements Validator {
     	BindingResult bindingResult = (BindingResult) errors;
 
         if(user.getAction()!=null && user.getAction().equalsIgnoreCase("c")){
-        	CommonProcess.validationRejectIfEmptyOrWhitespace(bindingResult, "username", "NotEmpty",null,null);
+        	CommonProcess.validationRejectIfEmptyOrWhitespace(bindingResult, "username", "NotEmpty");
         	if (user.getUsername().length() <3 || user.getUsername().length() > 32) {
-	        	CommonProcess.validationRejectValue(bindingResult, "username", "validation.Size.userForm.username", null, null);
+	        	CommonProcess.validationRejectValue(bindingResult, "username", "validation.Size.userForm.username");
 	        }
 	        Integer checkUsername = userService.checkDuplicateUsername(user.getUsername());
 	        if (checkUsername != null && checkUsername >0) {	        	
-	        	CommonProcess.validationRejectValue(bindingResult, "username", "validation.Duplicate.userForm.username", null, null);
+	        	CommonProcess.validationRejectValue(bindingResult, "username", "validation.Duplicate.userForm.username");
 	        }
         }
     }
@@ -54,7 +54,7 @@ public class UserValidator implements Validator {
 //        }
         
         if (!user.getPasswordConfirm().equals(user.getPassword())) {
-        	CommonProcess.validationRejectValue(bindingResult, "passwordConfirm", "validation.Diff.userForm.passwordConfirm", null, null);
+        	CommonProcess.validationRejectValue(bindingResult, "passwordConfirm", "validation.Diff.userForm.passwordConfirm");
 //            errors.rejectValue("passwordConfirm", "validation.Diff.userForm.passwordConfirm");
         }
     }

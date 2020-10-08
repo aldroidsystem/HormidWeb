@@ -30,14 +30,14 @@ public class PropertiesValidator implements Validator {
     public void validate(Object o, Errors errors) {
     	Properties properties = (Properties) o;
     	BindingResult bindingResult = (BindingResult) errors;
-        CommonProcess.validationRejectIfEmptyOrWhitespace(bindingResult, "value", "validation.notEmpty", null, null);
+        CommonProcess.validationRejectIfEmptyOrWhitespace(bindingResult, "value", "validation.notEmpty");
 
         if(properties.getValue() != null && (StringUtils.hasLength(properties.getValue())) ) {
         	if (properties.getTipeData().equals("Angka")) {
         		try{
         			Integer.parseInt(properties.getValue());
         		} catch (NumberFormatException ex){
-        	        CommonProcess.validationRejectValue(bindingResult, "value", "validation.numberFormat.propertiesForm.value", null, null);
+        	        CommonProcess.validationRejectValue(bindingResult, "value", "validation.numberFormat.propertiesForm.value");
         	        CommonProcess.logException(ex, getClass());
         		}
     		} else if (properties.getTipeData().equals("Daftar Angka")) {
@@ -47,7 +47,7 @@ public class PropertiesValidator implements Validator {
         				Integer.parseInt(kata);
         			}
         		} catch (NumberFormatException ex){
-        	        CommonProcess.validationRejectValue(bindingResult, "value", "validation.numberFormat.propertiesForm.value", null, null);
+        	        CommonProcess.validationRejectValue(bindingResult, "value", "validation.numberFormat.propertiesForm.value");
         	        CommonProcess.logException(ex, getClass());
         		}
     		} else if (properties.getTipeData().equals("Desimal")) {
@@ -55,7 +55,7 @@ public class PropertiesValidator implements Validator {
         		try{
         			Float.valueOf(properties.getValue());
         		} catch (NumberFormatException ex){
-        	        CommonProcess.validationRejectValue(bindingResult, "value", "validation.numberFormat.propertiesForm.value", null, null);
+        	        CommonProcess.validationRejectValue(bindingResult, "value", "validation.numberFormat.propertiesForm.value");
         	        CommonProcess.logException(ex, getClass());
         		}
     		} else if (properties.getTipeData().equals("Daftar Desimal")) {
@@ -65,7 +65,7 @@ public class PropertiesValidator implements Validator {
         				Float.valueOf(kata);
         			}
         		} catch (NumberFormatException ex){
-        	        CommonProcess.validationRejectValue(bindingResult, "value", "validation.numberFormat.propertiesForm.value", null, null);
+        	        CommonProcess.validationRejectValue(bindingResult, "value", "validation.numberFormat.propertiesForm.value");
         	        CommonProcess.logException(ex, getClass());
         		}
     		}

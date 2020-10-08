@@ -37,24 +37,22 @@ $(document).ready(function () {
 	    },
       	defaultBiayaBongkar: {
 	        required: true,
-	        number: true,
 	        digits:true
 	    }
     },
     messages: {
     	plateNumber: {
-        	required: "Kolom ini tidak boleh kosong"
+        	required: "<spring:message code='validation.notEmpty' />"
       	},
       	vehicleType: {
-	        required: "Kolom ini tidak boleh kosong"
+	        required: "<spring:message code='validation.notEmpty' />"
 	    },
       	supir: {
-	        required: "Kolom ini tidak boleh kosong"
+	        required: "<spring:message code='validation.notEmpty' />"
 	    },
       	defaultBiayaBongkar: {
-	        required: "Kolom ini tidak boleh kosong",
-	        number: "Masukan harus berupa angka",
-	        digits:"Masukan harus berupa angka"
+	        required: "<spring:message code='validation.notEmpty' />",
+	        digits: "<spring:message code='validation.notNumber' />"
 	    }
 	    
     },

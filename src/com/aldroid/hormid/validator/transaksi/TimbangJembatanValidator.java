@@ -5,12 +5,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-
 import com.aldroid.hormid.generic.process.CommonProcess;
 import com.aldroid.hormid.model.transaksi.TimbangGantung;
+import com.aldroid.hormid.model.transaksi.TimbangJembatan;
 
 @Component
-public class TimbangGantungValidator implements Validator {
+public class TimbangJembatanValidator implements Validator {
     
     @Override
     public boolean supports(Class<?> aClass) {
@@ -19,12 +19,16 @@ public class TimbangGantungValidator implements Validator {
 
     @Override
     public void validate(Object o, Errors errors) {
-    	BindingResult bindingResult = (BindingResult) errors;
-    	
-    	CommonProcess.validationRejectIfEmptyOrWhitespace(bindingResult, "username", "validation.notEmpty");
+    	TimbangJembatan bean = (TimbangJembatan) o;
+    	BindingResult bindingResult = (BindingResult) errors;    	
     	CommonProcess.validationRejectIfEmptyOrWhitespace(bindingResult, "bruto", "validation.notEmpty");
+    	CommonProcess.validationRejectIfEmptyOrWhitespace(bindingResult, "vehicleId", "validation.notEmpty");
     	CommonProcess.validationRejectIfEmptyOrWhitespace(bindingResult, "potongan", "validation.notEmpty");
     	CommonProcess.validationRejectIfEmptyOrWhitespace(bindingResult, "harga", "validation.notEmpty");
     	
+    	
+    	CommonProcess.validationRejectIfNotInteger(bindingResult, "bruto", "validation.notNumber");
+    	CommonProcess.validationRejectIfNotInteger(bindingResult, "harga", "validation.notNumber");
+    	CommonProcess.validationRejectIfNotInteger(bindingResult, "potongan", "validation.notNumber");
     }
 }

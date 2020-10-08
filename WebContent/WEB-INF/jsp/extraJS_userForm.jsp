@@ -39,21 +39,21 @@ $(document).ready(function () {
     },
     messages: {
     	username:{
-    		required: "Please provide a Kode Pengguna"
+    		required: "<spring:message code='validation.notEmpty' />"
     	},
     	area:{
-    		required: "Please provide an area"
+    		required: "<spring:message code='validation.notEmpty' />"
     	},
     	roles:{
-    		required: "Please provide a role"
+    		required: "<spring:message code='validation.notEmpty' />"
     	},
     	fullname : {
-    		required: "Please provide a role"
+    		required: "<spring:message code='validation.notEmpty' />"
     	},
 		password: {
-		  required: "Please provide a password",
-		  minlength: "Your password must be 6-12 characters long",
-		  maxlength: "Your password must be 6-12 characters long"
+		  required: "<spring:message code='validation.notEmpty' />",
+		  minlength: "<spring:message code='validation.maxlength' /> 6",
+		  maxlength: "<spring:message code='validation.maxlength' /> 12"
 		}
     },
     errorElement: 'span',

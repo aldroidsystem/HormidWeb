@@ -61,10 +61,24 @@
 		            </div>
 		        </spring:bind>
 	            <div class="form-group">
+                   <label for="fieldFlagHormid">Properti Lapak Hormid</label>
+                   <div class="custom-switch" id="fieldFlagHormid">
+					<c:choose>
+						<c:when test="${vehicleForm.getFlagHormid()==1}">
+	                		<input type="checkbox" id="idInputflagHormid" name="flagHormid" class="custom-control-input" value="1" checked></input>
+						</c:when>    
+						<c:otherwise>
+	                		<input type="checkbox" id="idInputflagHormid" name="flagHormid" class="custom-control-input" value="1"></input>
+						</c:otherwise>
+					</c:choose>	
+                   	<label class="custom-control-label" for="idInputflagHormid"></label>
+            	</div>
+	         	<br/>
+	         	</div>
+	            <div class="form-group">
 			  		<label for="idInputCatatan">Catatan</label>
 	                <form:textarea type="text" path="catatan" id="idInputCatatan" class="form-control" rows="3" name="catatan" placeholder="Catatan supir"></form:textarea>
 	         	</div>
-		        	
 	        
 	        <!-- ./card-body -->
 	          <div class="card-footer">

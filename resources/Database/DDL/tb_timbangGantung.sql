@@ -15,7 +15,6 @@ total number(20),
 catatan varchar2(500 char),
 created_by varchar2(30 char),
 created_date timestamp default on null current_timestamp,
-updated_date timestamp default on null current_timestamp,
 CONSTRAINT ct_timbangGantung_pk PRIMARY KEY (no_nota),
 CONSTRAINT ct_timbangGantung_petani_fk FOREIGN KEY (username) REFERENCES tb_user (username),
 CONSTRAINT ct_timbangGantung_kasir_fk FOREIGN KEY (created_by) REFERENCES tb_user (username)

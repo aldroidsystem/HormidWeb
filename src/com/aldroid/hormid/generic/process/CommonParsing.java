@@ -5,7 +5,6 @@
  */
 package com.aldroid.hormid.generic.process;
 
-//import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,13 +16,19 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
+import com.aldroid.hormid.model.generic.User;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 /**
  *
  * @author renaldo
@@ -34,13 +39,17 @@ public class CommonParsing {
     private final static SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy");
     private final static SimpleDateFormat sdf3 = new SimpleDateFormat("dd-MM-yyyy HH:mm");
     private final static Pattern pattern=Pattern.compile("^[a-zA-Z0-9]$");
-//    private final static Gson gson = new Gson();
+    private final static Gson gson = new Gson();
     private static final DecimalFormat currencyFormatter = new DecimalFormat("###,###");
     private static final NumberFormat decimalNumber = NumberFormat.getNumberInstance();
+    private static final Type userListType = new TypeToken<List<User>>(){}.getType(); 
     
-//    public static String parseStringJson(Object obj){
-//        return gson.toJson(obj);
-//    }
+    public static String generateJsonString(Object obj){
+        return gson.toJson(obj);
+    }
+    public static String generateJsonFromListUser(List<User> obj){
+        return gson.toJson(obj, userListType);
+    }
     
     public static String parseStringYMDHM(Date date){
         return date != null ?sdf1.format(date) : "";
@@ -54,9 +63,10 @@ public class CommonParsing {
         return date != null ?sdf2.format(date) : "";
     }
     
-//    public static Object parseObjectJson(String json, Class kelas){
-//        return gson.fromJson(json, kelas);
-//    }
+    @SuppressWarnings("unchecked")
+	public static Object parseObjectJson(String json, @SuppressWarnings("rawtypes") Class kelas){
+        return gson.fromJson(json, kelas);
+    }
     
     public static Date parseDate(String dateString) {
 

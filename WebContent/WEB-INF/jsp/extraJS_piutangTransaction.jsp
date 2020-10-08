@@ -17,19 +17,17 @@ $(document).ready(function () {
         "amount": {
            required: true,
            maxlength:20,
-           number: true,
            digits:true
          }
     },
     messages: {
     	"jenisTransaksi": {
-    		required: "Kolom ini tidak boleh kosong"
+    		required: "<spring:message code='validation.notEmpty' />"
 	    },
 	    "amount": {
-        	required: "Kolom ini tidak boleh kosong",
-        	maxlength: "Maximum panjang karakter adalah 20",
-            number: "Masukan harus berupa angka",
-            digits:"Masukan harus berupa angka"
+        	required: "<spring:message code='validation.notEmpty' />",
+        	maxlength: "<spring:message code='validation.maxlength' /> 20",
+            digits:"<spring:message code='validation.notNumber' />"
       }
     },
     errorElement: 'span',

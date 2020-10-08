@@ -21,8 +21,6 @@ public final class HardcodeConfiguration {
 
     public static final Locale APPS_INDONESIA = new Locale("in", "ID");
     public static final String APPS_AREA = "H1";
-    public static final String APPS_MODULE_PIUTANG = "PG";
-    public static final String APPS_MODULE_TIMBANG_GANTUNG = "TG";
     public static final long APPS_BASE_DATE_MILIS = 672401837000L;
 
 }

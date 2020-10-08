@@ -23,6 +23,7 @@ public interface UserMapper {
         @Result(property = "fullname", column ="fullname"),
         @Result(property = "area", column ="area"),
         @Result(property = "address", column ="address"),
+        @Result(property = "catatan", column ="catatan"),
         @Result(property = "phone", column ="phone"),
         @Result(property = "email", column ="email"),
         @Result(property = "password", column ="password"),
@@ -108,4 +109,16 @@ public interface UserMapper {
         @Result(property = "fullname", column ="fullname", javaType = String.class)
     })
     abstract List<User> selectListSupir() throws Exception;
+    
+
+
+    @Select(UserQueryList.SELECT_PENGGUNA_TRANSACTION) 
+    @Results({
+        @Result(property = "username", column ="username"),
+        @Result(property = "hutang", column ="hutang"),
+        @Result(property = "defaultPotongan", column ="default_potongan"),
+        @Result(property = "catatan", column ="catatan"),
+        @Result(property = "fullname", column ="fullname", javaType = String.class)
+        })
+    abstract User selectPenggunaTransaction(@Param("username") String username);
 }

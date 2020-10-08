@@ -18,7 +18,7 @@ $(document).ready(function () {
     messages: {
       "value": {
         required: "<spring:message code='validation.notEmpty' />",
-        maxlength:"Maksimal panjang karakter 200"
+        maxlength:"<spring:message code='validation.maxlength' /> 200"
       }
     },
     errorElement: 'span',

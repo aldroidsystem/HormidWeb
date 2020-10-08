@@ -57,6 +57,20 @@ public interface VehicleMapper{
     abstract List<User> selectUserOfVehicleRole(
     		@Param("vehicleId") Integer vehicleId,
     		@Param("roleCode") String roleCode) throws Exception;
+
+    @Select(VehicleQueryList.SELECT_DETIL_VEHICLE_TRANSACTION)
+    @Results({
+        @Result(property = "plateNumber", column ="plate_number", javaType = String.class),
+        @Result(property = "defaultBiayaBongkar", column ="default_Biaya_Bongkar", javaType = Integer.class),
+        @Result(property = "flagHormid", column ="flag_hormid", javaType = Integer.class),
+        @Result(property = "catatan", column ="catatan", javaType = String.class),
+        @Result(property = "supir", javaType = List.class, column="vehicle_Id",
+    	many = @Many(select = "selectSupirOfVehicle")),
+        @Result(property = "pengirim", javaType = List.class, column="vehicle_Id",
+    	many = @Many(select = "selectPengirimOfVehicle"))
+    })
+    abstract Vehicle selectVehicleDetailTransaction(
+    		@Param("vehicleId") Integer vehicleId) throws Exception;
     
 
     @Select(VehicleQueryList.SELECT_VEHICLE_OF_USER_ROLE)
@@ -75,6 +89,7 @@ public interface VehicleMapper{
         @Result(property = "plateNumber", column ="plate_number", javaType = String.class),
         @Result(property = "vehicleType", column ="vehicle_type", javaType = String.class),
         @Result(property = "defaultBiayaBongkar", column ="default_Biaya_Bongkar", javaType = Integer.class),
+        @Result(property = "flagHormid", column ="flag_hormid", javaType = Integer.class),
         @Result(property = "catatan", column ="catatan", javaType = String.class)
     })
     abstract Vehicle selectLastVehicle() throws Exception;
@@ -100,6 +115,7 @@ public interface VehicleMapper{
         @Result(property = "plateNumber", column ="plate_number", javaType = String.class),
         @Result(property = "vehicleType", column ="vehicle_type", javaType = String.class),
         @Result(property = "defaultBiayaBongkar", column ="default_Biaya_Bongkar", javaType = Integer.class),
+        @Result(property = "flagHormid", column ="flag_hormid", javaType = Integer.class),
         @Result(property = "catatan", column ="catatan", javaType = String.class),
         @Result(property = "supir", javaType = List.class, column="vehicle_Id",
         	many = @Many(select = "selectSupirOfVehicle"))
@@ -133,5 +149,14 @@ public interface VehicleMapper{
         @Result(property = "fullname", column ="fullname", javaType = String.class)
     })
     abstract List<User> selectSupirOfVehicle(
+    		@Param("vehicleId") Integer vehicleId) throws Exception;
+    
+
+    @Select(VehicleQueryList.SELECT_PENGIRIM_OF_VEHICLE)
+    @Results({
+        @Result(property = "username", column ="username", javaType = String.class),
+        @Result(property = "fullname", column ="fullname", javaType = String.class)
+    })
+    abstract List<User> selectPengirimOfVehicle(
     		@Param("vehicleId") Integer vehicleId) throws Exception;
 }

@@ -21,29 +21,29 @@ public class HargaValidator implements Validator {
     	Harga harga = (Harga) o;
     	BindingResult bindingResult = (BindingResult) errors;
     	
-        CommonProcess.validationRejectIfEmptyOrWhitespace(bindingResult, "tanggalMulai", "validation.notEmpty", null, null);
-        CommonProcess.validationRejectIfEmptyOrWhitespace(bindingResult, "hargaJual", "validation.notEmpty", null, null);
-        CommonProcess.validationRejectIfEmptyOrWhitespace(bindingResult, "hargaBeliJembatan", "validation.notEmpty", null, null);
-        CommonProcess.validationRejectIfEmptyOrWhitespace(bindingResult, "hargaBeliGantung", "validation.notEmpty", null, null);
+        CommonProcess.validationRejectIfEmptyOrWhitespace(bindingResult, "tanggalMulai", "validation.notEmpty");
+        CommonProcess.validationRejectIfEmptyOrWhitespace(bindingResult, "hargaJual", "validation.notEmpty");
+        CommonProcess.validationRejectIfEmptyOrWhitespace(bindingResult, "hargaBeliJembatan", "validation.notEmpty");
+        CommonProcess.validationRejectIfEmptyOrWhitespace(bindingResult, "hargaBeliGantung", "validation.notEmpty");
 
 		try{
 			Integer.valueOf(harga.getHargaJual()!=null?harga.getHargaJual():0);
 		} catch (NumberFormatException ex){
-	        CommonProcess.validationRejectValue(bindingResult, "hargaJual", "validation.numberFormat.propertiesForm.value", null, null);
+	        CommonProcess.validationRejectValue(bindingResult, "hargaJual", "validation.numberFormat.propertiesForm.value");
 	        CommonProcess.logException(ex, getClass());
 		}
 
 		try{
 			Integer.valueOf(harga.getHargaBeliJembatan()!=null?harga.getHargaBeliJembatan():0);
 		} catch (NumberFormatException ex){
-	        CommonProcess.validationRejectValue(bindingResult, "hargaBeliJembatan", "validation.numberFormat.propertiesForm.value", null, null);
+	        CommonProcess.validationRejectValue(bindingResult, "hargaBeliJembatan", "validation.numberFormat.propertiesForm.value");
 	        CommonProcess.logException(ex, getClass());
 		}
 		
 		try{
 			Integer.valueOf(harga.getHargaBeliGantung()!=null?harga.getHargaBeliGantung():0);
 		} catch (NumberFormatException ex){
-	        CommonProcess.validationRejectValue(bindingResult, "hargaBeliGantung", "validation.numberFormat.propertiesForm.value", null, null);
+	        CommonProcess.validationRejectValue(bindingResult, "hargaBeliGantung", "validation.numberFormat.propertiesForm.value");
 	        CommonProcess.logException(ex, getClass());
 		}
     }

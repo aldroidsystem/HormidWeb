@@ -8,12 +8,15 @@ package com.aldroid.hormid.service.transaksi;
 
 
 import java.util.Calendar;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.aldroid.hormid.generic.staticvar.HardcodeConfiguration;
+import com.aldroid.hormid.generic.staticvar.Module;
 import com.aldroid.hormid.mapper.transaksi.TimbangGantungMapper;
 import com.aldroid.hormid.model.transaksi.TimbangGantung;
 
@@ -54,7 +57,7 @@ public class TimbangGantungService{
     	int diff = (int)((current-HardcodeConfiguration.APPS_BASE_DATE_MILIS)/ (1000*60*60*24));
     	Integer seqID = timbangGantungMapper.selectNextSequenceID();
         return HardcodeConfiguration.APPS_AREA
-        		+HardcodeConfiguration.APPS_MODULE_TIMBANG_GANTUNG
+        		+Module.TIMBANG_GANTUNG.toString()
         		+Integer.toHexString(diff).toUpperCase()
         		+Integer.toHexString(seqID).toUpperCase();
     }    

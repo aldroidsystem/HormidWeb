@@ -22,15 +22,19 @@ import com.aldroid.hormid.model.lapak.Vehicle;
 import com.aldroid.hormid.model.transaksi.Harga;
 import com.aldroid.hormid.model.transaksi.Piutang;
 import com.aldroid.hormid.model.transaksi.TimbangGantung;
+import com.aldroid.hormid.model.transaksi.TimbangJembatan;
 import com.aldroid.hormid.service.generic.UserService;
 import com.aldroid.hormid.service.lapak.AgenService;
 import com.aldroid.hormid.service.lapak.PetaniService;
 import com.aldroid.hormid.service.lapak.VehicleService;
 import com.aldroid.hormid.service.transaksi.HargaService;
 import com.aldroid.hormid.service.transaksi.PiutangService;
+import com.aldroid.hormid.service.transaksi.TimbangJembatanService;
 import com.aldroid.hormid.validator.lapak.HargaValidator;
 import com.aldroid.hormid.validator.lapak.VehicleValidator;
 import com.aldroid.hormid.validator.transaksi.PiutangValidator;
+import com.aldroid.hormid.validator.transaksi.TimbangJembatanBayarValidator;
+import com.aldroid.hormid.validator.transaksi.TimbangJembatanValidator;
 import com.aldroid.hormid.service.transaksi.TimbangGantungService;
 import com.aldroid.hormid.validator.transaksi.TimbangGantungValidator;
 
@@ -74,6 +78,15 @@ public class KasirController {
     
     @Autowired
     private TimbangGantungService timbangGantungService;
+    
+    @Autowired
+    private TimbangJembatanService timbangJembatanService;
+    
+    @Autowired
+    private TimbangJembatanValidator timbangJembatanValidator;
+    
+    @Autowired
+    private TimbangJembatanBayarValidator timbangJembatanBayarValidator;
     
     
 	@RequestMapping(value="/harga",method=RequestMethod.GET)
@@ -219,7 +232,7 @@ public class KasirController {
 		}
 
 		model.addAttribute("petaniForm",petani);
-		model.addAttribute("listVehicle", vehicleService.loadAllVehicle());
+		model.addAttribute("listVehicle", globalSessionObject.getListKendaraan());
         return "petaniForm";
     }
 	
@@ -239,7 +252,7 @@ public class KasirController {
             model.addAttribute("notification", "fail");
         }
 
-		model.addAttribute("listVehicle", vehicleService.loadAllVehicle());
+		model.addAttribute("listVehicle", globalSessionObject.getListKendaraan());
         return "petaniForm";
     }
 	//----------------------------------------------------------------
@@ -279,7 +292,7 @@ public class KasirController {
 		}
 
 		model.addAttribute("agenForm",agen);
-		model.addAttribute("listVehicle", vehicleService.loadAllVehicle());
+		model.addAttribute("listVehicle", globalSessionObject.getListKendaraan());
         return "agenForm";
     }
 	
@@ -291,16 +304,16 @@ public class KasirController {
 		model.addAttribute("listPetani", globalSessionObject.getListPetani());
         try{
         	agenService.update(agen);
-        	User upsertAgen = agenService.selectAgenDetail(agen.getUsername());
+        	User updatedAgen = agenService.selectAgenDetail(agen.getUsername());
             model.addAttribute("notification", "success");
-    		model.addAttribute("agenForm",upsertAgen);
+    		model.addAttribute("agenForm",updatedAgen);
         } catch (Exception e){
         	CommonProcess.logException(e, getClass());      
     		model.addAttribute("agenForm",agen);  
             model.addAttribute("notification", "fail");
         }
 
-		model.addAttribute("listVehicle", vehicleService.loadAllVehicle());
+		model.addAttribute("listVehicle", globalSessionObject.getListKendaraan());
         return "agenForm";
     }
 
@@ -488,4 +501,108 @@ public class KasirController {
 		
         return "timbang.gantung.invoice";
     }
+
+	//----------------------------------------------------------------------
+
+	@RequestMapping(value="/timbangJembatanList",method=RequestMethod.GET)
+    public String timbangJembatanList(Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+		List<TimbangJembatan> listJembatan = timbangJembatanService.selectTimbangJembatanNotComplete();
+		model.addAttribute("listJembatan", listJembatan);
+        return "timbang.jembatan.list";
+    }
+	
+	@RequestMapping(value="/timbangJembatan",method=RequestMethod.GET)
+    public String timbangJembatanTransactionForm(Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+		TimbangJembatan jembatan = new TimbangJembatan();
+		jembatan.setHarga(globalSessionObject.getHargaSekarang().getHargaBeliJembatan());
+		jembatan.setPotongan(globalSessionObject.getPropertiesByCode("defaultPotongan").getAngka());
+		model.addAttribute("jembatanForm",jembatan);
+        model.addAttribute("listVehicle", globalSessionObject.getListKendaraan());
+        return "timbang.jembatan.transaction";
+    }
+	
+	@RequestMapping(value="/timbangJembatan", 
+			params = {"noNota"},method=RequestMethod.GET)
+    public String timbangJembatanTransactionUpdateForm(@RequestParam(value = "noNota")String noNota, Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+
+		TimbangJembatan jembatan = timbangJembatanService.selectTimbangJembatanTempDetail(noNota);
+    	
+    	model.addAttribute("jembatanForm",jembatan);
+        model.addAttribute("listVehicle", globalSessionObject.getListKendaraan());
+        model.addAttribute("listSupir", vehicleService.selectSupirOfVehicleMap(jembatan.getVehicleId()));
+        model.addAttribute("listPengirim", vehicleService.selectPengirimOfVehicleMap(jembatan.getVehicleId()));
+        return "timbang.jembatan.transaction";
+    }
+
+	@RequestMapping(value="/timbangJembatan",method=RequestMethod.POST)
+    public String timbangJembatanTransactionInsert(@ModelAttribute("jembatanForm")TimbangJembatan jembatan, BindingResult bindingResult, Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+		timbangJembatanValidator.validate(jembatan, bindingResult);
+		
+        if (bindingResult.hasErrors()) {
+            return "timbang.jembatan.transaction";
+        }
+        
+        try{
+        	timbangJembatanService.upsert(jembatan);
+        	jembatan = timbangJembatanService.selectTimbangJembatanTempDetail(jembatan.getNoNota());
+        } catch (Exception e){
+        	CommonProcess.logException(e, getClass());
+        	jembatan.setNoNota(null);
+            return "timbang.jembatan.transaction";
+        }
+
+    	model.addAttribute("jembatanForm",jembatan);
+        model.addAttribute("listVehicle", globalSessionObject.getListKendaraan());
+        model.addAttribute("listSupir", vehicleService.selectSupirOfVehicleMap(jembatan.getVehicleId()));
+        model.addAttribute("listPengirim", vehicleService.selectPengirimOfVehicleMap(jembatan.getVehicleId()));
+        return "timbang.jembatan.transaction";
+    }
+
+	@RequestMapping(value="/timbangJembatanBayar",method=RequestMethod.POST)
+    public String timbangJembatanTransactionBayar(@ModelAttribute("jembatanForm")TimbangJembatan jembatan, BindingResult bindingResult, Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+		timbangJembatanBayarValidator.validate(jembatan, bindingResult);
+		
+        if (bindingResult.hasErrors()) {
+            return "timbang.jembatan.transaction";
+        }
+        
+        try{
+        	timbangJembatanService.bayar(jembatan);
+        	jembatan = timbangJembatanService.selectTimbangJembatanPaidDetail(jembatan.getNoNota());
+        } catch (Exception e){
+        	CommonProcess.logException(e, getClass());
+        	jembatan = timbangJembatanService.selectTimbangJembatanTempDetail(jembatan.getNoNota());
+            model.addAttribute("listVehicle", globalSessionObject.getListKendaraan());
+            model.addAttribute("listSupir", vehicleService.selectSupirOfVehicleMap(jembatan.getVehicleId()));
+            model.addAttribute("listPengirim", vehicleService.selectPengirimOfVehicleMap(jembatan.getVehicleId()));
+            return "timbang.jembatan.transaction";
+        }
+
+    	model.addAttribute("jembatanForm",jembatan);
+        return "timbang.jembatan.invoice";
+    }
+	
+
+
+	@RequestMapping(value="/timbangJembatanInvoice",method=RequestMethod.POST)
+    public String timbangJembatanTransactionInvoice(@RequestParam(value = "noNota")String noNota, Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+		TimbangJembatan jembatan;
+        try{
+        	jembatan = timbangJembatanService.selectTimbangJembatanPaidDetail( noNota);
+        } catch (Exception e){
+        	CommonProcess.logException(e, getClass());
+        	return "timbang.jembatan.transaction";
+        }
+
+    	model.addAttribute("jembatanForm",jembatan);
+        return "timbang.jembatan.invoice";
+    }
+	//----------------------------------------------------------------------
+	
 }

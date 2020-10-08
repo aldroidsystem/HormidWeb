@@ -3,6 +3,7 @@ package com.aldroid.hormid.generic.process;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.UUID;
+
 import org.apache.log4j.Logger;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -39,33 +40,44 @@ public class CommonProcess {
 		}
 	}
 	
-	public static void logException(Exception e, Class kelas){
+	public static void logException(Exception e, @SuppressWarnings("rawtypes") Class kelas){
 		StringWriter stack = new StringWriter();
 		e.printStackTrace(new PrintWriter(stack));
 		Logger.getLogger(kelas).error(stack.toString());
 	}
 	
 	public static void validationRejectIfEmptyOrWhitespace(BindingResult bindingResult, String field,
-			String errorCode, Object[] errorArgs, String defaultMessage) {
+			String errorCode) {
 		Assert.notNull(bindingResult, "Errors object must not be null");
 		Object value = bindingResult.getFieldValue(field);
 		if ((value == null) || (!(StringUtils.hasText(value.toString()))))
-			validationRejectValue(bindingResult,field, errorCode, errorArgs, defaultMessage);
+			validationRejectValue(bindingResult,field, errorCode);
+	}
+	
+	public static void validationRejectIfNotInteger(BindingResult bindingResult, String field,
+			String errorCode){
+		Object value = bindingResult.getFieldValue(field);
+		try{
+			if (value instanceof Integer && value!=null){
+				Integer.valueOf((Integer)value);
+			}
+		} catch (NumberFormatException ex){
+	        validationRejectValue(bindingResult, field, errorCode);
+	        logException(ex, CommonProcess.class);
+		}
 	}
 	
 	
-	public static void validationRejectValue(BindingResult bindingResult,String field, String errorCode, Object[] errorArgs,
-			String defaultMessage) {
+	public static void validationRejectValue(BindingResult bindingResult,String field, String errorCode) {
 		if (("".equals(bindingResult.getNestedPath())) && (!(StringUtils.hasLength(field)))) {
-			bindingResult.reject(errorCode, errorArgs, defaultMessage);
+			bindingResult.reject(errorCode, null, null);
 			return;
 		}
 		String fixedField = fixedField(bindingResult,field);
 		Object newVal = bindingResult.getFieldValue(fixedField);
 
 		FieldError fe = new FieldError(bindingResult.getObjectName(), fixedField, newVal,
-				false, new String[]{errorCode}, errorArgs,
-				defaultMessage);
+				false, new String[]{errorCode}, null, null);
 		bindingResult.addError(fe);
 	}
 	

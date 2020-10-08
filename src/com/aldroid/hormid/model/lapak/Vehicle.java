@@ -13,12 +13,14 @@ public class Vehicle {
 	private String plateNumber;
 	private String vehicleType;
     private Integer defaultBiayaBongkar;
+    private Integer flagHormid;
     private Integer flagDeleted;
     private Integer flagActive;
     private String createdBy;
     private Date createdDate;
     private String catatan;
     private List<User> supir;
+    private List<User> pengirim;
     private List<String> listSupirUsername;
     private List<String> listSupirFullname;
     private String action;
@@ -112,6 +114,18 @@ public class Vehicle {
 	}
 	public void setListSupirFullname(List<String> listSupirFullname) {
 		this.listSupirFullname = listSupirFullname;
+	}
+	public List<User> getPengirim() {
+		return pengirim;
+	}
+	public void setPengirim(List<User> pengirim) {
+		this.pengirim = pengirim;
+	}
+	public Integer getFlagHormid() {
+		return flagHormid;
+	}
+	public void setFlagHormid(Integer flagHormid) {
+		this.flagHormid = flagHormid;
 	}
 	
 }

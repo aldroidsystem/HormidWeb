@@ -22,9 +22,9 @@ public class PiutangValidator implements Validator {
     	
     	if (bean.getJenisTransaksi()== null 
     			|| (!bean.getJenisTransaksi().equals("bayar") && !bean.getJenisTransaksi().equals("pinjam"))){
-        	CommonProcess.validationRejectValue(bindingResult, "jenisTransaksi", "validation.notEmpty", null, null);
+        	CommonProcess.validationRejectValue(bindingResult, "jenisTransaksi", "validation.notEmpty");
     	}
-    	CommonProcess.validationRejectIfEmptyOrWhitespace(bindingResult, "amount", "validation.notEmpty", null, null);		
+    	CommonProcess.validationRejectIfEmptyOrWhitespace(bindingResult, "amount", "validation.notEmpty");		
         
     }
 }

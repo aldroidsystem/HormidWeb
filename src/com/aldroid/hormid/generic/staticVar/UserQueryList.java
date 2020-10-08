@@ -17,7 +17,7 @@ public final class UserQueryList {
     public static final String SELECT_ALL_ROLE = "SELECT * from tb_role";
     
     public static final String USER_REGISTRATION = "insert into tb_user "
-    		+ "(username,password,fullname,area,address,phone,email,pwd_expiry_period,flag_never_locked,flag_Active,created_by) "
+    		+ "(username,password,fullname,area,address,phone,email,pwd_expiry_period,flag_never_locked,flag_Active,created_by,catatan) "
     		+ "values("
     		+ "#{username,jdbcType=VARCHAR},"
     		+ "#{password,jdbcType=VARCHAR},"
@@ -29,7 +29,8 @@ public final class UserQueryList {
     		+ "#{passwordExpiryPeriod,jdbcType=SMALLINT},"
     		+ "#{flagNeverDisable,jdbcType=SMALLINT},"
     		+ "#{flagActive,jdbcType=SMALLINT},"
-    		+ "#{createdBy,jdbcType=VARCHAR})";
+    		+ "#{createdBy,jdbcType=VARCHAR}),"
+    		+ "#{catatan,jdbcType=VARCHAR})";
     
     public static final String USER_UPDATE = "update tb_user "
     		+ "set fullname=#{fullname,jdbcType=VARCHAR},"
@@ -37,6 +38,7 @@ public final class UserQueryList {
     		+ "address=#{address,jdbcType=VARCHAR},"
     		+ "phone=#{phone,jdbcType=VARCHAR},"
     		+ "email=#{email,jdbcType=VARCHAR},"
+    		+ "catatan=#{catatan,jdbcType=VARCHAR},"
     		+ "pwd_expiry_period=#{passwordExpiryPeriod,jdbcType=SMALLINT},"
     		+ "flag_never_locked=#{flagNeverDisable,jdbcType=SMALLINT},"
     		+ "flag_Active=#{flagActive,jdbcType=SMALLINT} "
@@ -63,4 +65,5 @@ public final class UserQueryList {
     public static final String SELECT_LIST_PETANI = "select username, fullname from tb_user where username in (select username from tbr_user_role where role_code='ROLE_PETANI')";    
 
     public static final String SELECT_LIST_SUPIR = "select username, fullname from tb_user where username in (select username from tbr_user_role where role_code='ROLE_SUPIR')";  
-}
+
+    public static final String SELECT_PENGGUNA_TRANSACTION = "SELECT username, fullname, default_potongan, hutang, catatan from tb_user where username = #{username}"; }

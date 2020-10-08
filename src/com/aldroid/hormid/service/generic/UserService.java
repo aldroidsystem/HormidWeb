@@ -1,6 +1,7 @@
 package com.aldroid.hormid.service.generic;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -112,5 +113,9 @@ public class UserService {
     }
     public List<User> selectListSupir() throws Exception{
     	return userMapper.selectListSupir();    	
+    }
+    
+    public User selectPenggunaTransaction(String username){
+    	return userMapper.selectPenggunaTransaction(username);
     }
 }

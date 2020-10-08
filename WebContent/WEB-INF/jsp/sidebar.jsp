@@ -89,6 +89,12 @@
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
+            <a href="${kasirURL}/timbangJembatanList" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              Timbang Jembatan
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="${kasirURL}/timbangGantung" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               Timbang Gantung

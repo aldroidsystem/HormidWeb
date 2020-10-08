@@ -34,44 +34,38 @@
       "hargaJual": {
         required: true,
         maxlength:5,
-        number: true,
         digits:true
       },
       "hargaBeliJembatan": {
         required: true,
         maxlength:5,
-        number: true,
         digits:true
       },
       "hargaBeliGantung": {
         required: true,
         maxlength:5,
-        number: true,
         digits:true
       }
     },
     messages: {  
     "tanggalMulai": {
-        required: "<spring:message code='validation.notEmpty' />",
-        maxlength:"Maksimal panjang karakter 10"
+	   required: "<spring:message code='validation.notEmpty' />",
+	   maxlength:"<spring:message code='validation.maxlength' /> 10"
     },
     "hargaJual": {
-      required: "<spring:message code='validation.notEmpty' />",
-      maxlength:"Maksimal panjang karakter 200",
-      number: "Masukan harus berupa angka",
-      digits:"Masukan harus berupa angka"
+		required: "<spring:message code='validation.notEmpty' />",
+		maxlength:"<spring:message code='validation.maxlength' /> 200",
+		digits:"<spring:message code='validation.notNumber' />"
     },
     "hargaBeliJembatan": {
       required: "<spring:message code='validation.notEmpty' />",
-      maxlength:"Maksimal panjang karakter 200",
-      number: "Masukan harus berupa angka",
-      digits:"Masukan harus berupa angka"
+      maxlength:"<spring:message code='validation.maxlength' /> 200",
+      digits:"<spring:message code='validation.notNumber' />"
     },
     "hargaBeliGantung": {
       required: "<spring:message code='validation.notEmpty' />",
-      maxlength:"Maksimal panjang karakter 200",
-      number: "Masukan harus berupa angka",
-      digits:"Masukan harus berupa angka"
+      maxlength:"<spring:message code='validation.maxlength' /> 200",
+      digits:"<spring:message code='validation.notNumber' />"
     }
     },
     errorElement: 'span',

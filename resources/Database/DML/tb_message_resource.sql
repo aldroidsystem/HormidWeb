@@ -21,3 +21,8 @@ insert into tb_message_resource (locale,resource_key,message) values ('in','ROLE
 insert into tb_message_resource (locale,resource_key,message) values ('in','ROLE_KULI','KULI');
 insert into tb_message_resource (locale,resource_key,message) values ('in','ROLE_SUPIR','SUPIR');
 insert into tb_message_resource (locale,resource_key,message) values ('in','ROLE_KASIR','KASIR');
+
+insert into tb_message_resource (locale,resource_key,message) values ('in','validation.notNumber','Masukan harus angka');
+insert into tb_message_resource (locale,resource_key,message) values ('in','validation.toomuch.jembatanForm.potonganBon','Pembayaran hutang melebihi jumlah peminjaman');
+insert into tb_message_resource (locale,resource_key,message) values ('in','validation.maxlength','Panjang karakter maksimal adalah: ');
+insert into tb_message_resource (locale,resource_key,message) values ('in','validation.minlength','Panjang karakter minimal adalah: ');

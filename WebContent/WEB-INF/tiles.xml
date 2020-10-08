@@ -3,6 +3,10 @@
   "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
   "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>  
+    <definition name="ajax.respond"
+        template="/WEB-INF/jsp/ajaxRespond.jsp"> 
+    </definition>  
+    
     <definition name="base.definition"  
         template="/WEB-INF/jsp/layout.jsp">  
         <put-attribute name="title" value="" />  
@@ -140,6 +144,22 @@
     
     <definition name="timbang.gantung.invoice" extends="base.definition">  
         <put-attribute name="title" value="Nota Timbang Gantung" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/timbangGantungInvoice.jsp"/>  
+    </definition> 
+    <definition name="timbang.jembatan.list" extends="base.definition">  
+        <put-attribute name="title" value="Transaksi Timbang Jembatan" />  
+        <put-attribute name="extraCSS" value="/WEB-INF/jsp/extraCSS_user.jsp" />  
+        <put-attribute name="extraJS" value="/WEB-INF/jsp/extraJS_user.jsp" /> 
+        <put-attribute name="body" value="/WEB-INF/jsp/timbangJembatanList.jsp" />  
+    </definition>  
+    <definition name="timbang.jembatan.transaction" extends="base.definition">  
+        <put-attribute name="title" value="Transaksi Timbang Jembatan" />  
+        <put-attribute name="extraCSS" value="/WEB-INF/jsp/extraCSS_userForm.jsp" />  
+        <put-attribute name="extraJS" value="/WEB-INF/jsp/extraJS_timbangJembatanTransaction.jsp" /> 
+        <put-attribute name="body" value="/WEB-INF/jsp/timbangJembatanTransaction.jsp" />  
+    </definition> 
+    <definition name="timbang.jembatan.invoice" extends="base.definition">  
+        <put-attribute name="title" value="Nota Timbang Jembatan" />  
         <put-attribute name="body" value="/WEB-INF/jsp/timbangGantungInvoice.jsp"/>  
     </definition> 
     

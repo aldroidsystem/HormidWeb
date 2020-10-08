@@ -28,7 +28,7 @@ public class VehicleValidator implements Validator {
     	if ( veh.getAction() != null && veh.getAction().equalsIgnoreCase("c")){
             Integer checkUsername = vehicleService.checkDuplicatePlateNumber(veh.getPlateNumber());
             if (checkUsername != null && checkUsername >0) {	        	
-            	CommonProcess.validationRejectValue(bindingResult, "plateNumber", "validation.Duplicate.vehicleForm.platenumber", null, null);
+            	CommonProcess.validationRejectValue(bindingResult, "plateNumber", "validation.Duplicate.vehicleForm.platenumber");
             }    		
     	}        
         
