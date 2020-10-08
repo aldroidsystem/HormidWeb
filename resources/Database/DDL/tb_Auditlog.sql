@@ -15,7 +15,7 @@ log_timestamp timestamp default on null current_timestamp,
 username varchar2(30 char),
 procedure_name varchar2(30 byte),
 errorcode varchar2(512 char),
-description varchar2(512 char)
+description varchar2(1024 char)
 );
 
 CREATE INDEX ix_auditlog_log_timestamp ON tb_auditlog(log_timestamp);

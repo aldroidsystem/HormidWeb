@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.aldroid.hormid.generic.staticvar.Role;
+import com.aldroid.hormid.generic.staticvar.EnumRole;
 import com.aldroid.hormid.mapper.lapak.AgenMapper;
 import com.aldroid.hormid.mapper.lapak.VehicleMapper;
 import com.aldroid.hormid.model.generic.User;
@@ -57,14 +57,14 @@ public class AgenService{
             		}
         		}
         		if(!exists){
-        			vehicleMapper.deleteUserRoleVehicle(dbVeh.getVehicleId(), bean.getUsername(), Role.AGEN.toString());
+        			vehicleMapper.deleteUserRoleVehicle(dbVeh.getVehicleId(), bean.getUsername(), EnumRole.AGEN.toString());
         		}
         	}
     	}
     	
     	if (bean.getListVehicleId() != null){
     		for(Integer insertVehicle : bean.getListVehicleId()){
-    			vehicleMapper.insertUserRoleVehicle(insertVehicle, bean.getUsername(), Role.AGEN.toString());
+    			vehicleMapper.insertUserRoleVehicle(insertVehicle, bean.getUsername(), EnumRole.AGEN.toString());
     		}
     	}
     }
@@ -100,7 +100,7 @@ public class AgenService{
 
 
     public void insertAgenVehicle(Integer vehicleId, String username) throws Exception{
-    	vehicleMapper.insertUserRoleVehicle(vehicleId, username, Role.AGEN.toString());
+    	vehicleMapper.insertUserRoleVehicle(vehicleId, username, EnumRole.AGEN.toString());
     }
 
     public void insertAgenPetani(String agen, String petani) throws Exception{

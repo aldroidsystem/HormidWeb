@@ -1,6 +1,6 @@
 package com.aldroid.hormid.generic.staticvar;
 
-public enum Module {
+public enum EnumModule {
 	PIUTANG ("PG"),
 	TIMBANG_GANTUNG("TG"),
 	TIMBANG_JEMBATAN("TJ")
@@ -8,7 +8,7 @@ public enum Module {
 
 	private final String shortCode;
 
-	Module(String code) {
+	EnumModule(String code) {
 	    this.shortCode = code;
 	}
 		  

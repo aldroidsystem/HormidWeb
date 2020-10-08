@@ -147,7 +147,7 @@
         <put-attribute name="body" value="/WEB-INF/jsp/timbangGantungInvoice.jsp"/>  
     </definition> 
     <definition name="timbang.jembatan.list" extends="base.definition">  
-        <put-attribute name="title" value="Transaksi Timbang Jembatan" />  
+        <put-attribute name="title" value="Timbang Jembatan" />  
         <put-attribute name="extraCSS" value="/WEB-INF/jsp/extraCSS_user.jsp" />  
         <put-attribute name="extraJS" value="/WEB-INF/jsp/extraJS_user.jsp" /> 
         <put-attribute name="body" value="/WEB-INF/jsp/timbangJembatanList.jsp" />  
@@ -163,4 +163,16 @@
         <put-attribute name="body" value="/WEB-INF/jsp/timbangGantungInvoice.jsp"/>  
     </definition> 
     
+    <definition name="pabrik.list" extends="base.definition">  
+        <put-attribute name="title" value="Pabrik Sawit" />  
+        <put-attribute name="extraCSS" value="/WEB-INF/jsp/extraCSS_user.jsp" />  
+        <put-attribute name="extraJS" value="/WEB-INF/jsp/extraJS_user.jsp" /> 
+        <put-attribute name="body" value="/WEB-INF/jsp/pabrikList.jsp" />  
+    </definition> 
+    <definition name="pabrik.upsert" extends="base.definition">  
+        <put-attribute name="title" value="Pabrik Sawit" />  
+        <put-attribute name="extraCSS" value="/WEB-INF/jsp/extraCSS_userForm.jsp" />  
+        <put-attribute name="extraJS" value="/WEB-INF/jsp/extraJS_pabrikForm.jsp" /> 
+        <put-attribute name="body" value="/WEB-INF/jsp/pabrikForm.jsp" />  
+    </definition>  
 </tiles-definitions>  

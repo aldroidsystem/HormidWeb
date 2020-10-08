@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.aldroid.hormid.generic.process.CommonProcess;
 import com.aldroid.hormid.generic.process.GlobalSessionObject;
 import com.aldroid.hormid.model.generic.User;
+import com.aldroid.hormid.model.lapak.Pabrik;
 import com.aldroid.hormid.model.lapak.Vehicle;
 import com.aldroid.hormid.model.transaksi.Harga;
 import com.aldroid.hormid.model.transaksi.Piutang;
@@ -28,6 +29,7 @@ import com.aldroid.hormid.service.lapak.AgenService;
 import com.aldroid.hormid.service.lapak.PetaniService;
 import com.aldroid.hormid.service.lapak.VehicleService;
 import com.aldroid.hormid.service.transaksi.HargaService;
+import com.aldroid.hormid.service.transaksi.PabrikService;
 import com.aldroid.hormid.service.transaksi.PiutangService;
 import com.aldroid.hormid.service.transaksi.TimbangJembatanService;
 import com.aldroid.hormid.validator.lapak.HargaValidator;
@@ -87,7 +89,9 @@ public class KasirController {
     
     @Autowired
     private TimbangJembatanBayarValidator timbangJembatanBayarValidator;
-    
+
+    @Autowired
+    private PabrikService pabrikService;
     
 	@RequestMapping(value="/harga",method=RequestMethod.GET)
     public String loadHarga(Model model, HttpServletRequest request) throws Exception {
@@ -604,5 +608,44 @@ public class KasirController {
         return "timbang.jembatan.invoice";
     }
 	//----------------------------------------------------------------------
-	
+	@RequestMapping(value="/pabrik",method=RequestMethod.GET)
+    public String pabrikList(Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+		List<Pabrik> listPabrik = pabrikService.selectPabrikAll();
+		model.addAttribute("listPabrik", listPabrik);
+        return "pabrik.list";
+    }
+
+	@RequestMapping(value="/pabrikForm",method=RequestMethod.GET)
+    public String pabrikUpdate(@ModelAttribute("pabrikForm")Pabrik pabrik, BindingResult bindingResult, Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+        
+    	model.addAttribute("pabrikForm",new Pabrik());
+        return "pabrik.upsert";
+    }
+
+	@RequestMapping(value="/pabrikForm", 
+			params = {"pabrikId"},method=RequestMethod.GET)
+    public String pabrikInsert(@RequestParam(value = "pabrikId")Integer pabrikId,  Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+
+    	Pabrik pabrik = pabrikService.selectPabrikDetil(pabrikId);
+    	model.addAttribute("pabrikForm", pabrik);
+        return "pabrik.upsert";
+    }
+
+	@RequestMapping(value="/pabrikForm",method=RequestMethod.POST)
+    public String pabrikUpsert(@ModelAttribute("pabrikForm")Pabrik pabrik, BindingResult bindingResult, Model model, HttpServletRequest request) throws Exception {
+		CommonProcess.logUserActivity(this.getClass().getName(),new Object() {}.getClass().getEnclosingMethod().getName(), request.getServletPath());
+        
+        try{
+        	pabrikService.upsert(pabrik);
+        	pabrik = pabrikService.selectPabrikDetil(pabrik.getPabrikId());
+        } catch (Exception e){
+        	CommonProcess.logException(e, getClass());
+        }
+
+    	model.addAttribute("pabrikForm",pabrik);
+        return "pabrik.upsert";
+    }
 }

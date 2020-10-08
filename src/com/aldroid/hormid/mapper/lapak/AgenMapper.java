@@ -16,8 +16,7 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.aldroid.hormid.generic.staticvar.AgenQueryList;
-import com.aldroid.hormid.generic.staticvar.UserQueryList;
+import com.aldroid.hormid.mapper.generic.UserQueryList;
 import com.aldroid.hormid.model.generic.User;
 import com.aldroid.hormid.model.lapak.Vehicle;
 

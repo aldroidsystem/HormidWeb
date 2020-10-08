@@ -1,4 +1,4 @@
-package com.aldroid.hormid.generic.staticvar;
+package com.aldroid.hormid.mapper.transaksi;
 
 public final class TimbangGantungQueryList {
 	

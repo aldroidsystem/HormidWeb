@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import com.aldroid.hormid.generic.staticvar.UserQueryList;
+
 import com.aldroid.hormid.model.generic.Role;
 import com.aldroid.hormid.model.generic.User;
 

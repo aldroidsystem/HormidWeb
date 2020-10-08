@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.aldroid.hormid.generic.staticvar.HardcodeConfiguration;
-import com.aldroid.hormid.generic.staticvar.Module;
+import com.aldroid.hormid.generic.staticvar.EnumModule;
 import com.aldroid.hormid.mapper.transaksi.PiutangMapper;
 import com.aldroid.hormid.model.generic.User;
 import com.aldroid.hormid.model.transaksi.Piutang;
@@ -66,7 +66,7 @@ public class PiutangService{
     	int diff = (int)((current-HardcodeConfiguration.APPS_BASE_DATE_MILIS)/ (1000*60*60*24));
     	Integer seqID = piutangMapper.selectNextSequenceID();
         return HardcodeConfiguration.APPS_AREA
-        		+Module.PIUTANG.toString()
+        		+EnumModule.PIUTANG.toString()
         		+Integer.toHexString(diff).toUpperCase()
         		+Integer.toHexString(seqID).toUpperCase();
     }

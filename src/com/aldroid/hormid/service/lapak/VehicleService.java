@@ -15,7 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.aldroid.hormid.generic.staticvar.Role;
+import com.aldroid.hormid.generic.staticvar.EnumRole;
 import com.aldroid.hormid.mapper.lapak.VehicleMapper;
 import com.aldroid.hormid.model.generic.User;
 import com.aldroid.hormid.model.lapak.Vehicle;
@@ -56,7 +56,7 @@ public class VehicleService{
     
 
     public void updateVehicleSupir(Vehicle vehicle) throws Exception{
-    	List<User> existingSupir = vehicleMapper.selectUserOfVehicleRole(vehicle.getVehicleId(), Role.SUPIR.toString());
+    	List<User> existingSupir = vehicleMapper.selectUserOfVehicleRole(vehicle.getVehicleId(), EnumRole.SUPIR.toString());
     	
     	if (existingSupir != null){
         	for(User dbSupir : existingSupir){
@@ -71,14 +71,14 @@ public class VehicleService{
             		}
         		}
         		if(!exists){
-        			vehicleMapper.deleteUserRoleVehicle(vehicle.getVehicleId(), dbSupir.getUsername(), Role.SUPIR.toString());
+        			vehicleMapper.deleteUserRoleVehicle(vehicle.getVehicleId(), dbSupir.getUsername(), EnumRole.SUPIR.toString());
         		}
         	}
     	}
     	
     	if (vehicle.getListSupirUsername() != null){
     		for(String insertSupir : vehicle.getListSupirUsername()){
-    			vehicleMapper.insertUserRoleVehicle(vehicle.getVehicleId(), insertSupir, Role.SUPIR.toString());
+    			vehicleMapper.insertUserRoleVehicle(vehicle.getVehicleId(), insertSupir, EnumRole.SUPIR.toString());
     		}
     	}
     }
@@ -105,11 +105,11 @@ public class VehicleService{
     }
     
     public void insertVehicleSupir(Integer vehicleId, String username) throws Exception{
-		vehicleMapper.insertUserRoleVehicle(vehicleId, username, Role.SUPIR.toString());
+		vehicleMapper.insertUserRoleVehicle(vehicleId, username, EnumRole.SUPIR.toString());
     }
     
     public List<User> selectSupirOfVehicle(Integer vehicleId) throws Exception {
-    	return vehicleMapper.selectUserOfVehicleRole(vehicleId, Role.SUPIR.toString());
+    	return vehicleMapper.selectUserOfVehicleRole(vehicleId, EnumRole.SUPIR.toString());
     }
     
     public List<Vehicle> findByPlateNumber(String plateNumber) throws Exception {

@@ -12,7 +12,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
-import com.aldroid.hormid.generic.staticvar.PiutangQueryList;
+
 import com.aldroid.hormid.model.generic.User;
 import com.aldroid.hormid.model.transaksi.Piutang;
 

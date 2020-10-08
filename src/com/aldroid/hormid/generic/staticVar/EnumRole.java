@@ -1,7 +1,7 @@
 package com.aldroid.hormid.generic.staticvar;
 
 
-public enum Role {
+public enum EnumRole {
 ADMIN ("ROLE_ADMIN"),
 PETANI("ROLE_PETANI"),
 AGEN("ROLE_AGEN"),
@@ -12,7 +12,7 @@ KASIR("ROLE_KASIR")
 
 private final String shortCode;
 
-Role(String code) {
+EnumRole(String code) {
     this.shortCode = code;
 }
 	  

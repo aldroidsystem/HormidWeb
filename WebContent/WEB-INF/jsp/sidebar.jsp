@@ -65,9 +65,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="${kasirURL}/piutang" class="nav-link">
+            <a href="${kasirURL}/pabrik" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
-              <p>Piutang</p>
+              <p>Pabrik</p>
             </a>
           </li>
         </ul>
@@ -98,6 +98,12 @@
             <a href="${kasirURL}/timbangGantung" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               Timbang Gantung
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="${kasirURL}/piutang" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Piutang</p>
             </a>
           </li>
           <li class="nav-item">

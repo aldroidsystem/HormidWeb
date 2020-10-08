@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.aldroid.hormid.generic.staticvar.HardcodeConfiguration;
-import com.aldroid.hormid.generic.staticvar.Module;
+import com.aldroid.hormid.generic.staticvar.EnumModule;
 import com.aldroid.hormid.mapper.transaksi.TimbangJembatanMapper;
 import com.aldroid.hormid.model.transaksi.TimbangJembatan;
 
@@ -86,7 +86,7 @@ public class TimbangJembatanService{
     	int diff = (int)((current-HardcodeConfiguration.APPS_BASE_DATE_MILIS)/ (1000*60*60*24));
     	Integer seqID = timbangJembatanMapper.selectNextSequenceID();
         return HardcodeConfiguration.APPS_AREA
-        		+Module.TIMBANG_JEMBATAN.toString()
+        		+EnumModule.TIMBANG_JEMBATAN.toString()
         		+Integer.toHexString(diff).toUpperCase()
         		+Integer.toHexString(seqID).toUpperCase();
     }    

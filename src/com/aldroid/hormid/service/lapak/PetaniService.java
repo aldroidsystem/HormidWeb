@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.aldroid.hormid.generic.staticvar.Role;
+import com.aldroid.hormid.generic.staticvar.EnumRole;
 import com.aldroid.hormid.mapper.lapak.PetaniMapper;
 import com.aldroid.hormid.mapper.lapak.VehicleMapper;
 import com.aldroid.hormid.model.generic.User;
@@ -54,14 +54,14 @@ public class PetaniService{
             		}
         		}
         		if(!exists){
-        			vehicleMapper.deleteUserRoleVehicle(dbVeh.getVehicleId(), petani.getUsername(), Role.PETANI.toString());
+        			vehicleMapper.deleteUserRoleVehicle(dbVeh.getVehicleId(), petani.getUsername(), EnumRole.PETANI.toString());
         		}
         	}
     	}
     	
     	if (petani.getListVehicleId() != null){
     		for(Integer insertVehicle : petani.getListVehicleId()){
-    			vehicleMapper.insertUserRoleVehicle(insertVehicle, petani.getUsername(), Role.PETANI.toString());
+    			vehicleMapper.insertUserRoleVehicle(insertVehicle, petani.getUsername(), EnumRole.PETANI.toString());
     		}
     	}
     }
@@ -69,7 +69,7 @@ public class PetaniService{
     
 
     public void insertPetaniVehicle(Integer vehicleId, String username) throws Exception{
-    	vehicleMapper.insertUserRoleVehicle(vehicleId, username, Role.PETANI.toString());
+    	vehicleMapper.insertUserRoleVehicle(vehicleId, username, EnumRole.PETANI.toString());
     }
     
     public User selectPetaniDetail(String username) throws Exception{
