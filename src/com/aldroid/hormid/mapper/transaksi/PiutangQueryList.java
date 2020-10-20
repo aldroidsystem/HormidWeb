@@ -14,12 +14,12 @@ public final class PiutangQueryList {
         ")";
     
     public static final String SELECT_PEMINJAM_DETAIL = 
-    		"SELECT u.username, u.fullname, u.hutang "
+    		"SELECT u.username, u.fullname, u.hutang, u.default_cicilan "
     		+ " FROM TB_USER u WHERE u.username=#{username,jdbcType=VARCHAR}";
     
        
     public static final String SELECT_PIUTANG_HISTORY = 
-    		"SELECT tbp.piutang_id, tbp.HUTANG, tbp.BAYAR, tbp.SISA_HUTANG, tbp.KETERANGAN, u.fullname, tbp.CREATED_DATE "
+    		"SELECT tbp.piutang_id, tbp.HUTANG, tbp.BAYAR, tbp.SISA_HUTANG, tbp.KETERANGAN, u.fullname, tbp.CREATED_DATE, default_cicilan "
     		+ " FROM tb_piutang tbp "
     		+ "inner join TB_USER u on u.username = tbp.created_by "
     		+ "WHERE tbp.username=#{username,jdbcType=VARCHAR} "
@@ -36,7 +36,7 @@ public final class PiutangQueryList {
     
     public static final String SELECT_PIUTANG_DETAIL = 
     		"SELECT tbp.piutang_id, tbp.HUTANG, tbp.BAYAR, tbp.SISA_HUTANG, tbp.KETERANGAN, "
-    		+ "u1.fullname createdBy, u2.fullname fullname, tbp.CREATED_DATE "
+    		+ "u1.fullname createdBy, u2.fullname fullname, tbp.CREATED_DATE, u2.default_cicilan "
     		+ " FROM tb_piutang tbp "
     		+ "inner join TB_USER u1 on u1.username = tbp.created_by "
     		+ "inner join TB_USER u2 on u2.username = tbp.username "
@@ -46,6 +46,6 @@ public final class PiutangQueryList {
     
     
     public static final String SEARCH_USER_PIUTANG_BY_FULLNAME = "SELECT username, fullname, hutang, area,"
-    		+ " terakhir_Bayar, terakhir_Pinjam "
+    		+ " terakhir_Bayar, default_cicilan "
     		+ "from tb_user where lower(fullname) like '%'||lower(#{nameSearch}) ||'%'";
 }

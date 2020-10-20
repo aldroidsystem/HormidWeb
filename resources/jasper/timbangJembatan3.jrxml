@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.14.0.final using JasperReports Library version 6.14.0-2ab0d8625be255bf609c78e1181801213e51db8f  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="timbangJembatan" pageWidth="340" pageHeight="396" whenNoDataType="AllSectionsNoDetail" columnWidth="300" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isTitleNewPage="true" whenResourceMissingType="Empty" uuid="d1a173d4-721c-49d8-a01c-670d482e186a">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="NO_DATA_ADAPTER"/>
+	<property name="com.jaspersoft.studio.unit." value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="cm"/>
+	<parameter name="timestampPaid" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="noNota" class="java.lang.String"/>
+	<parameter name="pengirim" class="java.lang.String"/>
+	<parameter name="plateNumber" class="java.lang.String"/>
+	<parameter name="supir" class="java.lang.String"/>
+	<parameter name="beratTimbang1" class="java.lang.String"/>
+	<parameter name="beratTimbang2" class="java.lang.String"/>
+	<parameter name="beratKotor" class="java.lang.String"/>
+	<parameter name="potongan" class="java.lang.String"/>
+	<parameter name="totalPotongan" class="java.lang.String"/>
+	<parameter name="beratBersih" class="java.lang.String"/>
+	<parameter name="harga" class="java.lang.String"/>
+	<parameter name="total" class="java.lang.String"/>
+	<parameter name="biayaBongkar" class="java.lang.String"/>
+	<parameter name="biayaLain" class="java.lang.String"/>
+	<parameter name="totalBayar" class="java.lang.String"/>
+	<parameter name="sisaHutang" class="java.lang.String"/>
+	<parameter name="keteranganBiayaLain" class="java.lang.String"/>
+	<parameter name="paidBy" class="java.lang.String"/>
+	<parameter name="potonganBon" class="java.lang.String"/>
+	<parameter name="biayaMobil" class="java.lang.String"/>
+	<title>
+		<band height="28">
+			<staticText>
+				<reportElement x="94" y="0" width="196" height="20" uuid="c9836085-7a63-4877-931f-57f4a975031f"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPAK HORAS MIDUK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="94" y="15" width="196" height="11" uuid="9020130e-b7f9-46d0-ab8e-a9a3c00de132">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Jl Lintas Rawa Jitu, Makartitama]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="27" width="300" height="1" uuid="71f6bd50-f94b-4f05-bbc6-ddfceeff75db"/>
+			</line>
+			<image>
+				<reportElement x="64" y="0" width="29" height="26" uuid="68a2d65a-a890-4bba-8bbe-cff0b66d0a20"/>
+				<imageExpression><![CDATA["C:\\hormid\\Design\\black circle 50px.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="17">
+			<staticText>
+				<reportElement x="0" y="0" width="300" height="17" uuid="f55f1d53-d53d-4c79-9104-3634e6a39f72"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Nota Pembelian Sawit]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<summary>
+		<band height="315">
+			<textField>
+				<reportElement x="200" y="0" width="98" height="12" uuid="549035d9-578a-4f3d-b1b3-1295a3f03829">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{timestampPaid}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="16" width="74" height="12" uuid="d6ba2be6-ea5a-40f9-af46-a57b09fc8a33">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[No Nota]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="28" width="74" height="12" uuid="2fa71528-b53b-44e1-8c9b-3e00dea2dc53">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[Pengirim]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="40" width="74" height="12" uuid="44bcc905-90e6-4340-aeeb-fc8647bc4c99">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[No. Polisi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="52" width="74" height="12" uuid="7bc5b638-e3b0-4c9b-9420-19aee8d5b6b2">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[Supir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="75" y="16" width="11" height="12" uuid="a4374812-3e1c-4807-9670-057441d35ecf">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="75" y="28" width="11" height="12" uuid="f7752e55-95f3-4883-b91b-3c8ba0341153">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="75" y="52" width="11" height="12" uuid="de556c27-fae1-4134-998d-96be96293dd1">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="75" y="40" width="11" height="12" uuid="fc7c46b9-090e-4242-a291-049f0a5e7b35">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="86" y="16" width="106" height="12" uuid="d731b5d0-5a96-4145-b12c-1fdc0b409496">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{noNota}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="86" y="28" width="106" height="12" uuid="7ea2a620-5e2e-4cc0-9136-d6259d3fceb0">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pengirim}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="86" y="40" width="106" height="12" uuid="c18c2f54-96f8-4c9d-917b-aa24eea0aa7d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{plateNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="86" y="52" width="106" height="12" uuid="7e451fe8-b998-477b-bf59-f3db196099f2">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{supir}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="73" width="74" height="12" uuid="c0d6f96a-3ef1-401e-bec2-46d49914c072">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Penimbangan 1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="85" width="74" height="12" uuid="3ae9739a-b7be-4e66-89b4-2136ede439cc">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Penimbangan 2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="73" width="20" height="12" uuid="5c5244aa-2a38-42e2-b2a2-271bc464dc09">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Kg]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="125" y="73" width="55" height="12" uuid="c9d4cd97-a859-4362-b2ee-3bf81e68b610">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{beratTimbang1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="125" y="85" width="55" height="12" uuid="04375219-6d29-4c6a-9fb9-eb5e9b74e624">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{beratTimbang2}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="70" width="298" height="1" forecolor="#666666" uuid="20ba2759-f0ec-4c56-a12b-507fd8c8cb4c"/>
+				<graphicElement>
+					<pen lineColor="#030000"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="1" y="97" width="74" height="12" uuid="b88fac53-0b4c-4606-ac3c-c9bb3eef504b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Berat Kotor]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="125" y="97" width="55" height="12" uuid="8411fcf3-9e2b-4f2c-9b66-3c1b5c8a9e89">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{beratKotor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="114" width="74" height="12" uuid="8ac4aa59-b1a7-4fe6-89b2-880b848db875">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Refraksi]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="139" width="297" height="1" forecolor="#666666" uuid="891c4b19-55ec-44d6-8a28-79f28d6d708a"/>
+			</line>
+			<textField>
+				<reportElement x="75" y="114" width="50" height="12" uuid="f6af8221-21c9-4eda-8eec-a453385f6244">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{potongan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="125" y="114" width="55" height="12" uuid="e0a7aded-64a2-4bb5-98ee-1b3af2fcbe4f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{totalPotongan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="126" width="74" height="12" uuid="48c85af2-346e-4cbf-9613-45269bb5cf2f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Berat Bersih]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="125" y="126" width="55" height="12" uuid="cdc6a7c7-ff87-41d5-837b-42d5e4381b81">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{beratBersih}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="144" width="74" height="12" uuid="27db7022-adf6-4056-8937-23b4192fe544">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Harga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="170" width="74" height="12" uuid="ae864412-520d-48cc-9091-a1aef10d2367">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Biaya Bongkar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="182" width="74" height="12" uuid="90430e8f-36cb-420c-affb-de699e994261">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Biaya Mobil]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="221" width="79" height="12" uuid="77eb22a2-b5d0-4d72-8a03-d86d8da3ab43">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL BAYAR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="239" width="58" height="10" uuid="cd0f7b3c-a0ce-4845-aa48-47f06280ff25"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[KETERANGAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="249" width="58" height="10" uuid="af6288cc-9302-4af7-bd8a-150a4c2cd6b5"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Biaya Lain2       :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="279" width="71" height="12" uuid="89fc2bd1-a344-4146-95f0-3613c58c69eb">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Hormat Kami,]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="86" y="144" width="106" height="12" uuid="d3b19a80-a67d-4fb3-8bca-b43b10197ee9">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{harga}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="158" width="98" height="12" uuid="adec030f-ff9d-4ec9-85ec-2d97f813322f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="170" width="98" height="12" uuid="ad07024a-8672-48ba-9c60-42f978d66efb">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{biayaBongkar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="182" width="98" height="12" uuid="8491337a-8152-4100-8a2d-cc022dc306db">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{biayaMobil}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="200" y="219" width="98" height="1" forecolor="#666666" uuid="787d5954-9caf-4727-821e-17b7bd9645b2"/>
+			</line>
+			<textField>
+				<reportElement x="200" y="221" width="98" height="12" uuid="35ee7c2c-0643-43fe-ab3a-8d0423ac2ae7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{totalBayar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="64" y="249" width="234" height="10" uuid="ca207659-557c-43b6-aa0a-524838754f47"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{keteranganBiayaLain}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="19" y="302" width="71" height="12" uuid="ae8285c1-8c55-4dbb-abe2-024b8e063084">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{paidBy}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="170" y="279" width="100" height="12" uuid="2b19f3de-ce78-4c79-9663-9a41ad48fba3">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Penerima,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="85" width="20" height="12" uuid="67a3c917-e057-426c-9f45-3c7aa924ca11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Kg]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="97" width="20" height="12" uuid="af1671f5-2ed0-4c3b-8b58-d48a0892fdb7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kg]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="111" width="298" height="1" forecolor="#666666" uuid="2653e74c-93ca-4f2b-a9b8-20eb6a1a04a6"/>
+			</line>
+			<staticText>
+				<reportElement x="180" y="114" width="20" height="12" uuid="9b409cc0-d932-430f-927e-4f7b1a634028">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Kg]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="126" width="20" height="12" uuid="bb643d32-f147-46f6-8e18-7b9c6097e219">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kg]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="158" width="74" height="12" uuid="0e48b013-08ef-4dc2-ad2f-7fb2f7a23902">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="194" width="74" height="12" uuid="71d22e8d-6b0d-4df0-bb94-05e562e8ea86">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Potongan Bon]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="194" width="98" height="12" uuid="a055b84d-fe14-4295-80fa-603e4c5939d3">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{potonganBon}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="303" width="100" height="12" uuid="311d7e0c-5604-4190-993d-bac659f46168">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pengirim}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="261" width="58" height="10" uuid="e9b57b73-1f13-4c62-ad88-83bccc437d13"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Sisa Hutang        :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="64" y="261" width="234" height="10" uuid="5e97813d-f18a-492e-9eca-c754014c572e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{sisaHutang}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="206" width="74" height="12" uuid="846ef105-ad3e-41ec-85cf-49c925a46205">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Biaya Lain2]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="206" width="98" height="12" uuid="81435ab4-0318-4919-aebf-bb73c53ccf54">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{biayaLain}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="75" y="144" width="11" height="12" uuid="124513d5-9939-43bd-aa3a-058c264ae011">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

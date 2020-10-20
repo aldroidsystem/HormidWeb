@@ -38,8 +38,7 @@ public class User {
     private Date terakhirPinjam;
     private Integer defaultPotongan;
     private String catatan;
-    
-
+    private Integer defaultCicilan;
     private List<Vehicle> vehicles;
     private List<Integer> listVehicleId;
     private List<String> listVehiclePlate;
@@ -47,6 +46,16 @@ public class User {
     private List<String> listPetaniName;
     private List<String> listPetaniUsername;
     
+
+	public Integer getDefaultCicilan() {
+		return defaultCicilan;
+	}
+
+
+	public void setDefaultCicilan(Integer defaultCicilan) {
+		this.defaultCicilan = defaultCicilan;
+	}
+
 
 	public String getToken() {
 		return token;

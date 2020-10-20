@@ -25,9 +25,22 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   
-  <style>	@media print
-{ 
-@page { size: 9cm; } 
+  <style>
+@media print {
+    html, body {
+        display: block; 
+        font-family: "Calibri";
+        margin: 0;
+    }
+
+    @page {
+      size: 10.6cm 14cm;
+    }
+
+    .logo {
+      width: 30%;
+    }
+
 }
 </style>
 </head>

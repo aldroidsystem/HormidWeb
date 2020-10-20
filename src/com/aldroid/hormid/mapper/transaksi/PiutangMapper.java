@@ -34,7 +34,8 @@ public interface PiutangMapper{
         @Result(property = "username", column ="username"),
         @Result(property = "fullname", column ="fullname"),
         @Result(property = "area", column ="area"),
-        @Result(property = "hutang", column ="hutang")
+        @Result(property = "hutang", column ="hutang"),
+        @Result(property = "defaultCicilan", column ="default_cicilan")
         })
     abstract Piutang selectListUserHutang(@Param("username")String username) throws Exception;
     
@@ -62,7 +63,8 @@ public interface PiutangMapper{
         @Result(property = "keterangan", column ="KETERANGAN"),
         @Result(property = "createdBy", column ="createdBy"),
         @Result(property = "fullname", column ="fullname"),
-        @Result(property = "createdDate", column ="CREATED_DATE")
+        @Result(property = "createdDate", column ="CREATED_DATE"),
+        @Result(property = "defaultCicilan", column ="default_cicilan")
         })
     abstract Piutang selectPiutangDetail(@Param("piutangId")String piutangId) throws Exception;
     
@@ -75,7 +77,7 @@ public interface PiutangMapper{
         @Result(property = "hutang", column ="hutang"),
         @Result(property = "area", column ="area"),
         @Result(property = "terakhirBayar", column ="terakhir_bayar"),
-        @Result(property = "terakhirPinjam", column ="terakhir_pinjam")
+        @Result(property = "defaultCicilan", column ="default_cicilan")
 
     })
     abstract List<User> searchUserPiutangByFullname(@Param("nameSearch") String nameSearch);

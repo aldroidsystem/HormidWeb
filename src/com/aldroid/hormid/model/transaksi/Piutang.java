@@ -18,6 +18,7 @@ public class Piutang {
 	private Integer hutang;
 	private Integer bayar;
 	private Integer sisaHutang;
+	private Integer defaultCicilan;
 	private String keterangan;
 	private String catatan;
     private String createdBy;
@@ -28,6 +29,12 @@ public class Piutang {
     private Date sampaiTanggal;
     
     
+	public Integer getDefaultCicilan() {
+		return defaultCicilan;
+	}
+	public void setDefaultCicilan(Integer defaultCicilan) {
+		this.defaultCicilan = defaultCicilan;
+	}
 	public String getPiutangId() {
 		return piutangId;
 	}

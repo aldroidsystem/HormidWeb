@@ -44,7 +44,7 @@
                     <th>Area</th>
                     <th>Pinjaman</th>
                     <th>Terakhir Bayar</th>
-                    <th>Terakhir Pinjam</th>
+                    <th>Cicilan per-setor</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -63,7 +63,7 @@
 						<td>${user.getArea()}</td>
 						<td><fmt:formatNumber value = "${user.getHutang()}" type = "currency" minFractionDigits="0"/></td>
 						<td><fmt:formatDate value="${user.getTerakhirBayar()}" type="date" pattern="dd/MM/yyyy"/></td>
-						<td><fmt:formatDate value="${user.getTerakhirPinjam()}" type="date" pattern="dd/MM/yyyy"/></td>
+						<td><fmt:formatNumber value = "${user.getDefaultCicilan()}" type = "currency" minFractionDigits="0"/></td>
 					</tr>
 					</c:forEach>
                   </tbody>
